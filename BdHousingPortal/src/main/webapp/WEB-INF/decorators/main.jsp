@@ -1,3 +1,4 @@
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
 Design by Free CSS Templates
@@ -34,12 +35,12 @@ Released   : 20120520
 	<div id="menu-wrapper">
 		<ul id="menu">
 			<li class="current_page_item"><a href="#"><span>Home</span></a></li>
-			<li><a href="#"><span>My Account</span>
-				<%--<ul>
-					<li class="first"> <a href="index">Maecenas luctus lectus</a> </li>
-					<li> <a href="search">Integer gravida</a> </li>
-					<li class="last"> <a href="about">Ut nonummy rutrum</a> </li>
-				</ul>--%>
+			<li><span>Register As</span>
+				<ul>
+					<li class="first"> <a href="#">Customer</a> </li>
+					<li> <a href="#">Flat owner</a> </li>
+					<li class="last"><a href="#">Housing developer</a> </li>
+				</ul>
 			</li>
 			<li><a href="#"><span>Contact</span></a></li>
 			<li><a href="#"><span>About</span></a></li>
@@ -59,36 +60,7 @@ Released   : 20120520
 	<!-- end #menu -->
 	<div id="splash"><img src="/BdHousingPortal/resources/img/pics01.jpg" width="980" height="300" alt="" /></div>
 	<div id="page">
-		<div id="content">
-			<div class="contentbg">
-				<div class="post">
-					<h2 class="title"><a href="#">Welcome to commercial</a></h2>
-					<p class="meta">Posted by <a href="#">Someone</a> on May 22, 2012
-						&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a></p>
-					<div class="entry">
-						<p>This is <strong>Commercial</strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.  The picture in this template is from <a href="http://fotogrph.com/">Fotogrph</a>.The gallery slider and popup gallery used in this template is powered by <a href="http://nodethirtythree.com/">Poptrox</a> and <a href="http://nodethirtythree.com/">Slidertron</a>. Dropdown menu is powered by <a href="http://nodethirtythree.com/">Dropotron</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you’re pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :)</p>
-						<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.</p>
-					</div>
-				</div>
-				<div class="post">
-					<h2 class="title"><a href="#">Lorem ipsum sed aliquam</a></h2>
-					<p class="meta">Posted by <a href="#">Someone</a> on May 19, 2012
-						&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a></p>
-					<div class="entry">
-						<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, consectetuer nisl felis ac diam. Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. Mauris vitae nisl nec metus placerat consectetuer. </p>
-					</div>
-				</div>
-				<div class="post">
-					<h2 class="title"><a href="#">Phasellus pellentesque turpis </a></h2>
-					<p class="meta">Posted by <a href="#">Someone</a> on May 15, 2012
-						&nbsp;&bull;&nbsp; <a href="#" class="comments">Comments (64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">Full article</a></p>
-					<div class="entry">
-						<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc. Donec ipsum. Proin imperdiet est. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc.</p>
-					</div>
-				</div>
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
+         <decorator:body/>
 		<!-- end #content -->
 		<div id="sidebar-bg">
 			<div id="sidebar">
