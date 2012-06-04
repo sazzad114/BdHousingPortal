@@ -1,11 +1,17 @@
 package net.therap.controller;
 
+import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
 import net.therap.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -15,10 +21,15 @@ import javax.validation.Valid;
  * Time: 2:17 PM
  * To change this template use File | Settings | File Templates.
  */
+
+@Controller
+@RequestMapping("/login.htm")
 public class LoginController {
 
-     @Autowired
-     UserService userService;
+     private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
+
+    @Autowired
+    UserService userService;
 
     public UserService getUserService() {
         return userService;
@@ -28,21 +39,21 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @RequestMapping(value ="/login.htm" ,method = RequestMethod.POST)
-     void loginAction(@Valid User user){
-       /* if (userService.isEmailExists(flatOwner.getUser().getEmail()) == true) {
-            bindingResult.rejectValue("user.email", "email.exists");
-        }
+    @RequestMapping(value = "/login.htm",method = RequestMethod.POST)
+    public String loginAction(HttpServletRequest request,HttpServletResponse response){
 
-        if (bindingResult.hasErrors()) {
 
-            return "flatownerreg";
-        } else {
-            flatOwner.getUser().setUserType(User.FLATOWNERTYPE);
-            flatOwnerService.saveFlatOwner(flatOwner);
-            return "welcome";
+        Object object = userService.getUserByEmailAndPass(request.getParameter("email"),request.getParameter("password"));
+
+        if(object == null){
+
+
+           return "redirect:"+request.getHeader("Referer") + "?errorcode=1";
         }
-*/
+        else {
+
+           return "welcome";
+        }
      }
 
 }

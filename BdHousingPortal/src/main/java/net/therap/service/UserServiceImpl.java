@@ -14,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserServiceImpl implements UserService{
 
-    @Autowired
+
     private UserDao userDao;
 
-    @Autowired
+
     private FlatOwnerDao flatOwnerDao;
 
     public UserDao getUserDao() {
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
     public Object getUserByEmailAndPass(String email, String password) {
 
         User user = userDao.getUserByEmail(email);
-        if( user == null){
+        if( user == null || !user.getPassword().equals(password) ){
 
            return null;
         }

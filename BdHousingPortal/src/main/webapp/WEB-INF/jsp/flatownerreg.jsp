@@ -28,6 +28,8 @@
         <div class="post">
             <div class="entry">
                 <form:form action="" commandName="flatOwner" method="post">
+                    <%= request.getHeader("Referer") %> fgfgfgfgfgfg
+                    <%=request.getHeader("Host")%>
                     <table>
                         <tr>
                             <td>
