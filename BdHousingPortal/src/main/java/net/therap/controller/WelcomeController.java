@@ -1,6 +1,7 @@
 package net.therap.controller;
 
 
+import net.therap.domain.FlatOwner;
 import net.therap.service.FlatOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,18 +29,17 @@ public class WelcomeController{
     }
 
     @Autowired
-
     private FlatOwnerService flatOwnerService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(){
 
-       /* FlatOwner flatOwner = new FlatOwner();
+        FlatOwner flatOwner = new FlatOwner();
         flatOwner.setFlatOwnerName("habahashmat");
         flatOwner.getUser().setUserType(2);
         flatOwner.getUser().setEmail("ashraf@yahoo.com");
         flatOwner.getUser().setPassword("123456789");
-        flatOwnerService.saveFlatOwner(flatOwner);*/
+        flatOwnerService.saveFlatOwner(flatOwner);
         return "welcome";
     }
 

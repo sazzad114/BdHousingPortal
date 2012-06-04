@@ -1,5 +1,6 @@
 package net.therap.dao;
 
+import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
 
 /**
@@ -11,5 +12,5 @@ import net.therap.domain.User;
  */
 public interface FlatOwnerDao {
     public User getUserByEmail(String email);
-   /* public void saveFlatUser(FlatOwner flatOwner);*/
+    public void saveFlatUser(FlatOwner flatOwner);
 }

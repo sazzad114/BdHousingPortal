@@ -66,7 +66,7 @@ public class FlatOwner {
     public void setFlatOwnerId(long flatOwnerId) {
         this.flatOwnerId = flatOwnerId;
     }
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;

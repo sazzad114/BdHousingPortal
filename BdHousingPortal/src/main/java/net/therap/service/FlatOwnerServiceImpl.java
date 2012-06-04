@@ -35,6 +35,6 @@ public class FlatOwnerServiceImpl implements FlatOwnerService {
     }
 
     public void saveFlatOwner(FlatOwner flatOwner) {
-        //flatOwnerDao.saveFlatUser(flatOwner);
+        flatOwnerDao.saveFlatUser(flatOwner);
     }
 }
