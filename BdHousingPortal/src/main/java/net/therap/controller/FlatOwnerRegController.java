@@ -58,11 +58,14 @@ public class FlatOwnerRegController {
            bindingResult.rejectValue("user.confirmPassword","password.mismatch");
         }
 
+
+
         if (bindingResult.hasErrors()) {
 
             return "flatownerreg";
         }
         else {
+             flatOwnerService.saveFlatOwner(flatOwner);
              return "welcome";
         }
     }
