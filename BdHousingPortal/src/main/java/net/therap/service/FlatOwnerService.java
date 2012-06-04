@@ -11,6 +11,5 @@ import net.therap.domain.FlatOwner;
  */
 public interface FlatOwnerService {
 
-    public boolean isEmailExists(String email);
     public void saveFlatOwner(FlatOwner flatOwner);
 }

@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDao{
 
-     private static final Logger log = LoggerFactory.getLogger(FlatOwnerDaoImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(FlatOwnerDaoImpl.class);
 
-    public User getUserByEmail(String email) {
+    /*public User getUserByEmail(String email) {
 
         Object[] objects = new Object[1];
         objects[0] = email;
@@ -33,10 +33,24 @@ public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDa
             return userList.get(0);
         }
 
-    }
+    }*/
 
    public void saveFlatUser(FlatOwner flatOwner) {
         getHibernateTemplate().saveOrUpdate(flatOwner);
         getHibernateTemplate().flush();
     }
+
+   public FlatOwner getFlatOwnerByUser(User user) {
+        Object[] objects = new Object[1];
+        objects[0] = user;
+        List<FlatOwner> flatOwnerList = getHibernateTemplate().find(" from FlatOwner as flatOwner where flatOwner.user = ? ",objects);
+
+        if(flatOwnerList.size() == 0){
+
+            return null;
+        }
+        else {
+            return flatOwnerList.get(0);
+        }
+   }
 }

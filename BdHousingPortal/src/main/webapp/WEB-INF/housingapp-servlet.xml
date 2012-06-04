@@ -34,15 +34,16 @@
         <property name="flatOwnerDao" ref="flatOwnerDao"/>
     </bean>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="placeholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>
-                    classpath:db.properties
-                </value>
-            </list>
-        </property>
+    <bean class="net.therap.dao.UserDaoImpl" id="userDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean class="net.therap.service.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"/>
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+    </bean>
+
+
 
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basename" value="messages"/>

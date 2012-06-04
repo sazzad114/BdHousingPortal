@@ -39,6 +39,18 @@
                                 <span class="error"><form:errors path="flatOwnerName"/></span>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                <fmt:message key="user.dateOfBirth"/>
+                                <span>&nbsp;&nbsp;&nbsp;</span>
+                            </td>
+                            <td>
+                                <form:input path="dateOfBirth"/><br/>
+                                <form:errors path="dateOfBirth"/>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>
                                 <fmt:message key="user.email"/>

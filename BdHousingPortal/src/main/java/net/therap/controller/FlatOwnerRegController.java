@@ -2,16 +2,25 @@ package net.therap.controller;
 
 
 import net.therap.domain.FlatOwner;
+import net.therap.domain.User;
 import net.therap.service.FlatOwnerService;
+import net.therap.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -26,8 +35,21 @@ import java.util.Map;
 @RequestMapping("/flatownerreg.htm")
 public class FlatOwnerRegController {
 
+    private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
+
     @Autowired
     FlatOwnerService flatOwnerService;
+
+    @Autowired
+    UserService userService;
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -37,7 +59,7 @@ public class FlatOwnerRegController {
         this.flatOwnerService = flatOwnerService;
     }
 
-    private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
+
 
     @RequestMapping(method = RequestMethod.GET)
     String flatOwnerRegAction(Map<String, Object> model) {
@@ -47,26 +69,34 @@ public class FlatOwnerRegController {
 
     }
 
+    @InitBinder
+    protected void initBinder(HttpServletRequest request,ServletRequestDataBinder binder) throws Exception {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
+
+
+    }
+
+
     @RequestMapping(method = RequestMethod.POST)
-    public String saveFlatOwnerAction(@Valid FlatOwner flatOwner,BindingResult bindingResult) {
+    public String saveFlatOwnerAction(@Valid FlatOwner flatOwner, BindingResult bindingResult) {
 
-        if(flatOwnerService.isEmailExists(flatOwner.getUser().getEmail()) == true){
-            bindingResult.rejectValue("user.email","email.exists");
+        if (userService.isEmailExists(flatOwner.getUser().getEmail()) == true) {
+            bindingResult.rejectValue("user.email", "email.exists");
         }
 
-        if(!flatOwner.getUser().getPassword().equals(flatOwner.getUser().getConfirmPassword())){
-           bindingResult.rejectValue("user.confirmPassword","password.mismatch");
+        if (!flatOwner.getUser().getPassword().equals(flatOwner.getUser().getConfirmPassword())) {
+            bindingResult.rejectValue("user.confirmPassword", "password.mismatch");
         }
-
 
 
         if (bindingResult.hasErrors()) {
 
             return "flatownerreg";
-        }
-        else {
-             flatOwnerService.saveFlatOwner(flatOwner);
-             return "welcome";
+        } else {
+            flatOwner.getUser().setUserType(User.FLATOWNERTYPE);
+            flatOwnerService.saveFlatOwner(flatOwner);
+            return "welcome";
         }
     }
 

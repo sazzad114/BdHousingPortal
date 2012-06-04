@@ -1,5 +1,6 @@
 package net.therap.domain;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -18,9 +19,15 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "H_USER")
 public class User {
+    public static final int FLATOWNERTYPE = 2;
+    public static final int CUSTOMERTYPE = 1;
+    public static final int DEVELOPERTYPE = 3;
+
+
 
     private long userId;
-    @Pattern(regexp = "[a-z0-9A-Z_\\.]*@[a-z0-9A-Z]*\\.[a-z0-9A-Z]*",message = "email should follow the format email@domain.com")
+
+    @Email(message = "email should follow the format email@domain.com")
     @Size(min = 10,max = 50,message = "within 10 to 50 characters")
     private String email;
 

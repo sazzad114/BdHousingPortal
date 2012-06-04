@@ -33,12 +33,6 @@ public class WelcomeController{
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(){
 
-      /*  FlatOwner flatOwner = new FlatOwner();
-        flatOwner.setFlatOwnerName("habahashmat");
-        flatOwner.getUser().setUserType(2);
-        flatOwner.getUser().setEmail("ashraf@yahoo.com");
-        flatOwner.getUser().setPassword("123456789");
-        flatOwnerService.saveFlatOwner(flatOwner);*/
         return "welcome";
     }
 

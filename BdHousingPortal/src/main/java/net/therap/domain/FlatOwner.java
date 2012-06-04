@@ -1,12 +1,14 @@
 package net.therap.domain;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 
 /**
@@ -38,7 +40,8 @@ public class FlatOwner {
     @Size(min = 10,max = 15,message = "within 10 to 15 characters")
     private String contactNo;
 
-    private int age;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
 
     @Size(min = 20,max = 300,message = "within 20 to 100 characters")
     private String description;
@@ -92,14 +95,17 @@ public class FlatOwner {
     public void setDescription(String description) {
         this.description = description;
     }
-     @Column(name = "AGE")
-    public int getAge() {
-        return age;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATEOFBIRTH")
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
+
     @Column(name = "CONTACT_NO")
     public String getContactNo() {
         return contactNo;

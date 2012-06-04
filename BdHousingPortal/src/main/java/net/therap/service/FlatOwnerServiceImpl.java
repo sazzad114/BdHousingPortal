@@ -1,8 +1,10 @@
 package net.therap.service;
 
 import net.therap.dao.FlatOwnerDao;
+import net.therap.dao.UserDao;
 import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,25 +15,14 @@ import net.therap.domain.User;
  */
 public class FlatOwnerServiceImpl implements FlatOwnerService {
 
+    private FlatOwnerDao flatOwnerDao;
+
     public FlatOwnerDao getFlatOwnerDao() {
         return flatOwnerDao;
     }
 
     public void setFlatOwnerDao(FlatOwnerDao flatOwnerDao) {
         this.flatOwnerDao = flatOwnerDao;
-    }
-
-    private FlatOwnerDao flatOwnerDao;
-
-    public boolean isEmailExists(String email) {
-        User user = flatOwnerDao.getUserByEmail(email);
-        if(user == null)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
     }
 
     public void saveFlatOwner(FlatOwner flatOwner) {
