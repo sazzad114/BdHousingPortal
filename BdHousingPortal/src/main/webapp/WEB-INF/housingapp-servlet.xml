@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
 
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
 
     </bean>
 
-    <bean class="net.therap.controller.WelcomeController" name="/welcome.htm"/>
+    <!-- <bean class="net.therap.controller.WelcomeController" name="/welcome.htm"/>-->
+
+    <!--    <bean class="net.therap.controller.FlatOwnerRegistrationController" name="/flatownerreg.htm">
+        <property name="commandClass" value="net.therap.domain.FlatOwner"/>
+        <property name="commandName" value="flatOwner"/>
+        <property name="formView" value="flatownerreg"/>
+        <property name="successView" value="welcome"/>
+
+    </bean>-->
+
+
+    <bean class="net.therap.dao.FlatOwnerDaoImpl" id="flatOwnerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.FlatOwnerServiceImpl" id="flatOwnerService">
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="placeholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>
+                    classpath:db.properties
+                </value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+
+
+    <context:component-scan base-package="net.therap"/>
+
+    <mvc:annotation-driven/>
+
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+
+    <bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>net.therap.domain.Address</value>
+                <value>net.therap.domain.Building</value>
+                <value>net.therap.domain.Criteria</value>
+                <value>net.therap.domain.Flat</value>
+                <value>net.therap.domain.Customer</value>
+                <value>net.therap.domain.FlatOwner</value>
+                <value>net.therap.domain.StandardCriteria</value>
+                <value>net.therap.domain.User</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

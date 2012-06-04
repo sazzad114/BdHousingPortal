@@ -1,10 +1,12 @@
 package net.therap.controller;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import net.therap.service.FlatOwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,9 +15,33 @@ import javax.servlet.http.HttpServletResponse;
  * Time: 4:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class WelcomeController extends AbstractController{
-    @Override
-    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        return new ModelAndView("welcome");
+@Controller
+@RequestMapping({"/welcome.htm"})
+public class WelcomeController{
+
+    public FlatOwnerService getFlatOwnerService() {
+        return flatOwnerService;
     }
+
+    public void setFlatOwnerService(FlatOwnerService flatOwnerService) {
+        this.flatOwnerService = flatOwnerService;
+    }
+
+    @Autowired
+
+    private FlatOwnerService flatOwnerService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String welcomeAction(){
+
+       /* FlatOwner flatOwner = new FlatOwner();
+        flatOwner.setFlatOwnerName("habahashmat");
+        flatOwner.getUser().setUserType(2);
+        flatOwner.getUser().setEmail("ashraf@yahoo.com");
+        flatOwner.getUser().setPassword("123456789");
+        flatOwnerService.saveFlatOwner(flatOwner);*/
+        return "welcome";
+    }
+
+
 }

@@ -38,7 +38,7 @@ Released   : 20120520
 			<li><span>Register As</span>
 				<ul>
 					<li class="first"> <a href="#">Customer</a> </li>
-					<li> <a href="#">Flat owner</a> </li>
+					<li> <a href="/BdHousingPortal/app/flatownerreg.htm">Flat owner</a> </li>
 					<li class="last"><a href="#">Housing developer</a> </li>
 				</ul>
 			</li>

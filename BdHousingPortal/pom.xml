@@ -20,6 +20,12 @@
         <!-- JEE -->
 
         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+        </dependency>
+
+        <dependency>
             <groupId>javaee</groupId>
             <artifactId>javaee-api</artifactId>
             <version>5</version>
@@ -64,15 +70,27 @@
 
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.4.0.GA</version>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>3.3.0.ga</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>4.1.0.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+
+       <!-- <dependency>
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>3.1.0.GA</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Apache Commons -->
 
