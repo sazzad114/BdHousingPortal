@@ -8,9 +8,9 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver1">
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver1">
 
-        <property name="prefix" value="/WEB-INF/jsp/anonymous/"/>
+        <property name="prefix" value="/WEB-INF/jsp/flatowner/"/>
         <property name="order"><value>1</value></property>
         <property name="suffix" value=".jsp"/>
 
@@ -24,27 +24,13 @@
 
     </bean>
 
-    <!-- <bean class="net.therap.controller.HomeController" name="/welcome.htm"/>-->
-
-    <!--    <bean class="net.therap.controller.FlatOwnerRegistrationController" name="/flatownerreg.htm">
-        <property name="commandClass" value="net.therap.domain.FlatOwner"/>
-        <property name="commandName" value="flatOwner"/>
-        <property name="formView" value="flatownerreg"/>
-        <property name="successView" value="welcome"/>
-
-    </bean>-->
-
-
-
-
-
 
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basename" value="messages"/>
     </bean>
 
 
-    <context:component-scan base-package="net.therap.controller.anonymous"/>
+    <context:component-scan base-package="net.therap.controller.flatowner"/>
     <context:component-scan base-package="net.therap.controller.common"/>
 
     <mvc:annotation-driven/>

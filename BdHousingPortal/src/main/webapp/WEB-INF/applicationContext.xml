@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+
+    <bean class="net.therap.dao.FlatOwnerDaoImpl" id="flatOwnerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.FlatOwnerServiceImpl" id="flatOwnerService">
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.UserDaoImpl" id="userDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"/>
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+    </bean>
+
+
+    <bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>net.therap.domain.Address</value>
+                <value>net.therap.domain.Building</value>
+                <value>net.therap.domain.Criteria</value>
+                <value>net.therap.domain.Flat</value>
+                <value>net.therap.domain.Customer</value>
+                <value>net.therap.domain.FlatOwner</value>
+                <value>net.therap.domain.StandardCriteria</value>
+                <value>net.therap.domain.User</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+            </props>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="net.therap.domain"/>
 </beans>
