@@ -1,6 +1,11 @@
 package net.therap.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,15 +22,36 @@ import java.util.List;
 public class Customer {
 
     private long customerId;
+
+    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*",message = "allow only alpha character and no consecutive spaces")
+    @Size(min = 5,max = 50,message = "within 5 to 50 characters")
     private String customerName;
+
+    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*",message = "allow only alpha character and no consecutive spaces")
+    @Size(min = 5,max = 50,message = "within 5 to 50 characters")
     private String occupation;
+
+    @Size(min = 20,max = 300,message = "within 20 to 100 characters")
     private String occupationDetails;
+
+
     private int familyMembers;
+
+    @Pattern(regexp = "[0-9-+]*",message = "only numbers are allowed")
+    @Size(min = 10,max = 15,message = "within 10 to 15 characters")
     private String contactNo;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
+
+    @Size(min = 20,max = 300,message = "within 20 to 100 characters")
     private String description;
     private long version;
+
+    @Valid
     private User user;
+
+    @Valid
     private Address address;
     private List<Criteria> criteriaList = new ArrayList<Criteria>();
 

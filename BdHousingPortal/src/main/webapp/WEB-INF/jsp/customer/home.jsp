@@ -12,7 +12,7 @@
 <div id="content">
 			<div class="contentbg">
 				<div class="post">
-					<h2 class="title">Potential Customers</h2>
+					<h2 class="title">Flats for you :</h2>
 					<div class="entry">
                         flat1
                     </div>

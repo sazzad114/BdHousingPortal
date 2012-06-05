@@ -23,7 +23,7 @@
 <div id="content">
     <div class="contentbg">
         <div class="post">
-            <h2 class="title">Flat Owner Registration Form</h2>
+            <h2 class="title">Customer Registration Form</h2>
         </div>
         <div class="post">
             <div class="entry">
@@ -91,6 +91,27 @@
                                 <form:errors path="user.confirmPassword"/>
                             </td>
                         </tr>
+
+                         <tr>
+                            <td>
+                                <fmt:message key="user.familyMembers" />
+                                <span>&nbsp;&nbsp;&nbsp;</span>
+                            </td>
+                            <td>
+                                <form:select path="familyMembers" itemLabel="-select number-">
+                                    <form:option value="2">2</form:option>
+                                    <form:option value="3">3</form:option>
+                                    <form:option value="4">4</form:option>
+                                    <form:option value="5">5</form:option>
+                                     <form:option value="6">6</form:option>
+                                     <form:option value="7">7</form:option>
+                                     <form:option value="8">8</form:option>
+                                </form:select>
+                                <br/>
+                                <form:errors path="familyMembers"/>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>
                                 <fmt:message key="user.houseNo"/>
