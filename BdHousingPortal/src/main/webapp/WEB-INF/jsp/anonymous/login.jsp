@@ -39,7 +39,7 @@ Released : 20120520
             <li class="current_page_item"><a href="/BdHousingPortal/app/welcome.htm"><span>Home</span></a></li>
             <li><span>Register As</span>
                 <ul>
-                    <li class="first"><a href="/BdHousingPortal/app/customerreg.htm">Customer</a></li>
+                    <li class="first"><a href="#">Customer</a></li>
                     <li><a href="/BdHousingPortal/app/flatownerreg.htm">Flat owner</a></li>
                     <li class="last"><a href="#">Housing developer</a></li>
                 </ul>
@@ -54,38 +54,53 @@ Released : 20120520
     <!-- end #menu -->
     <div id="splash"><img src="/BdHousingPortal/resources/img/pics01.jpg" width="980" height="300" alt=""/></div>
     <div id="page">
-        <decorator:body/>
+       <div id="content">
+    <div class="contentbg">
+
+
+        <div class="post">
+            <h2 class="title">Log In :</h2>
+        </div>
+
+        <div class="post">
+           <br/>
+          <fieldset  style="width:120px; padding-right:120px;border-color:#dbdada;border-width:1px">
+
+            <form action="/BdHousingPortal/app/login.htm" method="post">
+
+                    <ul style="list-style-type:none;">
+                        <li>
+                            <label>Email : </label>
+                            <input type="text" name="email"/>
+                        </li>
+                        <li>
+                            <br/>
+                            <label>Password : </label>
+                            <input type="password" name="password"/>
+                        </li>
+                        <br/>
+
+                        <c:if test="${param['errorcode'] == 1}">
+                            <c:out value="invalid email or password "/>
+                        </c:if>
+                        <li>
+                            <input type="submit" value="Log in"/>
+                        </li>
+
+                    </ul>
+
+            </form>
+            </fieldset>
+        </div>
+
+        <div style="clear: both;">&nbsp;</div>
+    </div>
+</div>
         <!-- end #content -->
         <div id="sidebar-bg">
             <div id="sidebar">
                 <ul>
-                    <li>
-                        <h2>Log in</h2>
 
-                        <form action="/BdHousingPortal/app/login.htm" method="post">
-                            <ul>
-                                <li>
-                                    <label>Email :</label><br/>
-                                    <input type="text" name="email"/>
-                                </li>
-                                <li>
-                                    <label>Password :</label><br/>
-                                    <input type="password" name="password"/>
-                                </li>
-                                <br/>
-                                <c:if test="${param['errorcode'] == 1}">
-                                    <c:out value="invalid email or password "/>
-                                </c:if>
-                                <li>
-
-                                    <input type="submit" value="Log in"/>
-                                </li>
-
-
-                            </ul>
-                        </form>
-
-                    </li>
                     <li>
                         <h2>Search for</h2>
                         <ul>

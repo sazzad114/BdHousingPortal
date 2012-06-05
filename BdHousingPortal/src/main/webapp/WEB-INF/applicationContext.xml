@@ -10,6 +10,14 @@
         <property name="resourceRef" value="true"/>
     </bean>
 
+    <bean class="net.therap.service.CustomerServiceImpl" id="customerService">
+        <property name="customerDao" ref="customerDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.CustomerDaoImpl" id="customerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 
     <bean class="net.therap.dao.FlatOwnerDaoImpl" id="flatOwnerDao">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -26,6 +34,7 @@
     <bean class="net.therap.service.UserServiceImpl" id="userService">
         <property name="userDao" ref="userDao"/>
         <property name="flatOwnerDao" ref="flatOwnerDao"/>
+        <property name="customerDao" ref="customerDao"/>
     </bean>
 
 

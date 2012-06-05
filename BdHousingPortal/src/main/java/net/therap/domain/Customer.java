@@ -2,6 +2,7 @@ package net.therap.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Customer {
     private String occupationDetails;
     private int familyMembers;
     private String contactNo;
-    private int age;
+    private Date dateOfBirth;
     private String description;
     private long version;
     private User user;
@@ -53,7 +54,7 @@ public class Customer {
         this.criteriaList = criteriaList;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;
@@ -79,14 +80,17 @@ public class Customer {
     public void setDescription(String description) {
         this.description = description;
     }
-    @Column(name = "AGE")
-    public int getAge() {
-        return age;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_OF_BIRTH")
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
+
     @Column(name = "CONTACT_NO")
     public String getContactNo() {
         return contactNo;

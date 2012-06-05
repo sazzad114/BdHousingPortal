@@ -27,7 +27,7 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form action="" commandName="flatOwner" method="post">
+                <form:form action="" commandName="customer" method="post">
                     <table>
                         <tr>
                             <td>
@@ -35,8 +35,8 @@
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
-                                <form:input path="flatOwnerName"/><br/>
-                                <span class="error"><form:errors path="flatOwnerName"/></span>
+                                <form:input path="customerName"/><br/>
+                                <span class="error"><form:errors path="customerName"/></span>
                             </td>
                         </tr>
 

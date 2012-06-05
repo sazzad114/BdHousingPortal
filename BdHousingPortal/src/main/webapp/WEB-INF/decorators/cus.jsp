@@ -27,7 +27,7 @@ Released : 20120520
     <div id="header-wrapper">
         <div id="header">
             <div id="logo">
-                <h1><a href="#">BD HOUSING PORTAL</a></h1>
+                <h1><a href="own.jsp#">BD HOUSING PORTAL</a></h1>
 
                 <p>You are one step away from your dream home...</p>
             </div>
@@ -36,16 +36,10 @@ Released : 20120520
     <!-- end #header -->
     <div id="menu-wrapper">
         <ul id="menu">
-            <li class="current_page_item"><a href="/BdHousingPortal/app/welcome.htm"><span>Home</span></a></li>
-            <li><span>Register As</span>
-                <ul>
-                    <li class="first"><a href="/BdHousingPortal/app/customerreg.htm">Customer</a></li>
-                    <li><a href="/BdHousingPortal/app/flatownerreg.htm">Flat owner</a></li>
-                    <li class="last"><a href="#">Housing developer</a></li>
-                </ul>
-            </li>
-            <li><a href="#"><span>Contact</span></a></li>
-            <li><a href="#"><span>About</span></a></li>
+            <li class="current_page_item"><a href="/BdHousingPortal/cus/home.htm"><span>Home</span></a></li>
+            <li><a href="#"><span>Profile</span></a></li>
+            <li><a href="#"><span>Criteria</span></a></li>
+            <li><a href="#"><span>Logout</span></a></li>
         </ul>
         <script type="text/javascript">
             $('#menu').dropotron();
@@ -60,38 +54,15 @@ Released : 20120520
             <div id="sidebar">
                 <ul>
                     <li>
-                        <h2>Log in</h2>
-
-                        <form action="/BdHousingPortal/app/login.htm" method="post">
-                            <ul>
-                                <li>
-                                    <label>Email :</label><br/>
-                                    <input type="text" name="email"/>
-                                </li>
-                                <li>
-                                    <label>Password :</label><br/>
-                                    <input type="password" name="password"/>
-                                </li>
-                                <br/>
-                                <c:if test="${param['errorcode'] == 1}">
-                                    <c:out value="invalid email or password "/>
-                                </c:if>
-                                <li>
-
-                                    <input type="submit" value="Log in"/>
-                                </li>
-
-
-                            </ul>
-                        </form>
-
-                    </li>
-                    <li>
                         <h2>Search for</h2>
                         <ul>
                             <li><a href="#">Flat customers</a></li>
                             <li><a href="#">Flats</a></li>
                             <li><a href="#">Housing developers</a></li>
+                        </ul>
+                        <h2>Add new</h2>
+                        <ul>
+                            <li><a href="#">Add new Criteria</a></li>
                         </ul>
                     </li>
                 </ul>

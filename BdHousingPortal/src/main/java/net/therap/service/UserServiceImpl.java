@@ -1,5 +1,6 @@
 package net.therap.service;
 
+import net.therap.dao.CustomerDao;
 import net.therap.dao.FlatOwnerDao;
 import net.therap.dao.UserDao;
 import net.therap.domain.User;
@@ -16,7 +17,15 @@ public class UserServiceImpl implements UserService{
 
 
     private UserDao userDao;
+    private CustomerDao customerDao;
 
+    public CustomerDao getCustomerDao() {
+        return customerDao;
+    }
+
+    public void setCustomerDao(CustomerDao customerDao) {
+        this.customerDao = customerDao;
+    }
 
     private FlatOwnerDao flatOwnerDao;
 
@@ -47,6 +56,9 @@ public class UserServiceImpl implements UserService{
 
             switch (user.getUserType()){
                 case User.CUSTOMERTYPE:
+                {
+                    return customerDao.getCustomerByUser(user);
+                }
                 case User.FLATOWNERTYPE:
                 {
                    return flatOwnerDao.getFlatOwnerByUser(user);

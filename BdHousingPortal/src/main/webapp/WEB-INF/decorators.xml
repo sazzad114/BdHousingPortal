@@ -3,13 +3,23 @@
 <decorators defaultdir="/WEB-INF/decorators">
 
 
+    <excludes>
+        <pattern>/app/login.htm*</pattern>
+    </excludes>
+
 
     <decorator name="app" page="app.jsp">
         <pattern>/app</pattern>
     </decorator>
 
+
+
     <decorator name="own" page="own.jsp">
         <pattern>/own</pattern>
+    </decorator>
+
+     <decorator name="cus" page="cus.jsp">
+        <pattern>/cus</pattern>
     </decorator>
 
 

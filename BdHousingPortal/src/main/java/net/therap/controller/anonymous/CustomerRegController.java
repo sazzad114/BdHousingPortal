@@ -1,8 +1,10 @@
 package net.therap.controller.anonymous;
 
 
+import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
+import net.therap.service.CustomerService;
 import net.therap.service.FlatOwnerService;
 import net.therap.service.UserService;
 import org.slf4j.Logger;
@@ -32,13 +34,13 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/flatownerreg.htm")
-public class FlatOwnerRegController {
+@RequestMapping("/customerreg.htm")
+public class CustomerRegController {
 
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
 
     @Autowired
-    FlatOwnerService flatOwnerService;
+    CustomerService customerService;
 
     @Autowired
     UserService userService;
@@ -51,21 +53,19 @@ public class FlatOwnerRegController {
         this.userService = userService;
     }
 
-    public FlatOwnerService getFlatOwnerService() {
-        return flatOwnerService;
+    public CustomerService getCustomerService() {
+        return customerService;
     }
 
-    public void setFlatOwnerService(FlatOwnerService flatOwnerService) {
-        this.flatOwnerService = flatOwnerService;
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
     }
-
-
 
     @RequestMapping(method = RequestMethod.GET)
     String flatOwnerRegAction(Map<String, Object> model) {
 
-        model.put("flatOwner", new FlatOwner());
-        return "flatownerreg";
+        model.put("customer", new Customer());
+        return "customerreg";
 
     }
 
@@ -79,23 +79,23 @@ public class FlatOwnerRegController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public String saveFlatOwnerAction(@Valid FlatOwner flatOwner, BindingResult bindingResult) {
+    public String saveFlatOwnerAction(@Valid Customer customer, BindingResult bindingResult) {
 
-        if (userService.isEmailExists(flatOwner.getUser().getEmail()) == true) {
+        if (userService.isEmailExists(customer.getUser().getEmail()) == true) {
             bindingResult.rejectValue("user.email", "email.exists");
         }
 
-        if (!flatOwner.getUser().getPassword().equals(flatOwner.getUser().getConfirmPassword())) {
+        if (!customer.getUser().getPassword().equals(customer.getUser().getConfirmPassword())) {
             bindingResult.rejectValue("user.confirmPassword", "password.mismatch");
         }
 
 
         if (bindingResult.hasErrors()) {
 
-            return "flatownerreg";
+            return "customerreg";
         } else {
-            flatOwner.getUser().setUserType(User.FLATOWNERTYPE);
-            flatOwnerService.saveFlatOwner(flatOwner);
+            customer.getUser().setUserType(User.CUSTOMERTYPE);
+            customerService.saveCustomer(customer);
             return "redirect:/app/login.htm";
         }
     }

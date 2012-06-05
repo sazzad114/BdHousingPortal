@@ -1,5 +1,6 @@
 package net.therap.controller.anonymous;
 
+import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
 import net.therap.service.UserService;
@@ -46,16 +47,26 @@ public class LoginController {
 
         if(object == null){
 
-
+           if(request.getHeader("Referer").contains("errorcode")){
+                return "redirect:"+request.getHeader("Referer");
+           }
            return "redirect:"+request.getHeader("Referer") + "?errorcode=1";
         }
         else {
            if(object instanceof FlatOwner){
-              request.getSession().setAttribute("flatowner",(FlatOwner)object);
+              request.getSession().setAttribute("flatowner",object);
               return "redirect:" + "/own/home.htm";
+           }
+            else if(object instanceof Customer){
+                  request.getSession().setAttribute("customer",object);
+                return "redirect:" + "/cus/home.htm";
            }
         }
         return null;
+     }
+     @RequestMapping(value = "/login.htm",method = RequestMethod.GET)
+     public String getLoginAction(){
+         return "login";
      }
 
 }
