@@ -66,7 +66,7 @@ public class LoginController {
      }
      @RequestMapping(value = "/login.htm",method = RequestMethod.GET)
      public String getLoginAction(){
-         return "login";
+         return "anonymous/login";
      }
 
 }

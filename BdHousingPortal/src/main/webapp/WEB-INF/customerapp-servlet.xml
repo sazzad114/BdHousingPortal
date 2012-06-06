@@ -8,21 +8,32 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver1">
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
 
-        <property name="prefix" value="/WEB-INF/jsp/customer/"/>
-        <property name="order"><value>1</value></property>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
 
     </bean>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver2">
 
-        <property name="prefix" value="/WEB-INF/jsp/common/"/>
-        <property name="order"><value>2</value></property>
-        <property name="suffix" value=".jsp"/>
 
-    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/home.htm"/>
+            <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/logout.htm"/>
+            <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/customerprofile/*"/>
+            <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
 
 
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">

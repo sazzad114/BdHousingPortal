@@ -60,5 +60,6 @@
         </property>
     </bean>
 
+
     <context:component-scan base-package="net.therap.domain"/>
 </beans>

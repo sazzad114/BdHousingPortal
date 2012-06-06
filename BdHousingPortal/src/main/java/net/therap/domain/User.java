@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 
 /**
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
 @Component
 @Entity
 @Table(name = "H_USER")
-public class User {
+public class User implements Serializable{
     public static final int FLATOWNERTYPE = 2;
     public static final int CUSTOMERTYPE = 1;
     public static final int DEVELOPERTYPE = 3;

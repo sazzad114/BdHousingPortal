@@ -33,7 +33,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(){
 
-        return "home";
+        return "flatowner/home";
     }
 
 

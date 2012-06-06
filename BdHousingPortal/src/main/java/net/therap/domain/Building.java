@@ -1,6 +1,8 @@
 package net.therap.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +18,12 @@ import java.util.List;
 @Entity
 @Table(name ="H_BUILDING")
 public class Building {
+
    private long buildingId;
    private int numberOfFloors;
+   @Size(min = 3,max = 50,message = "within 3 to 50 characters")
    private String buildingName;
+   @Valid
    private Address address;
    private FlatOwner flatOwner;
    private long version;

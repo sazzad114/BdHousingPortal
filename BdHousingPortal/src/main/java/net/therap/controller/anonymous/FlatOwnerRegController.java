@@ -63,9 +63,9 @@ public class FlatOwnerRegController {
 
     @RequestMapping(method = RequestMethod.GET)
     String flatOwnerRegAction(Map<String, Object> model) {
-
+        model.put("title","Flat Owner Registration Form");
         model.put("flatOwner", new FlatOwner());
-        return "flatownerreg";
+        return "anonymous/flatownerreg";
 
     }
 
@@ -92,7 +92,7 @@ public class FlatOwnerRegController {
 
         if (bindingResult.hasErrors()) {
 
-            return "flatownerreg";
+            return "anonymous/flatownerreg";
         } else {
             flatOwner.getUser().setUserType(User.FLATOWNERTYPE);
             flatOwnerService.saveFlatOwner(flatOwner);

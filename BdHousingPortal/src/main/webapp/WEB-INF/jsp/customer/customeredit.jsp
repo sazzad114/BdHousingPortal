@@ -27,7 +27,7 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form action="" modelAttribute="customer" method="post">
+                <form:form action="" commandName="customer" method="post">
                     <table>
                         <tr>
                             <td>
@@ -53,42 +53,13 @@
 
                         <tr>
                             <td>
-                                <fmt:message key="user.email"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input path="user.email"/><br/>
-                                <form:errors path="user.email" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 <fmt:message key="user.contact"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
                                 <form:input path="contactNo"/><br/>
+
                                 <form:errors path="contactNo"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.password"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:password path="user.password"/><br/>
-                                <form:errors path="user.password"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.confirmPassword"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:password path="user.confirmPassword"/><br/>
-                                <form:errors path="user.confirmPassword"/>
                             </td>
                         </tr>
 
@@ -103,9 +74,9 @@
                                     <form:option value="3">3</form:option>
                                     <form:option value="4">4</form:option>
                                     <form:option value="5">5</form:option>
-                                     <form:option value="6">6</form:option>
-                                     <form:option value="7">7</form:option>
-                                     <form:option value="8">8</form:option>
+                                    <form:option value="6">6</form:option>
+                                    <form:option value="7">7</form:option>
+                                    <form:option value="8">8</form:option>
                                 </form:select>
                                 <br/>
                                 <form:errors path="familyMembers"/>
@@ -193,7 +164,7 @@
                             </td>
                             <td>
                                 <form:textarea path="description" cols="40" rows="5"/><br/>
-                                 <form:errors path="description"/>
+                                <form:errors path="description"/>
                             </td>
                         </tr>
                     </table>

@@ -55,6 +55,10 @@ public class Customer {
     private Address address;
     private List<Criteria> criteriaList = new ArrayList<Criteria>();
 
+    public Customer(){
+        this.user = new User();
+        this.address = new Address();
+    }
 
 
     @Id
@@ -80,7 +84,7 @@ public class Customer {
         this.criteriaList = criteriaList;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;

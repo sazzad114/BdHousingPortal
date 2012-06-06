@@ -37,9 +37,9 @@ Released : 20120520
     <div id="menu-wrapper">
         <ul id="menu">
             <li class="current_page_item"><a href="/BdHousingPortal/own/home.htm"><span>Home</span></a></li>
-            <li><a href="own.jsp#"><span>Profile</span></a></li>
-            <li><a href="own.jsp#"><span>Buildings</span></a></li>
-            <li><a href="own.jsp#"><span>Logout</span></a></li>
+            <li><a href="/BdHousingPortal/own/flatownerprofile/view.htm"><span>Profile</span></a></li>
+            <li><a href="#"><span>Buildings</span></a></li>
+            <li><a href="/BdHousingPortal/own/logout.htm"><span>Logout</span></a></li>
         </ul>
         <script type="text/javascript">
             $('#menu').dropotron();
@@ -56,13 +56,13 @@ Released : 20120520
                     <li>
                         <h2>Search for</h2>
                         <ul>
-                            <li><a href="own.jsp#">Flat customers</a></li>
-                            <li><a href="own.jsp#">Flats</a></li>
-                            <li><a href="own.jsp#">Housing developers</a></li>
+                            <li><a href="#">Flat customers</a></li>
+                            <li><a href="#">Flats</a></li>
+                            <li><a href="#">Housing developers</a></li>
                         </ul>
                         <h2>Add new</h2>
                         <ul>
-                            <li><a href="own.jsp#">Add new Building</a></li>
+                            <li><a href="/BdHousingPortal/own/building/create.htm">Add new Building</a></li>
                         </ul>
                     </li>
                 </ul>

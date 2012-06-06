@@ -33,7 +33,7 @@ public class WelcomeController{
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(){
 
-        return "welcome";
+        return "anonymous/welcome";
     }
 
 

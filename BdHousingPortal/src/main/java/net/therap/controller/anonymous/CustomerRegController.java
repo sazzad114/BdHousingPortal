@@ -65,7 +65,8 @@ public class CustomerRegController {
     String flatOwnerRegAction(Map<String, Object> model) {
 
         model.put("customer", new Customer());
-        return "customerreg";
+        model.put("title","Customer Registration Form");
+        return "anonymous/customerreg";
 
     }
 
@@ -92,7 +93,7 @@ public class CustomerRegController {
 
         if (bindingResult.hasErrors()) {
 
-            return "customerreg";
+            return "anonymous/customerreg";
         } else {
             customer.getUser().setUserType(User.CUSTOMERTYPE);
             customerService.saveCustomer(customer);

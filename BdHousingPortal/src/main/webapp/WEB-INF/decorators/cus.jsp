@@ -37,9 +37,9 @@ Released : 20120520
     <div id="menu-wrapper">
         <ul id="menu">
             <li class="current_page_item"><a href="/BdHousingPortal/cus/home.htm"><span>Home</span></a></li>
-            <li><a href="#"><span>Profile</span></a></li>
+            <li><a href="/BdHousingPortal/cus/customerprofile/view.htm"><span>Profile</span></a></li>
             <li><a href="#"><span>Criteria</span></a></li>
-            <li><a href="#"><span>Logout</span></a></li>
+            <li><a href="/BdHousingPortal/cus/logout.htm"><span>Logout</span></a></li>
         </ul>
         <script type="text/javascript">
             $('#menu').dropotron();

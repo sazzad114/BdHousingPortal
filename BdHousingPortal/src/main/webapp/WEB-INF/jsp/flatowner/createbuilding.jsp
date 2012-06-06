@@ -27,70 +27,42 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form action="" commandName="flatOwner" method="post">
+                <form:form action="" modelAttribute="building" method="post">
                     <table>
                         <tr>
                             <td>
-                                <fmt:message key="user.name"/>
+                                <fmt:message key="building.name"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
-                                <form:input path="flatOwnerName"/><br/>
-                                <span class="error"><form:errors path="flatOwnerName"/></span>
+                                <form:input path="buildingName"/><br/>
+                                <span class="error"><form:errors path="buildingName"/></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <fmt:message key="user.dateOfBirth"/>
+                                <fmt:message key="building.numberoffloors"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
-                                <form:input path="dateOfBirth"/><br/>
-                                <form:errors path="dateOfBirth"/>
+
+                                <form:select path="numberOfFloors" itemLabel="-Number Of Floors-">
+                                    <form:option value="2">2</form:option>
+                                    <form:option value="3">3</form:option>
+                                    <form:option value="4">4</form:option>
+                                    <form:option value="5">5</form:option>
+                                    <form:option value="6">6</form:option>
+                                    <form:option value="7">7</form:option>
+                                    <form:option value="8">8</form:option>
+                                    <form:option value="9">9</form:option>
+                                    <form:option value="10">10</form:option>
+                                </form:select>
+                                <span class="error"><form:errors path="numberOfFloors"/></span>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>
-                                <fmt:message key="user.email"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input path="user.email"/><br/>
-                                <form:errors path="user.email" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.contact"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input path="contactNo"/><br/>
-                                <form:errors path="contactNo"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.password"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:password path="user.password"/><br/>
-                                <form:errors path="user.password"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.confirmPassword"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:password path="user.confirmPassword"/><br/>
-                                <form:errors path="user.confirmPassword"/>
-                            </td>
-                        </tr>
+
                         <tr>
                             <td>
                                 <fmt:message key="user.houseNo"/>
@@ -143,38 +115,7 @@
                                  <form:errors path="address.district"/>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.occupation"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input path="occupation"/><br/>
-                                 <form:errors path="occupation"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <fmt:message key="user.occupation.details"/>
 
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td align="justify">
-                                <form:textarea path="occupationDetails" cols="40" rows="5"/><br/>
-                                <form:errors path="occupationDetails"/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <fmt:message key="user.description"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:textarea path="description" cols="40" rows="5"/><br/>
-                                 <form:errors path="description"/>
-                            </td>
-                        </tr>
                     </table>
 
 

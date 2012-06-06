@@ -39,7 +39,7 @@ Released : 20120520
             <li class="current_page_item"><a href="/BdHousingPortal/app/welcome.htm"><span>Home</span></a></li>
             <li><span>Register As</span>
                 <ul>
-                    <li class="first"><a href="#">Customer</a></li>
+                    <li class="first"><a href="/BdHousingPortal/app/customerreg.htm">Customer</a></li>
                     <li><a href="/BdHousingPortal/app/flatownerreg.htm">Flat owner</a></li>
                     <li class="last"><a href="#">Housing developer</a></li>
                 </ul>
