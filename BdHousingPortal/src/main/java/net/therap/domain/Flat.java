@@ -26,6 +26,7 @@ public class Flat {
    private long version;
    private StandardCriteria standardCriteria;
    private Building building;
+   private int typeNumber;
 
 
 
@@ -50,6 +51,15 @@ public class Flat {
 
     public void setBuilding(Building building) {
         this.building = building;
+    }
+
+    @Column(name = "TYPE_NUMBER")
+    public int getTypeNumber() {
+        return typeNumber;
+    }
+
+    public void setTypeNumber(int typeNumber) {
+        this.typeNumber = typeNumber;
     }
 
     @Column(name = "NUMBER_OF_FLATS")

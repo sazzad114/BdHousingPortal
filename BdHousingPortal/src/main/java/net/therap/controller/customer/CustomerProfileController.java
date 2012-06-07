@@ -10,10 +10,8 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -30,8 +28,9 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
+@SessionAttributes("customer")
 @RequestMapping(value = "/customerprofile")
-public class CustomerProfileController {
+public class CustomerProfileController{
 
     private static final Logger log = LoggerFactory.getLogger(CustomerProfileController.class);
 
@@ -60,37 +59,32 @@ public class CustomerProfileController {
 
     }
 
-    @ModelAttribute("customer")
-    Customer getCustomer(HttpServletRequest request){
-
-        return (Customer)request.getSession().getAttribute("customer");
-    }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
     String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
-        //model.put("customer",(Customer)request.getSession().getAttribute("customer"));
+
+        Customer customer =  customerService.getCustomerById(((Customer)request.getSession().getAttribute("customer")).getCustomerId());
+        model.put("customer",customer);
         model.put("title", "Customer Profile edit Form");
-        log.debug("####" + "InMethodGet" + ((Customer) request.getSession().getAttribute("customer")).getCustomerId());
+        //log.debug("####" + "InMethodGet" + ((Customer) request.getSession().getAttribute("customer")).getCustomerId());
         return "customer/customeredit";
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.POST)
-    String profileEditPostAction(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    String profileEditPostAction(@Valid Customer customer, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+
+        log.debug(customer.getCustomerName()+"@@@@@"+customer.getVersion());
 
         if (bindingResult.hasErrors()) {
-
-
             model.put("customer", customer);
             model.put("title", "Customer Profile edit Form");
             return "customer/customeredit";
 
         } else {
-             log.debug("####" + "InMethodPost"+customer.getCustomerId());
-            //customer.setUser(((Customer) request.getSession().getAttribute("customer")).getUser());
-            customerService.saveCustomer(customer);
+            //log.debug("####" + "InMethodPost"+customer.getCustomerId());
+            customerService.updateCustomer(customer);
             request.getSession().setAttribute("customer", customer);
-            return "customer/customerdetailsview";
-
+            return "redirect:/cus/customerprofile/view.htm";
         }
 
     }

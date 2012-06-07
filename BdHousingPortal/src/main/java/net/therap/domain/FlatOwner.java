@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -48,10 +50,27 @@ public class FlatOwner {
 
     private long version;
 
+
+
+
+
     @Valid
     private User user;
     @Valid
     private Address address;
+    List<Building> buildingList = new ArrayList<Building>();
+
+    @OrderBy("buildingId desc")
+    @OneToMany(mappedBy = "flatOwner",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public List<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public void setBuildingList(List<Building> buildingList) {
+        this.buildingList = buildingList;
+    }
+
+
 
     public FlatOwner(){
         this.user = new User();

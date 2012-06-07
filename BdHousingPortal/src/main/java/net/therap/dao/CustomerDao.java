@@ -12,5 +12,7 @@ import net.therap.domain.User;
  */
 public interface CustomerDao {
         public void saveCustomer(Customer customer);
-    public Customer getCustomerByUser(User user);
+        public Customer getCustomerByUser(User user);
+        public Customer getCustomerById(long id);
+        public void updateCustomer(Customer customer);
 }

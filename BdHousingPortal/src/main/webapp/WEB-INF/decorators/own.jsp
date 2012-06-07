@@ -38,7 +38,7 @@ Released : 20120520
         <ul id="menu">
             <li class="current_page_item"><a href="/BdHousingPortal/own/home.htm"><span>Home</span></a></li>
             <li><a href="/BdHousingPortal/own/flatownerprofile/view.htm"><span>Profile</span></a></li>
-            <li><a href="#"><span>Buildings</span></a></li>
+            <li><a href="/BdHousingPortal/own/building/buildinglist.htm"><span>Buildings</span></a></li>
             <li><a href="/BdHousingPortal/own/logout.htm"><span>Logout</span></a></li>
         </ul>
         <script type="text/javascript">

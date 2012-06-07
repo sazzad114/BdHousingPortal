@@ -31,12 +31,14 @@
                     <table>
                         <tr>
                             <td>
+                                ${customer.version}
                                 <fmt:message key="user.name"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
                                 <form:input path="customerName"/><br/>
                                 <span class="error"><form:errors path="customerName"/></span>
+                                <form:hidden path="version"/>
                             </td>
                         </tr>
 

@@ -13,8 +13,23 @@
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
 
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>
+            org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+        </filter-class>
+        <init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>sessionFactory</param-value>
+        </init-param>
+    </filter>
 
-     <!-- dispatcher for anonymous user   -->
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- dispatcher for anonymous user   -->
 
     <servlet>
         <servlet-name>housingapp</servlet-name>
@@ -38,7 +53,7 @@
     </servlet-mapping>
 
 
-      <!-- dispatcher for flat owner-->
+    <!-- dispatcher for flat owner-->
 
     <servlet>
         <servlet-name>customerapp</servlet-name>

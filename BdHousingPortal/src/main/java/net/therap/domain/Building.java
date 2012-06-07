@@ -26,6 +26,7 @@ public class Building {
    @Valid
    private Address address;
    private FlatOwner flatOwner;
+   private int flatTypeCount;
    private long version;
 
 
@@ -39,12 +40,20 @@ public class Building {
     public long getBuildingId() {
         return buildingId;
     }
-
     public void setBuildingId(long buildingId) {
         this.buildingId = buildingId;
     }
 
-    @OneToMany(mappedBy = "building")
+    @Column(name = "FLAT_TYPE_COUNT")
+    public int getFlatTypeCount() {
+        return flatTypeCount;
+    }
+
+    public void setFlatTypeCount(int flatTypeCount) {
+        this.flatTypeCount = flatTypeCount;
+    }
+
+    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     public List<Flat> getFlatList() {
         return flatList;
     }

@@ -1,8 +1,13 @@
 package net.therap.domain;
 
+import org.hibernate.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -18,6 +23,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@org.hibernate.annotations.Entity(optimisticLock = OptimisticLockType.ALL)
+@SessionAttributes
 @Table(name = "H_CUSTOMER_DETAILS")
 public class Customer {
 

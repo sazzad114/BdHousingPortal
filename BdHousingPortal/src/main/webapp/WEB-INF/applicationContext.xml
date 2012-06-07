@@ -18,6 +18,15 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean class="net.therap.dao.BuildingDaoImpl" id="buildingDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.BuildingServiceImpl" id="buildingService">
+        <property name="buildingDao" ref="buildingDao"/>
+    </bean>
+
+
 
     <bean class="net.therap.dao.FlatOwnerDaoImpl" id="flatOwnerDao">
         <property name="sessionFactory" ref="sessionFactory"/>

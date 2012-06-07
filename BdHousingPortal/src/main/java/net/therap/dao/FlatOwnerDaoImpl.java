@@ -2,6 +2,7 @@ package net.therap.dao;
 
 import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -36,8 +37,9 @@ public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDa
     }*/
 
    public void saveFlatUser(FlatOwner flatOwner) {
-        getHibernateTemplate().saveOrUpdate(flatOwner);
-        getHibernateTemplate().flush();
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        session.saveOrUpdate(flatOwner);
+        session.flush();
     }
 
    public FlatOwner getFlatOwnerByUser(User user) {

@@ -11,4 +11,6 @@ import net.therap.domain.Customer;
  */
 public interface CustomerService {
        public void saveCustomer(Customer customer);
+       public void updateCustomer(Customer customer);
+       public Customer getCustomerById(long id);
 }
