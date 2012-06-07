@@ -1,8 +1,10 @@
 package net.therap.domain;
 
+import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,24 +17,36 @@ import javax.persistence.*;
 @Entity
 @Table(name = "H_FLAT")
 public class Flat {
-   private long flatId;
-   private int numberOfFlats;
-   private int totalArea;
-   private int numberOfRooms;
-   private int numberOfBeds;
-   private boolean forRent;
-   private int priceOrRent;
-   private String description;
-   private long version;
-   private StandardCriteria standardCriteria;
-   private Building building;
-   private int typeNumber;
+    private long flatId;
+    private int numberOfFlats;
+    private int totalArea;
+    private int numberOfRooms;
+    private int numberOfBeds;
+    private boolean forRent;
+    private int priceOrRent;
+    private String description;
+    private long version;
+    private StandardCriteria standardCriteria;
+    private Building building;
+    private int typeNumber;
 
+
+    ArrayList<Integer> flatInFloors;
+
+    @CollectionOfElements
+    @JoinTable(name = "FLAT_FLOOR", joinColumns = {@JoinColumn(name = "FLAT_ID")})
+    @Column(name = "FLOOR")
+    public ArrayList<Integer> getFlatInFloors() {
+        return flatInFloors;
+    }
+    public void setFlatInFloors(ArrayList<Integer> flatInFloors) {
+        this.flatInFloors = flatInFloors;
+    }
 
 
     @Id
-    @SequenceGenerator(name = "H_FLAT_SEQ",sequenceName = "H_FLAT_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_FLAT_SEQ")
+    @SequenceGenerator(name = "H_FLAT_SEQ", sequenceName = "H_FLAT_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_FLAT_SEQ")
     @Column(name = "FLAT_ID")
     public long getFlatId() {
         return flatId;
@@ -43,8 +57,8 @@ public class Flat {
     }
 
     @ManyToOne
-    @JoinTable(name = "H_BUILDING_FLAT",joinColumns = @JoinColumn(name = "FLAT_ID"),
-    inverseJoinColumns = @JoinColumn(name = "BUILDING_ID"))
+    @JoinTable(name = "H_BUILDING_FLAT", joinColumns = @JoinColumn(name = "FLAT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "BUILDING_ID"))
     public Building getBuilding() {
         return building;
     }
@@ -70,6 +84,7 @@ public class Flat {
     public void setNumberOfFlats(int numberOfFlats) {
         this.numberOfFlats = numberOfFlats;
     }
+
     @Column(name = "TOTAL_AREA")
     public int getTotalArea() {
         return totalArea;
@@ -87,6 +102,7 @@ public class Flat {
     public void setNumberOfRooms(int numberOfRooms) {
         this.numberOfRooms = numberOfRooms;
     }
+
     @Column(name = "NUMBER_OF_BEDS")
     public int getNumberOfBeds() {
         return numberOfBeds;
@@ -96,8 +112,8 @@ public class Flat {
         this.numberOfBeds = numberOfBeds;
     }
 
-     @Column(name = "IS_FOR_RENT")
-      @Type(type = "true_false")
+    @Column(name = "IS_FOR_RENT")
+    @Type(type = "true_false")
     public boolean isForRent() {
         return forRent;
     }
@@ -105,7 +121,8 @@ public class Flat {
     public void setForRent(boolean forRent) {
         this.forRent = forRent;
     }
-     @Column(name = "PRICE_OR_RENT")
+
+    @Column(name = "PRICE_OR_RENT")
     public int getPriceOrRent() {
         return priceOrRent;
     }
@@ -142,9 +159,6 @@ public class Flat {
     public void setStandardCriteria(StandardCriteria standardCriteria) {
         this.standardCriteria = standardCriteria;
     }
-
-
-
 
 
 }

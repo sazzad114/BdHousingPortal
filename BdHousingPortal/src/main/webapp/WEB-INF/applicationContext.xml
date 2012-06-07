@@ -17,6 +17,14 @@
     <bean class="net.therap.dao.CustomerDaoImpl" id="customerDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean class="net.therap.dao.FlatDaoImpl" id="flatDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean class="net.therap.service.FlatServiceImpl" id="flatService">
+        <property name="flatDao" ref="flatDao"/>
+    </bean>
 
     <bean class="net.therap.dao.BuildingDaoImpl" id="buildingDao">
         <property name="sessionFactory" ref="sessionFactory"/>
