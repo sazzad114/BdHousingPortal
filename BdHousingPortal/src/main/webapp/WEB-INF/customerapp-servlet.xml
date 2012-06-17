@@ -19,16 +19,9 @@
 
 
     <mvc:interceptors>
+
         <mvc:interceptor>
-            <mvc:mapping path="/home.htm"/>
-            <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/logout.htm"/>
-            <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/customerprofile/*"/>
+            <mvc:mapping path="/**"/>
             <bean class="net.therap.interceptor.CustomerAuthInterceptor"/>
         </mvc:interceptor>
 
@@ -47,6 +40,15 @@
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" id="mapping" >
 
+    </bean>
+
+       <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" id="exceptionResolver">
+           <property name="exceptionMappings">
+			<props>
+				<prop key="net.therap.exception.ApplicationException">exception/applicationexception</prop>
+                <prop key="java.lang.Exception">exception/error</prop>
+			</props>
+		</property>
     </bean>
 
 

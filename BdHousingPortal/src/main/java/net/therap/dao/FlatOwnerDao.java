@@ -14,4 +14,5 @@ public interface FlatOwnerDao {
    /* public User getUserByEmail(String email);*/
     public void saveFlatUser(FlatOwner flatOwner);
     public FlatOwner getFlatOwnerByUser(User user);
+    public FlatOwner getFlatOwnerById(long id);
 }

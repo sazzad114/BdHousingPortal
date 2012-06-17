@@ -27,6 +27,18 @@ public class BuildingDaoImpl extends HibernateDaoSupport implements BuildingDao{
         return getHibernateTemplate().find("from Building as building where building.flatOwner = ?",new Object[]{flatOwner});
     }
 
+    public Building getBuildingById(FlatOwner flatOwner,long id) {
+        List<Building> buildingList = getHibernateTemplate().find("select building from Building as building where building.buildingId = ? and building.flatOwner = ?",new Object[]{id,flatOwner});
+
+        if(buildingList.size() == 0)
+        {
+            return null;
+        }
+        else {
+            return buildingList.get(0);
+        }
+    }
+
     public Building getBuildingById(long id) {
         return getHibernateTemplate().get(Building.class,id);
     }

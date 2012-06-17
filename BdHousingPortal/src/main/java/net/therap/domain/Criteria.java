@@ -5,6 +5,8 @@ package net.therap.domain;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,8 +20,9 @@ import javax.persistence.*;
 public class Criteria {
     private long criteriaId;
     private int numberOfBeds;
-    private int area;
+    private String area;
     private boolean forRent;
+    @Min(value = 1,message = "should be greater than zero")
     private int priceOrRent;
     private Customer customer;
     private StandardCriteria standardCriteria;
@@ -28,6 +31,8 @@ public class Criteria {
     @Id
     @SequenceGenerator(name = "H_CRITERIA_SEQ",sequenceName = "H_CRITERIA_SEQ")
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_CRITERIA_SEQ")
+    @Column(name = "CRITERIA_ID")
+    @Type(type = "long")
     public long getCriteriaId() {
         return criteriaId;
     }
@@ -45,13 +50,14 @@ public class Criteria {
         this.numberOfBeds = numberOfBeds;
     }
     @Column(name = "AREA")
-    public int getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(String area) {
         this.area = area;
     }
+
     @Column(name = "IS_FOR_RENT")
     @Type(type = "true_false")
     public boolean isForRent() {
@@ -78,7 +84,7 @@ public class Criteria {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STANDARD_CRITERIA_ID")
     public StandardCriteria getStandardCriteria() {
         return standardCriteria;

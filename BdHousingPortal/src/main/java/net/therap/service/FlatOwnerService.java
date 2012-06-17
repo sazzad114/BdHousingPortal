@@ -12,4 +12,6 @@ import net.therap.domain.FlatOwner;
 public interface FlatOwnerService {
 
     public void saveFlatOwner(FlatOwner flatOwner);
+    public FlatOwner getFlatOwnerById(long id);
+
 }

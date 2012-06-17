@@ -2,6 +2,9 @@ package net.therap.service;
 
 import net.therap.dao.CustomerDao;
 import net.therap.domain.Customer;
+import net.therap.domain.FlatOwner;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,5 +35,9 @@ public class CustomerServiceImpl implements CustomerService{
 
     public Customer getCustomerById(long id) {
         return customerDao.getCustomerById(id);
+    }
+
+    public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner) {
+        return customerDao.getCustomerListByFlatOwner(flatOwner);
     }
 }

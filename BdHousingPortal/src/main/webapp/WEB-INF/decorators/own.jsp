@@ -56,8 +56,8 @@ Released : 20120520
                     <li>
                         <h2>Search for</h2>
                         <ul>
-                            <li><a href="#">Flat customers</a></li>
-                            <li><a href="#">Flats</a></li>
+                            <li><a href="/BdHousingPortal/own/customersearch.htm">Flat customers</a></li>
+                            <li><a href="/BdHousingPortal/own/flatsearch.htm">Flats</a></li>
                             <li><a href="#">Housing developers</a></li>
                         </ul>
                         <h2>Add new</h2>

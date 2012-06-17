@@ -16,27 +16,14 @@
     </bean>
 
 
-
+     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/home.htm"/>
+            <mvc:mapping path="/**"/>
             <bean class="net.therap.interceptor.FlatOwnerAuthInterceptor"/>
         </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/logout.htm"/>
-            <bean class="net.therap.interceptor.FlatOwnerAuthInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/flatownerprofile/*"/>
-            <bean class="net.therap.interceptor.FlatOwnerAuthInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/building/*"/>
-            <bean class="net.therap.interceptor.FlatOwnerAuthInterceptor"/>
-        </mvc:interceptor>
-
     </mvc:interceptors>
 
 
@@ -51,6 +38,15 @@
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" id="mapping" >
 
+    </bean>
+
+       <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" id="exceptionResolver">
+           <property name="exceptionMappings">
+			<props>
+				<prop key="net.therap.exception.ApplicationException">exception/applicationexception</prop>
+                <prop key="java.lang.Exception">exception/error</prop>
+			</props>
+		</property>
     </bean>
 
 

@@ -2,6 +2,8 @@ package net.therap.dao;
 
 import net.therap.domain.Flat;
 
+import java.sql.Blob;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ashraf
@@ -12,4 +14,6 @@ import net.therap.domain.Flat;
 public interface FlatDao {
 
     public void saveFlat(Flat flat);
+    public Flat getFlatById(long id);
+    public Blob getImageData(long id);
 }

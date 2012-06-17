@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/fn" %>
 <html>
 <head></head>
 <body>
@@ -16,7 +17,13 @@
                <h2 class="title">${title}</h2>
                </div>
 
-
+               <c:if test="${buildingList ne  null and fn:length(buildingList) == 0}">
+            <div  class="post">
+                <div class="entry">
+                    <span style="text-align:center;">You did not add any building.</span>
+                </div>
+            </div>
+        </c:if>
               <c:forEach items="${buildingList}" var="building">
 
                 <div class="post">

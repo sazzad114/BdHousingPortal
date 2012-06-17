@@ -82,7 +82,8 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER, mappedBy = "customer")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Criteria> getCriteriaList() {
         return criteriaList;
     }
@@ -179,4 +180,5 @@ public class Customer {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 }

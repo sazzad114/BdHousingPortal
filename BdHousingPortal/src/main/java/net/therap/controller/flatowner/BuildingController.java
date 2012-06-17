@@ -52,7 +52,9 @@ public class BuildingController {
     String createBuildingPostAction(@Valid Building building, BindingResult bindingResult,HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
+
             return "flatowner/createbuilding";
+
         }
         else {
 
@@ -62,7 +64,6 @@ public class BuildingController {
             return  "redirect:/own/home.htm";
 
         }
-
     }
 
     @RequestMapping(value = "/buildinglist.htm",method = RequestMethod.GET)
@@ -75,6 +76,8 @@ public class BuildingController {
 
     @RequestMapping(value = "/buildingdetails.htm",method = RequestMethod.GET)
     String showBuildingDetailsAction(@RequestParam long buildingId, Map<String, Object> model){
+
+
 
         Building building = buildingService.getBuildingById(buildingId);
         model.put("building",building);

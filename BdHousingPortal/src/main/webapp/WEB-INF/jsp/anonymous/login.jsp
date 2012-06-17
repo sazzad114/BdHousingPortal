@@ -104,8 +104,8 @@ Released : 20120520
                     <li>
                         <h2>Search for</h2>
                         <ul>
-                            <li><a href="#">Flat customers</a></li>
-                            <li><a href="#">Flats</a></li>
+                            <li><a href="/BdHousingPortal/app/customersearch.htm">Flat customers</a></li>
+                            <li><a href="/BdHousingPortal/app/flatsearch.htm">Flats</a></li>
                             <li><a href="#">Housing developers</a></li>
                         </ul>
                     </li>

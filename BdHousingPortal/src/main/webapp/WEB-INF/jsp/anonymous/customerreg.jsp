@@ -20,6 +20,12 @@
     </style>
 </head>
 <body>
+<style type="text/css">
+        span.error{
+           color:#D8000C;
+           font-size:15px;
+        }
+</style>
 <div id="content">
     <div class="contentbg">
         <div class="post">

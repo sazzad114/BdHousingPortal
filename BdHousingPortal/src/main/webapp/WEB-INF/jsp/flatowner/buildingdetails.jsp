@@ -24,7 +24,7 @@
 <div id="content">
     <div class="contentbg">
         <div class="post">
-             <a href="#" style="float:right;">Add new flat type</a>
+            <a href="/BdHousingPortal/own/flat/create.htm?buildingid=${building.buildingId}" style="float:right;">Add new Flat</a>
             <h2 class="title">${title}</h2>
         </div>
         <div class="post">
@@ -126,15 +126,21 @@
             <h2 class="title">Flat type List</h2>
         </div>
         <c:if test="${building.flatTypeCount == 0}">
-            <c:out value="No Flat Type added"/>
+           <div class="post">
+             <div class="entry">
+             <c:out value="No Flat Type added"/>
+             </div>
+          </div>
         </c:if>
+        <c:if test="${building.flatList != null}">
         <c:forEach items="${building.flatList}" var="flat">
           <div class="post">
              <div class="entry">
-                  ${flat.numberOfBeds} Beds, Type-${flat.typeNumber}
+                  <a href="/BdHousingPortal/own/flat/view.htm?flatid=${flat.flatId}">${flat.numberOfBeds} Beds, Type-${flat.typeNumber}</a>
              </div>
           </div>
         </c:forEach>
+        </c:if>
 
 
         <div style="clear: both;">&nbsp;</div>

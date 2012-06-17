@@ -38,7 +38,7 @@ Released : 20120520
         <ul id="menu">
             <li class="current_page_item"><a href="/BdHousingPortal/cus/home.htm"><span>Home</span></a></li>
             <li><a href="/BdHousingPortal/cus/customerprofile/view.htm"><span>Profile</span></a></li>
-            <li><a href="#"><span>Criteria</span></a></li>
+            <li><a href="/BdHousingPortal/cus/criteria/view.htm"><span>Criteria List</span></a></li>
             <li><a href="/BdHousingPortal/cus/logout.htm"><span>Logout</span></a></li>
         </ul>
         <script type="text/javascript">
@@ -56,13 +56,13 @@ Released : 20120520
                     <li>
                         <h2>Search for</h2>
                         <ul>
-                            <li><a href="#">Flat customers</a></li>
-                            <li><a href="#">Flats</a></li>
+                            <li><a href="/BdHousingPortal/cus/customersearch.htm">Flat customers</a></li>
+                            <li><a href="/BdHousingPortal/cus/flatsearch.htm">Flats</a></li>
                             <li><a href="#">Housing developers</a></li>
                         </ul>
                         <h2>Add new</h2>
                         <ul>
-                            <li><a href="#">Add new Criteria</a></li>
+                            <li><a href="/BdHousingPortal/cus/criteria/create.htm">Add new Criteria</a></li>
                         </ul>
                     </li>
                 </ul>

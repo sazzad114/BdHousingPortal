@@ -28,4 +28,8 @@ public class FlatOwnerServiceImpl implements FlatOwnerService {
     public void saveFlatOwner(FlatOwner flatOwner) {
         flatOwnerDao.saveFlatUser(flatOwner);
     }
+
+    public FlatOwner getFlatOwnerById(long id) {
+        return flatOwnerDao.getFlatOwnerById(id);
+    }
 }

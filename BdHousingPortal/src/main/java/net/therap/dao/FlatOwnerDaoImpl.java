@@ -55,4 +55,8 @@ public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDa
             return flatOwnerList.get(0);
         }
    }
+
+    public FlatOwner getFlatOwnerById(long id) {
+        return getHibernateTemplate().get(FlatOwner.class,id);
+    }
 }

@@ -1,5 +1,6 @@
 package net.therap.dao;
 
+import net.therap.domain.Criteria;
 import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
@@ -47,6 +48,33 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
     }
 
     public void updateCustomer(Customer customer) {
-       getHibernateTemplate().saveOrUpdate(customer);
+
+       Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        session.update(customer);
+        session.flush();
+    }
+
+    public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner) {
+
+       String subQuery = "select stdc,flat.building.address.area from StandardCriteria as stdc,Flat as flat where flat.standardCriteria = stdc and flat.building.flatOwner = ?";
+       return getHibernateTemplate().find("select distinct customer from Customer as customer,Criteria as criteria where criteria.customer = customer and (criteria.standardCriteria,criteria.area) in (" +subQuery+")", new Object[]{flatOwner});
+    }
+
+    public boolean removeCriteria(Customer customer, long criteriaId) {
+       Criteria criteriaToRemove = null;
+        for (Criteria criteria: customer.getCriteriaList()){
+            if(criteria.getCriteriaId() == criteriaId){
+              criteriaToRemove = criteria;
+                break;
+            }
+        }
+
+        if(criteriaToRemove == null) {
+            return false;
+        }
+
+        customer.getCriteriaList().remove(criteriaToRemove);
+        updateCustomer(customer);
+        return true;
     }
 }
