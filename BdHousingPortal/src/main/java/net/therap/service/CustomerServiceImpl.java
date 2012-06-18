@@ -1,8 +1,11 @@
 package net.therap.service;
 
 import net.therap.dao.CustomerDao;
+import net.therap.dao.StandardCriteriaDao;
+import net.therap.domain.Criteria;
 import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
+import net.therap.domain.StandardCriteria;
 
 import java.util.List;
 
@@ -15,7 +18,16 @@ import java.util.List;
  */
 public class CustomerServiceImpl implements CustomerService{
 
-    CustomerDao customerDao;
+    private CustomerDao customerDao;
+    private StandardCriteriaDao standardCriteriaDao;
+
+    public StandardCriteriaDao getStandardCriteriaDao() {
+        return standardCriteriaDao;
+    }
+
+    public void setStandardCriteriaDao(StandardCriteriaDao standardCriteriaDao) {
+        this.standardCriteriaDao = standardCriteriaDao;
+    }
 
     public CustomerDao getCustomerDao() {
         return customerDao;
@@ -39,5 +51,12 @@ public class CustomerServiceImpl implements CustomerService{
 
     public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner) {
         return customerDao.getCustomerListByFlatOwner(flatOwner);
+    }
+
+    public List<Customer> getCustomerListByCriteria(Criteria criteria) {
+
+        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(),criteria.getNumberOfBeds(),criteria.getPriceOrRent());
+        List<Customer> customerList = customerDao.getCustomerListByStdCriteriaAndArea(standardCriteria,criteria.getArea());
+        return customerList;
     }
 }

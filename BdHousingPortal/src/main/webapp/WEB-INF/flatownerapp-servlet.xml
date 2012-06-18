@@ -44,7 +44,7 @@
            <property name="exceptionMappings">
 			<props>
 				<prop key="net.therap.exception.ApplicationException">exception/applicationexception</prop>
-                <prop key="java.lang.Exception">exception/error</prop>
+               <!-- <prop key="java.lang.Exception">exception/error</prop>-->
 			</props>
 		</property>
     </bean>

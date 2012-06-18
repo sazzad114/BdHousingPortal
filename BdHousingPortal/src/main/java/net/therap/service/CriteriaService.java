@@ -14,9 +14,10 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CriteriaService {
-     public List<Flat> getFlatListByCriteria(Criteria criteria);
+
      public void saveCriteriaForCustomer(Criteria criteria,Customer customer);
-     public List<Flat> getFlatListByCustomer(Customer customer);
-     public List<Customer> getCustomerListByCriteria(Criteria criteria);
+
      public boolean deleteCriteriaById(Customer customer, long id);
+     public List<Criteria> getCriteriaListByCustomer(Customer customer,int currentPage);
+     public long getPageCountByCustomer(Customer customer);
 }

@@ -6,6 +6,7 @@ import net.therap.domain.Flat;
 import net.therap.service.CriteriaService;
 import net.therap.service.CustomerService;
 import net.therap.service.FlatOwnerService;
+import net.therap.service.FlatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,16 +30,21 @@ public class HomeController {
 
 
 
+
+
     @Autowired
-    CriteriaService criteriaService;
+    private FlatService flatService;
 
-    public CriteriaService getService() {
-        return criteriaService;
+    public FlatService getFlatService() {
+        return flatService;
     }
 
-    public void setService(CriteriaService service) {
-        this.criteriaService = service;
+    public void setFlatService(FlatService flatService) {
+        this.flatService = flatService;
     }
+
+
+
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -54,7 +60,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(Map<String,Object> model, HttpServletRequest request){
 
-        List<Flat> flatList = criteriaService.getFlatListByCustomer(((Customer)request.getSession().getAttribute("customer")));
+        List<Flat> flatList = flatService.getFlatListByCustomer(((Customer)request.getSession().getAttribute("customer")));
         model.put("flatlist",flatList);
         model.put("title","Your expected flats");
         return "customer/home";

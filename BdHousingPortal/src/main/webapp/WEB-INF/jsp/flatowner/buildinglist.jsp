@@ -31,6 +31,7 @@
 					<div class="entry">
 
                         <a href="/BdHousingPortal/own/building/buildingdetails.htm?buildingId=${building.buildingId}">${building.buildingName}</a>
+                        <div style="float:right;"><a href="/BdHousingPortal/own/building/delete.htm?buildingid=${building.buildingId}">delete</a></div>
 
                     </div>
 				</div>

@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "H_CRITERIA")
-public class Criteria {
+ public class Criteria {
     private long criteriaId;
     private int numberOfBeds;
     private String area;
@@ -75,7 +75,7 @@ public class Criteria {
     public void setPriceOrRent(int priceOrRent) {
         this.priceOrRent = priceOrRent;
     }
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     public Customer getCustomer() {
         return customer;

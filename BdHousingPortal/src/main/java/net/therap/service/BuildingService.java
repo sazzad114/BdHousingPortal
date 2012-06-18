@@ -17,5 +17,6 @@ public interface BuildingService {
     public void saveBuilding(Building building);
     public List<Building> getBuildingList(FlatOwner flatOwner);
     public Building getBuildingById(FlatOwner flatowner,long id);
-     public Building getBuildingById(long id);
+    public Building getBuildingById(long id);
+    public boolean deleteBuildingById(FlatOwner flatOwner,long id);
 }

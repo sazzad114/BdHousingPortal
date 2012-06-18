@@ -95,7 +95,7 @@ public class Flat {
         this.flatInFloors = flatInFloors;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinTable(name = "H_BUILDING_FLAT", joinColumns = @JoinColumn(name = "FLAT_ID"),
             inverseJoinColumns = @JoinColumn(name = "BUILDING_ID"))
     public Building getBuilding() {

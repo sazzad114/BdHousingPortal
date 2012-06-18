@@ -24,22 +24,6 @@ public class StandardCriteriaDaoImpl extends HibernateDaoSupport implements Stan
 
     private static final Logger log = LoggerFactory.getLogger(StandardCriteriaDaoImpl.class);
 
-    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria,String area) {
-      return  getHibernateTemplate().find("select flat from Flat as flat where flat.standardCriteria = ? and  flat.building.address.area = ?",new Object[]{standardCriteria,area});
-    }
-
-    public List<Customer> getCustomerListByStdCriteriaAndArea(StandardCriteria standardCriteria, String area) {
-
-       String subQuery = "select criteria from Criteria as criteria where criteria.standardCriteria = ? and criteria.area = ?";
-       return getHibernateTemplate().find("select distinct customer from Customer as customer,Criteria as criteria where criteria in elements(customer.criteriaList) and criteria in("+subQuery+")",new Object[]{standardCriteria,area});
-
-    }
-
-    public List<Flat> getFlatListByCustomer(Customer customer) {
-       String subQuery = "select stdc,criteria.area from StandardCriteria as stdc,Criteria as criteria where criteria.standardCriteria = stdc and criteria.customer = ?";
-       return getHibernateTemplate().find("select distinct flat from Flat as flat where (flat.standardCriteria,flat.building.address.area) in (" +subQuery+")", new Object[]{customer});
-    }
-
     public StandardCriteria getStandardCriteriaByFlatAttributes(boolean isForRent, int numberOfBeds, int priceOrRent) {
         Object[] objects = new Object[5];
         objects[0] = isForRent;

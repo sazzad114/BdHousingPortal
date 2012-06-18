@@ -16,6 +16,4 @@ import java.util.List;
  */
 public interface StandardCriteriaService {
     public StandardCriteria getStandardCriteriaByFlat(Flat flat);
-    public List<Flat> getFlatListByCriteria(Criteria criteria);
-    public List<Customer> getCustomerListByCriteria(Criteria criteria);
 }

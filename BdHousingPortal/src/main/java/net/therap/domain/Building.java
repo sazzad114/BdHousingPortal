@@ -1,5 +1,7 @@
 package net.therap.domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -53,7 +55,8 @@ public class Building {
         this.flatTypeCount = flatTypeCount;
     }
 
-    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE,CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Flat> getFlatList() {
         return flatList;
     }

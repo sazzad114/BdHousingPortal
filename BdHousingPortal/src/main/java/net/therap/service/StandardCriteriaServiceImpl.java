@@ -32,15 +32,4 @@ public class StandardCriteriaServiceImpl implements StandardCriteriaService{
        return standardCriteriaDao.getStandardCriteriaByFlatAttributes(flat.isForRent(), flat.getNumberOfBeds(), flat.getPriceOrRent());
     }
 
-    public List<Customer> getCustomerListByCriteria(Criteria criteria) {
-        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(),criteria.getNumberOfBeds(),criteria.getPriceOrRent());
-        List<Customer> customerList = standardCriteriaDao.getCustomerListByStdCriteriaAndArea(standardCriteria,criteria.getArea());
-        return customerList;
-    }
-
-    public List<Flat> getFlatListByCriteria(Criteria criteria) {
-
-        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(), criteria.getNumberOfBeds(), criteria.getPriceOrRent());
-        return standardCriteriaDao.getFlatListByCriteriaAndArea(standardCriteria, criteria.getArea());
-    }
 }

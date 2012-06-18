@@ -19,18 +19,12 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class CriteriaServiceImpl implements CriteriaService{
-    StandardCriteriaService standardCriteriaService;
-    StandardCriteriaDao standardCriteriaDao;
-    CriteriaDao criteriaDao;
-    CustomerDao customerDao;
 
-    public CustomerDao getCustomerDao() {
-        return customerDao;
-    }
+    private StandardCriteriaDao standardCriteriaDao;
+    private CriteriaDao criteriaDao;
 
-    public void setCustomerDao(CustomerDao customerDao) {
-        this.customerDao = customerDao;
-    }
+    final private int PAGE_SIZE = 3;
+
 
     public StandardCriteriaDao getStandardCriteriaDao() {
         return standardCriteriaDao;
@@ -50,43 +44,38 @@ public class CriteriaServiceImpl implements CriteriaService{
         this.criteriaDao = criteriaDao;
     }
 
-    public StandardCriteriaService getStandardCriteriaService() {
-        return standardCriteriaService;
-    }
 
-    public void setStandardCriteriaService(StandardCriteriaService standardCriteriaService) {
-        this.standardCriteriaService = standardCriteriaService;
-    }
-
-    public List<Flat> getFlatListByCriteria(Criteria criteria){
-        return standardCriteriaService.getFlatListByCriteria(criteria);
-    }
 
 
     public boolean deleteCriteriaById(Customer customer, long id) {
-        return customerDao.removeCriteria(customer,id);
+        Criteria criteria = criteriaDao.getCriteriaById(id);
+        criteriaDao.deleteCriteria(customer,criteria);
+        return true;
+
+    }
+
+    public long getPageCountByCustomer(Customer customer) {
+
+        long criteriaCount = criteriaDao.getCriteriaCountByCustomer(customer);
+        if(criteriaCount % PAGE_SIZE != 0){
+           return criteriaCount/PAGE_SIZE + 1;
+        }
+
+        return criteriaCount/PAGE_SIZE;
+    }
+
+    public List<Criteria> getCriteriaListByCustomer(Customer customer, int currentPage) {
+        return criteriaDao.getCriteriaListByCustomer(customer,(currentPage - 1)*PAGE_SIZE,PAGE_SIZE);
     }
 
     public void saveCriteriaForCustomer(Criteria criteria, Customer customer) {
 
         StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(),criteria.getNumberOfBeds(),criteria.getPriceOrRent());
-        customer.getCriteriaList().add(criteria);
         criteria.setCustomer(customer);
         criteria.setStandardCriteria(standardCriteria);
         criteriaDao.saveCriteria(criteria);
     }
 
-    public List<Customer> getCustomerListByCriteria(Criteria criteria) {
-
-        List<Customer> customerList = standardCriteriaService.getCustomerListByCriteria(criteria);
-        return customerList;
-    }
-
-    public List<Flat> getFlatListByCustomer(Customer customer) {
-        List<Flat> flatList;
-        flatList = standardCriteriaDao.getFlatListByCustomer(customer);
-        return flatList;
-    }
 
 
 

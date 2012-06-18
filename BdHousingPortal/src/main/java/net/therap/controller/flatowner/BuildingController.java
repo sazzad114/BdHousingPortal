@@ -2,6 +2,7 @@ package net.therap.controller.flatowner;
 
 import net.therap.domain.Building;
 import net.therap.domain.FlatOwner;
+import net.therap.exception.ApplicationException;
 import net.therap.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +65,26 @@ public class BuildingController {
             return  "redirect:/own/home.htm";
 
         }
+    }
+
+    @RequestMapping(value = "/delete.htm",method = RequestMethod.GET)
+    String deleteBuildingAction(HttpServletRequest request){
+
+        if (request.getParameter("buildingid") == null || !request.getParameter("buildingid").matches("[0-9]+")) {
+            throw new ApplicationException(" You are trying to access Illegal resource...");
+        }
+
+        FlatOwner flatOwner = (FlatOwner) request.getSession().getAttribute("flatowner");
+        boolean isDeleted = buildingService.deleteBuildingById(flatOwner, Long.valueOf(request.getParameter("buildingid")));
+
+
+        if (isDeleted == false) {
+            throw new ApplicationException(" You are trying to access Illegal resource...");
+        }
+
+        return "redirect:/own/building/buildinglist.htm";
+
+
     }
 
     @RequestMapping(value = "/buildinglist.htm",method = RequestMethod.GET)

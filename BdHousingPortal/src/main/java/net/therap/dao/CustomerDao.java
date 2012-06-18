@@ -2,6 +2,7 @@ package net.therap.dao;
 
 import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
+import net.therap.domain.StandardCriteria;
 import net.therap.domain.User;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface CustomerDao {
         public Customer getCustomerById(long id);
         public void updateCustomer(Customer customer);
         public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner);
-        public boolean removeCriteria(Customer customer,long criteriaId);
+        public List<Customer> getCustomerListByStdCriteriaAndArea(StandardCriteria standardCriteria,String area);
 }

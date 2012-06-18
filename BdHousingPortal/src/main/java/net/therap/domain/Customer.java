@@ -82,7 +82,7 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER, mappedBy = "customer")
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "customer")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Criteria> getCriteriaList() {
         return criteriaList;

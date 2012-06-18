@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class BuildingServiceImpl implements BuildingService{
 
-    BuildingDao buildingDao;
-    AreaDao areaDao;
+    private BuildingDao buildingDao;
+    private AreaDao areaDao;
 
     public AreaDao getAreaDao() {
         return areaDao;
@@ -50,5 +50,11 @@ public class BuildingServiceImpl implements BuildingService{
 
     public Building getBuildingById(long id) {
         return buildingDao.getBuildingById(id);
+    }
+
+    public boolean deleteBuildingById(FlatOwner flatOwner, long id) {
+
+          return buildingDao.deleteBuildingById(flatOwner,id);
+
     }
 }

@@ -2,9 +2,8 @@ package net.therap.service;
 
 import net.therap.dao.BuildingDao;
 import net.therap.dao.FlatDao;
-import net.therap.domain.Flat;
-import net.therap.domain.Image;
-import net.therap.domain.StandardCriteria;
+import net.therap.dao.StandardCriteriaDao;
+import net.therap.domain.*;
 import net.therap.exception.ApplicationException;
 import org.hibernate.Hibernate;
 
@@ -13,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,6 +26,17 @@ public class FlatServiceImpl implements FlatService {
     private FlatDao flatDao;
     private StandardCriteriaService standardCriteriaService;
     private BuildingDao buildingDao;
+    private StandardCriteriaDao standardCriteriaDao;
+
+    public StandardCriteriaDao getStandardCriteriaDao() {
+        return standardCriteriaDao;
+    }
+
+    public void setStandardCriteriaDao(StandardCriteriaDao standardCriteriaDao) {
+        this.standardCriteriaDao = standardCriteriaDao;
+    }
+
+
 
     public BuildingDao getBuildingDao() {
         return buildingDao;
@@ -91,6 +102,30 @@ public class FlatServiceImpl implements FlatService {
             return bytes;
 
 
+    }
+
+    public List<Flat> getFlatListByCriteria(Criteria criteria) {
+
+        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(), criteria.getNumberOfBeds(), criteria.getPriceOrRent());
+        return flatDao.getFlatListByCriteriaAndArea(standardCriteria, criteria.getArea());
+    }
+
+       public List<Flat> getFlatListByCustomer(Customer customer) {
+        List<Flat> flatList;
+        flatList = flatDao.getFlatListByCustomer(customer);
+        return flatList;
+    }
+
+    public boolean deleteFlatById(FlatOwner flatOwner, long id) {
+       Flat flat = flatDao.getFlatById(id);
+
+       if(flat.getBuilding().getFlatOwner().getFlatOwnerId() != flatOwner.getFlatOwnerId()){
+          return false;
+       }
+       else {
+          flatDao.deleteFlatById(flatOwner,flat);
+          return true;
+       }
     }
 
 }

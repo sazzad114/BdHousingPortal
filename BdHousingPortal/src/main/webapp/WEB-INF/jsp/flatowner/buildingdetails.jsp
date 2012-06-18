@@ -137,6 +137,7 @@
           <div class="post">
              <div class="entry">
                   <a href="/BdHousingPortal/own/flat/view.htm?flatid=${flat.flatId}">${flat.numberOfBeds} Beds, Type-${flat.typeNumber}</a>
+                  <div style="float:right;"><a href="/BdHousingPortal/own/flat/delete.htm?flatid=${flat.flatId}">delete</a></div>
              </div>
           </div>
         </c:forEach>

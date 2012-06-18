@@ -20,21 +20,7 @@ public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDa
 
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerDaoImpl.class);
 
-    /*public User getUserByEmail(String email) {
 
-        Object[] objects = new Object[1];
-        objects[0] = email;
-        List<User> userList = getHibernateTemplate().find(" from User as user where user.email = ? ",objects);
-
-        if(userList.size() == 0){
-
-            return null;
-        }
-        else {
-            return userList.get(0);
-        }
-
-    }*/
 
    public void saveFlatUser(FlatOwner flatOwner) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();

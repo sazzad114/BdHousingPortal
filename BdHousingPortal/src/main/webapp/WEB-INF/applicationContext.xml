@@ -28,13 +28,11 @@
 
     <bean class="net.therap.service.CustomerServiceImpl" id="customerService">
         <property name="customerDao" ref="customerDao"/>
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
     </bean>
     <bean class="net.therap.service.CriteriaServiceImpl" id="criteriaService">
-        <property name="standardCriteriaService" ref="standardCriteriaService"/>
         <property name="criteriaDao" ref="criteriaDao"/>
         <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
-        <property name="customerDao" ref="customerDao"/>
-
     </bean>
 
     <bean class="net.therap.dao.CustomerDaoImpl" id="customerDao">
@@ -49,6 +47,7 @@
         <property name="flatDao" ref="flatDao"/>
         <property name="standardCriteriaService" ref="standardCriteriaService"/>
         <property name="buildingDao" ref="buildingDao"/>
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
     </bean>
 
     <bean class="net.therap.dao.BuildingDaoImpl" id="buildingDao">

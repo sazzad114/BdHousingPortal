@@ -1,8 +1,12 @@
 package net.therap.dao;
 
+import net.therap.domain.Customer;
 import net.therap.domain.Flat;
+import net.therap.domain.FlatOwner;
+import net.therap.domain.StandardCriteria;
 
 import java.sql.Blob;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,4 +20,7 @@ public interface FlatDao {
     public void saveFlat(Flat flat);
     public Flat getFlatById(long id);
     public Blob getImageData(long id);
+    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria,String area);
+    public List<Flat> getFlatListByCustomer(Customer customer);
+    public void deleteFlatById(FlatOwner flatOwner,Flat flat);
 }

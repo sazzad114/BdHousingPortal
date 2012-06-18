@@ -33,7 +33,26 @@
                  <a href="/BdHousingPortal/cus/criteria/delete.htm?criteriaid=${criteria.criteriaId}" style="float:right;">Delete criteria</a>
             </div>
         </div>
+
         </c:forEach>
+        <div style="float:right;">
+         <c:forEach begin="1" end="${pagecount}" var="counter">
+
+             <c:if test="${param['curr'] eq counter}">
+                 <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}" style="color:#dc143c;">
+                   ${counter}
+                 </a>
+
+             </c:if>
+             <c:if test="${param['curr'] ne counter}">
+                 <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}">
+                   ${counter}
+                 </a>
+             </c:if>
+             &nbsp;
+
+        </c:forEach>
+        </div>
         <div style="clear: both;">&nbsp;</div>
     </div>
 </div>

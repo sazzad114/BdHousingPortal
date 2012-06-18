@@ -85,8 +85,23 @@ public class CriteriaController {
     @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
     String viewCriteriaAction(Map<String, Object> model, HttpServletRequest request) {
 
+        int currentPage;
+        long pageCount;
 
-        model.put("criterialist", ((Customer) request.getSession().getAttribute("customer")).getCriteriaList());
+        Customer customer =  (Customer) request.getSession().getAttribute("customer");
+
+        if(request.getParameter("curr") == null || !request.getParameter("curr").matches("[0-9]+")){
+           currentPage = 1;
+        }
+        else {
+            currentPage = Integer.valueOf(request.getParameter("curr"));
+        }
+
+        pageCount = criteriaService.getPageCountByCustomer(customer);
+        List<Criteria> criteriaList = criteriaService.getCriteriaListByCustomer(customer,currentPage);
+
+        model.put("criterialist",criteriaList);
+        model.put("pagecount",pageCount);
         model.put("title", "Criteria list");
         return "customer/viewcriteria";
     }

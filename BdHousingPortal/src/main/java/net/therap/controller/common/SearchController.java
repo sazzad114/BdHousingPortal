@@ -7,6 +7,8 @@ import net.therap.domain.Criteria;
 import net.therap.domain.Customer;
 import net.therap.domain.Flat;
 import net.therap.service.CriteriaService;
+import net.therap.service.CustomerService;
+import net.therap.service.FlatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,27 @@ public class SearchController {
     private static final Logger log = LoggerFactory.getLogger(SearchController.class);
 
     @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private FlatService flatService;
+
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    public FlatService getFlatService() {
+        return flatService;
+    }
+
+    public void setFlatService(FlatService flatService) {
+        this.flatService = flatService;
+    }
+
+    @Autowired
     AreaDao areaDao;
     public AreaDao getAreaDao() {
         return areaDao;
@@ -43,16 +66,6 @@ public class SearchController {
 
     public void setAreaDao(AreaDao areaDao) {
         this.areaDao = areaDao;
-    }
-    @Autowired
-    CriteriaService criteriaService;
-
-    public CriteriaService getCriteriaService() {
-        return criteriaService;
-    }
-
-    public void setCriteriaService(CriteriaService criteriaService) {
-        this.criteriaService = criteriaService;
     }
 
     @RequestMapping(value = "/flatsearch.htm",method = RequestMethod.GET)
@@ -76,7 +89,7 @@ public class SearchController {
             return "common/flatsearch";
         }
         else {
-            List<Flat> flatList = criteriaService.getFlatListByCriteria(criteria);
+            List<Flat> flatList = flatService.getFlatListByCriteria(criteria);
             model.put("flatlist",flatList);
             return "common/flatsearch";
         }
@@ -105,7 +118,7 @@ public class SearchController {
             return "common/cusomersearch";
         }
         else {
-            List<Customer> customerList = criteriaService.getCustomerListByCriteria(criteria);
+            List<Customer> customerList = customerService.getCustomerListByCriteria(criteria);
             model.put("customerlist",customerList);
             return "common/customersearch";
         }

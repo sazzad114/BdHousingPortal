@@ -1,9 +1,6 @@
 package net.therap.dao;
 
-import net.therap.domain.Criteria;
-import net.therap.domain.Customer;
-import net.therap.domain.FlatOwner;
-import net.therap.domain.User;
+import net.therap.domain.*;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -60,21 +57,10 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
        return getHibernateTemplate().find("select distinct customer from Customer as customer,Criteria as criteria where criteria.customer = customer and (criteria.standardCriteria,criteria.area) in (" +subQuery+")", new Object[]{flatOwner});
     }
 
-    public boolean removeCriteria(Customer customer, long criteriaId) {
-       Criteria criteriaToRemove = null;
-        for (Criteria criteria: customer.getCriteriaList()){
-            if(criteria.getCriteriaId() == criteriaId){
-              criteriaToRemove = criteria;
-                break;
-            }
-        }
+   public List<Customer> getCustomerListByStdCriteriaAndArea(StandardCriteria standardCriteria, String area) {
 
-        if(criteriaToRemove == null) {
-            return false;
-        }
+       String subQuery = "select criteria from Criteria as criteria where criteria.standardCriteria = ? and criteria.area = ?";
+       return getHibernateTemplate().find("select distinct customer from Customer as customer,Criteria as criteria where criteria in elements(customer.criteriaList) and criteria in("+subQuery+")",new Object[]{standardCriteria,area});
 
-        customer.getCriteriaList().remove(criteriaToRemove);
-        updateCustomer(customer);
-        return true;
     }
 }

@@ -31,7 +31,7 @@ public class AnonymousAuthInterceptor extends HandlerInterceptorAdapter{
             return false;
         }
 
-        if(url.contains("/create") || url.contains("/logout"))
+        if(url.contains("/create") || url.contains("/logout") || url.contains("/delete"))
         {
            response.sendRedirect("/BdHousingPortal/app/login.htm");
            return false;

@@ -18,8 +18,5 @@ import java.util.List;
 public interface StandardCriteriaDao {
 
     public StandardCriteria getStandardCriteriaByFlatAttributes(boolean isForRent,int numberOfBeds,int priceOrRent);
-    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria,String area);
-    public List<Customer> getCustomerListByStdCriteriaAndArea(StandardCriteria standardCriteria,String area);
-    public List<Flat> getFlatListByCustomer(Customer customer);
 
 }

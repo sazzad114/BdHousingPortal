@@ -1,6 +1,9 @@
 package net.therap.dao;
 
 import net.therap.domain.Criteria;
+import net.therap.domain.Customer;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,6 +15,8 @@ import net.therap.domain.Criteria;
 public interface CriteriaDao {
     public void saveCriteria(Criteria criteria);
     public Criteria getCriteriaById(long id);
-    public void deleteCriteria(Criteria criteria);
+    public void deleteCriteria(Customer customer, Criteria criteria);
+    public List<Criteria> getCriteriaListByCustomer(Customer customer,int startingResultSet,int pageSize);
+    public long getCriteriaCountByCustomer(Customer customer);
 }
 
