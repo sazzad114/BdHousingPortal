@@ -27,11 +27,9 @@ public class StandardCriteria {
     List<Flat> flatList = new ArrayList<Flat>();
     List<Criteria> criteriaList = new ArrayList<Criteria>();
 
-
-
     @Id
-    @SequenceGenerator(name = "H_STANDARD_CRITERIA_SEQ",sequenceName = "H_STANDARD_CRITERIA_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_STANDARD_CRITERIA_SEQ")
+    @SequenceGenerator(name = "H_STANDARD_CRITERIA_SEQ", sequenceName = "H_STANDARD_CRITERIA_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_STANDARD_CRITERIA_SEQ")
     @Column(name = "STANDARD_CRITERIA_ID")
     public long getStandardCriteriaId() {
         return standardCriteriaId;
@@ -40,6 +38,7 @@ public class StandardCriteria {
     public void setStandardCriteriaId(long standardCriteriaId) {
         this.standardCriteriaId = standardCriteriaId;
     }
+
     @OneToMany(mappedBy = "standardCriteria")
     public List<Flat> getFlatList() {
         return flatList;
@@ -48,7 +47,8 @@ public class StandardCriteria {
     public void setFlatList(List<Flat> flatList) {
         this.flatList = flatList;
     }
-    @OneToMany(mappedBy = "standardCriteria",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "standardCriteria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Criteria> getCriteriaList() {
         return criteriaList;
     }
@@ -75,6 +75,7 @@ public class StandardCriteria {
     public void setMinNumberOfBeds(int minNumberOfBeds) {
         this.minNumberOfBeds = minNumberOfBeds;
     }
+
     @Column(name = "MAX_NUMBER_OF_BEDS")
     public int getMaxNumberOfBeds() {
         return maxNumberOfBeds;

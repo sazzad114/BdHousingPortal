@@ -1,10 +1,14 @@
 package net.therap.domain;
 
 
-
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,18 +20,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "H_CRITERIA")
 public class Criteria {
+
     private long criteriaId;
     private int numberOfBeds;
-    private int area;
+    private String area;
     private boolean forRent;
+    @Min(value = 1, message = "should be greater than zero")
     private int priceOrRent;
     private Customer customer;
     private StandardCriteria standardCriteria;
     private long version;
 
     @Id
-    @SequenceGenerator(name = "H_CRITERIA_SEQ",sequenceName = "H_CRITERIA_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_CRITERIA_SEQ")
+    @SequenceGenerator(name = "H_CRITERIA_SEQ", sequenceName = "H_CRITERIA_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_CRITERIA_SEQ")
+    @Column(name = "CRITERIA_ID")
+    @Type(type = "long")
     public long getCriteriaId() {
         return criteriaId;
     }
@@ -44,14 +52,16 @@ public class Criteria {
     public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }
+
     @Column(name = "AREA")
-    public int getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(String area) {
         this.area = area;
     }
+
     @Column(name = "IS_FOR_RENT")
     @Type(type = "true_false")
     public boolean isForRent() {
@@ -61,6 +71,7 @@ public class Criteria {
     public void setForRent(boolean forRent) {
         this.forRent = forRent;
     }
+
     @Column(name = "PRICE_OR_RENT")
     public int getPriceOrRent() {
         return priceOrRent;
@@ -69,7 +80,8 @@ public class Criteria {
     public void setPriceOrRent(int priceOrRent) {
         this.priceOrRent = priceOrRent;
     }
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     public Customer getCustomer() {
         return customer;
@@ -78,7 +90,8 @@ public class Criteria {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STANDARD_CRITERIA_ID")
     public StandardCriteria getStandardCriteria() {
         return standardCriteria;
@@ -87,6 +100,7 @@ public class Criteria {
     public void setStandardCriteria(StandardCriteria standardCriteria) {
         this.standardCriteria = standardCriteria;
     }
+
     @Version
     @Column(name = "VERSION")
     public long getVersion() {

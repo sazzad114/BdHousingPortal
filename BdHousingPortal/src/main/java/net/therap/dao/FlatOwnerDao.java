@@ -11,7 +11,10 @@ import net.therap.domain.User;
  * To change this template use File | Settings | File Templates.
  */
 public interface FlatOwnerDao {
-   /* public User getUserByEmail(String email);*/
+
     public void saveFlatUser(FlatOwner flatOwner);
+
     public FlatOwner getFlatOwnerByUser(User user);
+
+    public FlatOwner getFlatOwnerById(long id);
 }

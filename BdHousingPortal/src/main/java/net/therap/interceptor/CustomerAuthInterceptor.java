@@ -15,14 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 public class CustomerAuthInterceptor extends HandlerInterceptorAdapter {
 
     @Override
-    public boolean preHandle(HttpServletRequest request,
-		HttpServletResponse response, Object handler)
-	    throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-		if (request.getSession(false) == null || request.getSession().getAttribute("customer") == null){
+        String url = request.getRequestURI();
+
+        if (request.getSession(false) == null || request.getSession().getAttribute("customer") == null) {
             response.sendRedirect("/BdHousingPortal/app/login.htm");
             return false;
         }
+
+        if (url.contains("flat/create") || url.contains("flat/delete")) {
+            response.sendRedirect("/BdHousingPortal/cus/home.htm");
+            return false;
+        }
+
         return true;
-	}
+    }
 }

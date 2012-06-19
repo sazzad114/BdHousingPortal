@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping({"/welcome.htm"})
-public class WelcomeController{
+public class WelcomeController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String welcomeAction(){
-
+    public String welcomeAction() {
         return "anonymous/welcome";
     }
 

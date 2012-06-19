@@ -1,7 +1,11 @@
 package net.therap.dao;
 
 import net.therap.domain.Customer;
+import net.therap.domain.FlatOwner;
+import net.therap.domain.StandardCriteria;
 import net.therap.domain.User;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,8 +15,15 @@ import net.therap.domain.User;
  * To change this template use File | Settings | File Templates.
  */
 public interface CustomerDao {
-        public void saveCustomer(Customer customer);
-        public Customer getCustomerByUser(User user);
-        public Customer getCustomerById(long id);
-        public void updateCustomer(Customer customer);
+    public void saveCustomer(Customer customer);
+
+    public Customer getCustomerByUser(User user);
+
+    public Customer getCustomerById(long id);
+
+    public void updateCustomer(Customer customer);
+
+    public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner);
+
+    public List<Customer> getCustomerListByStdCriteriaAndArea(StandardCriteria standardCriteria, String area);
 }

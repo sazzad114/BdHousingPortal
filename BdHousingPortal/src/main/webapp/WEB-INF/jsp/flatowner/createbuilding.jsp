@@ -14,12 +14,18 @@
 <head>
     <title>Simple jsp page</title>
     <style type="text/css">
-        span.error{
-           color:#D8000C;
+        span.error {
+            color: #D8000C;
         }
     </style>
 </head>
 <body>
+<style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
 <div id="content">
     <div class="contentbg">
         <div class="post">
@@ -58,7 +64,7 @@
                                     <form:option value="9">9</form:option>
                                     <form:option value="10">10</form:option>
                                 </form:select>
-                                <span class="error"><form:errors path="numberOfFloors"/></span>
+                                <span class="error"><span class="error"><form:errors path="numberOfFloors"/></span>
                             </td>
                         </tr>
 
@@ -70,7 +76,7 @@
                             </td>
                             <td>
                                 <form:input path="address.houseNo"/><br/>
-                                <form:errors path="address.houseNo"/>
+                                <span class="error"><form:errors path="address.houseNo"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -80,7 +86,7 @@
                             </td>
                             <td>
                                 <form:input path="address.roadNo"/><br/>
-                                <form:errors path="address.roadNo"/>
+                                <span class="error"><form:errors path="address.roadNo"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -90,7 +96,7 @@
                             </td>
                             <td>
                                 <form:input path="address.area"/><br/>
-                                 <form:errors path="address.area"/>
+                                <span class="error"><form:errors path="address.area"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -100,7 +106,7 @@
                             </td>
                             <td>
                                 <form:input path="address.thana"/><br/>
-                                   <form:errors path="address.thana"/>
+                                <span class="error"><form:errors path="address.thana"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -112,7 +118,7 @@
                                 <form:select path="address.district" itemLabel="-select district-">
                                     <form:option value="dhaka">Dhaka</form:option>
                                 </form:select><br/>
-                                 <form:errors path="address.district"/>
+                                <span class="error"><form:errors path="address.district"/></span>
                             </td>
                         </tr>
 

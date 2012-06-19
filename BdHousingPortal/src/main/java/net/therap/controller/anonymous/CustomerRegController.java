@@ -2,10 +2,8 @@ package net.therap.controller.anonymous;
 
 
 import net.therap.domain.Customer;
-import net.therap.domain.FlatOwner;
 import net.therap.domain.User;
 import net.therap.service.CustomerService;
-import net.therap.service.FlatOwnerService;
 import net.therap.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,11 +61,9 @@ public class CustomerRegController {
 
     @RequestMapping(method = RequestMethod.GET)
     String customerRegAction(Map<String, Object> model) {
-
         model.put("customer", new Customer());
-        model.put("title","Customer Registration Form");
+        model.put("title", "Customer Registration Form");
         return "anonymous/customerreg";
-
     }
 
     @InitBinder
@@ -88,9 +84,7 @@ public class CustomerRegController {
             bindingResult.rejectValue("user.confirmPassword", "password.mismatch");
         }
 
-
         if (bindingResult.hasErrors()) {
-
             return "anonymous/customerreg";
         }
         else {

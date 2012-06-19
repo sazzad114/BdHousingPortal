@@ -54,48 +54,48 @@ Released : 20120520
     <!-- end #menu -->
     <div id="splash"><img src="/BdHousingPortal/resources/img/pics01.jpg" width="980" height="300" alt=""/></div>
     <div id="page">
-       <div id="content">
-    <div class="contentbg">
+        <div id="content">
+            <div class="contentbg">
 
 
-        <div class="post">
-            <h2 class="title">Log In :</h2>
+                <div class="post">
+                    <h2 class="title">Log In :</h2>
+                </div>
+
+                <div class="post">
+                    <br/>
+                    <fieldset style="width:120px; padding-right:120px;border-color:#dbdada;border-width:1px">
+
+                        <form action="/BdHousingPortal/app/login.htm" method="post">
+
+                            <ul style="list-style-type:none;">
+                                <li>
+                                    <label>Email : </label>
+                                    <input type="text" name="email"/>
+                                </li>
+                                <li>
+                                    <br/>
+                                    <label>Password : </label>
+                                    <input type="password" name="password"/>
+                                </li>
+                                <br/>
+
+                                <c:if test="${param['errorcode'] == 1}">
+                                    <c:out value="invalid email or password "/>
+                                </c:if>
+                                <li>
+                                    <input type="submit" value="Log in"/>
+                                </li>
+
+                            </ul>
+
+                        </form>
+                    </fieldset>
+                </div>
+
+                <div style="clear: both;">&nbsp;</div>
+            </div>
         </div>
-
-        <div class="post">
-           <br/>
-          <fieldset  style="width:120px; padding-right:120px;border-color:#dbdada;border-width:1px">
-
-            <form action="/BdHousingPortal/app/login.htm" method="post">
-
-                    <ul style="list-style-type:none;">
-                        <li>
-                            <label>Email : </label>
-                            <input type="text" name="email"/>
-                        </li>
-                        <li>
-                            <br/>
-                            <label>Password : </label>
-                            <input type="password" name="password"/>
-                        </li>
-                        <br/>
-
-                        <c:if test="${param['errorcode'] == 1}">
-                            <c:out value="invalid email or password "/>
-                        </c:if>
-                        <li>
-                            <input type="submit" value="Log in"/>
-                        </li>
-
-                    </ul>
-
-            </form>
-            </fieldset>
-        </div>
-
-        <div style="clear: both;">&nbsp;</div>
-    </div>
-</div>
         <!-- end #content -->
         <div id="sidebar-bg">
             <div id="sidebar">
@@ -104,8 +104,8 @@ Released : 20120520
                     <li>
                         <h2>Search for</h2>
                         <ul>
-                            <li><a href="#">Flat customers</a></li>
-                            <li><a href="#">Flats</a></li>
+                            <li><a href="/BdHousingPortal/app/customersearch.htm">Flat customers</a></li>
+                            <li><a href="/BdHousingPortal/app/flatsearch.htm">Flats</a></li>
                             <li><a href="#">Housing developers</a></li>
                         </ul>
                     </li>

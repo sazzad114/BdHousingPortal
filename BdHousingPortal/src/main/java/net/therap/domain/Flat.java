@@ -2,8 +2,11 @@ package net.therap.domain;
 
 import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,23 +22,47 @@ import java.util.List;
 @Entity
 @Table(name = "H_FLAT")
 public class Flat {
+
     private long flatId;
+    @Min(value = 1, message = "minimum 1 flat")
     private int numberOfFlats;
+    @Min(value = 50, message = "minimum 50 square feet flat")
     private int totalArea;
+    @Min(value = 1, message = "minimum 1 room flat")
     private int numberOfRooms;
+    @Min(value = 1, message = "minimum 1 bed flat")
     private int numberOfBeds;
     private boolean forRent;
+    @Min(value = 1, message = "value should be greater than 1")
     private int priceOrRent;
+    @Size(min = 10, max = 100)
     private String description;
     private long version;
     private StandardCriteria standardCriteria;
     private Building building;
     private int typeNumber;
-    private List<Integer> flatInFloors;
+    private List<Integer> flatInFloors = new ArrayList<Integer>();
+    private MultipartFile imageFile;
+    private Image flatImage;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "flat")
+    public Image getFlatImage() {
+        return flatImage;
+    }
+
+    public void setFlatImage(Image flatImage) {
+        this.flatImage = flatImage;
+    }
+
+    @Transient
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
 
 
-
-
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
 
     @Id
     @SequenceGenerator(name = "H_FLAT_SEQ", sequenceName = "H_FLAT_SEQ")
@@ -48,8 +75,6 @@ public class Flat {
     public void setFlatId(long flatId) {
         this.flatId = flatId;
     }
-
-
 
     @CollectionOfElements
     @JoinTable(name = "FLAT_FLOOR", joinColumns = @JoinColumn(name = "FLAT_ID"))
@@ -165,6 +190,5 @@ public class Flat {
     public void setStandardCriteria(StandardCriteria standardCriteria) {
         this.standardCriteria = standardCriteria;
     }
-
 
 }

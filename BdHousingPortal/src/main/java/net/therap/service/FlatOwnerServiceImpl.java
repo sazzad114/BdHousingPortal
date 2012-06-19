@@ -1,10 +1,7 @@
 package net.therap.service;
 
 import net.therap.dao.FlatOwnerDao;
-import net.therap.dao.UserDao;
 import net.therap.domain.FlatOwner;
-import net.therap.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,5 +24,9 @@ public class FlatOwnerServiceImpl implements FlatOwnerService {
 
     public void saveFlatOwner(FlatOwner flatOwner) {
         flatOwnerDao.saveFlatUser(flatOwner);
+    }
+
+    public FlatOwner getFlatOwnerById(long id) {
+        return flatOwnerDao.getFlatOwnerById(id);
     }
 }

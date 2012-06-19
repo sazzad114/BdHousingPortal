@@ -1,6 +1,5 @@
 package net.therap.controller.flatowner;
 
-import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
 import net.therap.service.FlatOwnerService;
 import org.slf4j.Logger;
@@ -10,10 +9,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -31,6 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/flatownerprofile")
+@SessionAttributes("flatowner")
 public class FlatOwnerProfileController {
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerProfileController.class);
 
@@ -46,10 +43,9 @@ public class FlatOwnerProfileController {
     }
 
 
-
-    @RequestMapping(value = "/view.htm",method = RequestMethod.GET )
-    String profileViewAction(Map<String,Object> model,HttpServletRequest request){
-        model.put("customer",request.getSession().getAttribute("flatowner"));
+    @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
+    String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
+        model.put("customer", request.getSession().getAttribute("flatowner"));
         return "flatowner/flatownerdetailsview";
     }
 
@@ -57,20 +53,16 @@ public class FlatOwnerProfileController {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
-
-
     }
 
     @ModelAttribute("flatowner")
-    FlatOwner getCustomer(HttpServletRequest request){
-
-        return (FlatOwner)request.getSession().getAttribute("flatowner");
+    FlatOwner getCustomer(HttpServletRequest request) {
+        return (FlatOwner) request.getSession().getAttribute("flatowner");
     }
+
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
     String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
-
         model.put("title", "Flat owner Profile edit Form");
-        //log.debug("####" + "InMethodGet" + ((Customer) request.getSession().getAttribute("flatowner").getFlatOwnerId());
         return "flatowner/flatowneredit";
     }
 
@@ -78,19 +70,15 @@ public class FlatOwnerProfileController {
     String profileEditPostAction(@Valid @ModelAttribute("flatowner") FlatOwner flatOwner, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
 
         if (bindingResult.hasErrors()) {
-
-
             model.put("flatowner", flatOwner);
             model.put("title", "Customer Profile edit Form");
             return "flatowner/flatowneredit";
-
         } else {
-            log.debug("####" + "InMethodPost"+flatOwner.getFlatOwnerId());
+            log.debug("####" + "InMethodPost" + flatOwner.getFlatOwnerId());
             flatOwnerService.saveFlatOwner(flatOwner);
-            request.getSession().setAttribute("flatowner",flatOwner);
+            request.getSession().setAttribute("flatowner", flatOwner);
             return "flatowner/flatownerdetailsview";
 
         }
-
     }
 }

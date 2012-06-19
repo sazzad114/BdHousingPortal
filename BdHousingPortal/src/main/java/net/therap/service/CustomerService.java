@@ -1,6 +1,10 @@
 package net.therap.service;
 
+import net.therap.domain.Criteria;
 import net.therap.domain.Customer;
+import net.therap.domain.FlatOwner;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,7 +14,13 @@ import net.therap.domain.Customer;
  * To change this template use File | Settings | File Templates.
  */
 public interface CustomerService {
-       public void saveCustomer(Customer customer);
-       public void updateCustomer(Customer customer);
-       public Customer getCustomerById(long id);
+    public void saveCustomer(Customer customer);
+
+    public void updateCustomer(Customer customer);
+
+    public Customer getCustomerById(long id);
+
+    public List<Customer> getCustomerListByFlatOwner(FlatOwner flatOwner);
+
+    public List<Customer> getCustomerListByCriteria(Criteria criteria);
 }
