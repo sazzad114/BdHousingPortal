@@ -60,7 +60,7 @@ public class CustomerRegController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    String flatOwnerRegAction(Map<String, Object> model) {
+    String customerRegAction(Map<String, Object> model) {
         model.put("customer", new Customer());
         model.put("title", "Customer Registration Form");
         return "anonymous/customerreg";
@@ -86,7 +86,8 @@ public class CustomerRegController {
 
         if (bindingResult.hasErrors()) {
             return "anonymous/customerreg";
-        } else {
+        }
+        else {
             customer.getUser().setUserType(User.CUSTOMERTYPE);
             customerService.saveCustomer(customer);
             return "redirect:/app/login.htm";

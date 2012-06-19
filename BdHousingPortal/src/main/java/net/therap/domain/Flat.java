@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by IntelliJ IDEA.
  * User: ashraf
@@ -76,7 +77,7 @@ public class Flat {
     }
 
     @CollectionOfElements
-    @JoinTable(name = "H_FLAT_FLOOR", joinColumns = {@JoinColumn(name = "FLAT_ID")})
+    @JoinTable(name = "FLAT_FLOOR", joinColumns = @JoinColumn(name = "FLAT_ID"))
     @Column(name = "FLOOR")
     public List<Integer> getFlatInFloors() {
         return flatInFloors;

@@ -19,17 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping({"/welcome.htm"})
 public class WelcomeController {
 
-    public FlatOwnerService getFlatOwnerService() {
-        return flatOwnerService;
-    }
-
-    public void setFlatOwnerService(FlatOwnerService flatOwnerService) {
-        this.flatOwnerService = flatOwnerService;
-    }
-
-    @Autowired
-    private FlatOwnerService flatOwnerService;
-
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction() {
         return "anonymous/welcome";
