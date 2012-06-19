@@ -16,7 +16,5 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface StandardCriteriaDao {
-
     public StandardCriteria getStandardCriteriaByFlatAttributes(boolean isForRent,int numberOfBeds,int priceOrRent);
-
 }

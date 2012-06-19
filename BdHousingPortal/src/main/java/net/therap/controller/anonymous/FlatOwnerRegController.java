@@ -59,24 +59,18 @@ public class FlatOwnerRegController {
         this.flatOwnerService = flatOwnerService;
     }
 
-
-
     @RequestMapping(method = RequestMethod.GET)
     String flatOwnerRegAction(Map<String, Object> model) {
-        model.put("title","Flat Owner Registration Form");
+        model.put("title", "Flat Owner Registration Form");
         model.put("flatOwner", new FlatOwner());
         return "anonymous/flatownerreg";
-
     }
 
     @InitBinder
-    protected void initBinder(HttpServletRequest request,ServletRequestDataBinder binder) throws Exception {
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
-
-
     }
-
 
     @RequestMapping(method = RequestMethod.POST)
     public String saveFlatOwnerAction(@Valid FlatOwner flatOwner, BindingResult bindingResult) {
@@ -89,9 +83,7 @@ public class FlatOwnerRegController {
             bindingResult.rejectValue("user.confirmPassword", "password.mismatch");
         }
 
-
         if (bindingResult.hasErrors()) {
-
             return "anonymous/flatownerreg";
         } else {
             flatOwner.getUser().setUserType(User.FLATOWNERTYPE);

@@ -39,6 +39,7 @@ public class SearchController {
 
     @Autowired
     private CustomerService customerService;
+
     @Autowired
     private FlatService flatService;
 
@@ -80,11 +81,14 @@ public class SearchController {
         model.put("criteria",criteria);
         model.put("arealist",areaList);
         model.put("numberofbeds",numberOfBeds);
+        model.put("title","Search Flat");
         return "common/flatsearch";
     }
+
     @RequestMapping(value = "/flatsearch.htm",method = RequestMethod.POST)
     String searchFlatPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
 
+        model.put("title","Search Flat");
         if(bindingResult.hasErrors()){
             return "common/flatsearch";
         }
@@ -94,7 +98,6 @@ public class SearchController {
             return "common/flatsearch";
         }
     }
-
 
 
     @RequestMapping(value = "/customersearch.htm",method = RequestMethod.GET)
@@ -109,13 +112,16 @@ public class SearchController {
         model.put("criteria",criteria);
         model.put("arealist",areaList);
         model.put("numberofbeds",numberOfBeds);
+        model.put("title","Search Customer");
         return "common/customersearch";
     }
+
     @RequestMapping(value = "/customersearch.htm",method = RequestMethod.POST)
     String searchCustomerPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
 
+        model.put("title","Search Customer");
         if(bindingResult.hasErrors()){
-            return "common/cusomersearch";
+            return "common/customersearch";
         }
         else {
             List<Customer> customerList = customerService.getCustomerListByCriteria(criteria);
@@ -123,5 +129,4 @@ public class SearchController {
             return "common/customersearch";
         }
     }
-
 }

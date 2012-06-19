@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface AreaDao {
     public void saveArea(Area area);
+
     public List<Area> getAreaList();
 }

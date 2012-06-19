@@ -4,7 +4,6 @@ package net.therap.controller.flatowner;
 import net.therap.domain.Customer;
 import net.therap.domain.FlatOwner;
 import net.therap.service.CustomerService;
-import net.therap.service.FlatOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +27,7 @@ public class HomeController {
 
     @Autowired
     CustomerService customerService;
+
     public CustomerService getCustomerService() {
         return customerService;
     }
@@ -37,10 +37,10 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String welcomeAction(Map<String,Object> model,HttpServletRequest request){
-        List<Customer> customerList = customerService.getCustomerListByFlatOwner((FlatOwner)request.getSession().getAttribute("flatowner"));
-        model.put("title","Expected customer");
-        model.put("customerlist",customerList);
+    public String welcomeAction(Map<String, Object> model, HttpServletRequest request) {
+        List<Customer> customerList = customerService.getCustomerListByFlatOwner((FlatOwner) request.getSession().getAttribute("flatowner"));
+        model.put("title", "Expected customer");
+        model.put("customerlist", customerList);
         return "flatowner/home";
     }
 

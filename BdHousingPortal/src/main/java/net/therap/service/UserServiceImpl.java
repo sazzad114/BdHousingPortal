@@ -4,7 +4,6 @@ import net.therap.dao.CustomerDao;
 import net.therap.dao.FlatOwnerDao;
 import net.therap.dao.UserDao;
 import net.therap.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Time: 2:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
-
+    private FlatOwnerDao flatOwnerDao;
     private UserDao userDao;
     private CustomerDao customerDao;
 
@@ -26,8 +25,6 @@ public class UserServiceImpl implements UserService{
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
-
-    private FlatOwnerDao flatOwnerDao;
 
     public UserDao getUserDao() {
         return userDao;
@@ -48,39 +45,30 @@ public class UserServiceImpl implements UserService{
     public Object getUserByEmailAndPass(String email, String password) {
 
         User user = userDao.getUserByEmail(email);
-        if( user == null || !user.getPassword().equals(password) ){
-
-           return null;
-        }
-        else {
-
-            switch (user.getUserType()){
-                case User.CUSTOMERTYPE:
-                {
+        if (user == null || !user.getPassword().equals(password)) {
+            return null;
+        } else {
+            switch (user.getUserType()) {
+                case User.CUSTOMERTYPE: {
                     return customerDao.getCustomerByUser(user);
                 }
-                case User.FLATOWNERTYPE:
-                {
-                   return flatOwnerDao.getFlatOwnerByUser(user);
+                case User.FLATOWNERTYPE: {
+                    return flatOwnerDao.getFlatOwnerByUser(user);
                 }
                 case User.DEVELOPERTYPE:
                 default:
                     return null;
 
             }
-
         }
 
     }
 
     public boolean isEmailExists(String email) {
-
         User user = userDao.getUserByEmail(email);
-        if(user == null)
-        {
+        if (user == null) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }

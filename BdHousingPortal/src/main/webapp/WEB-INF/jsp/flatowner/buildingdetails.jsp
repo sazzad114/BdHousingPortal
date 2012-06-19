@@ -24,7 +24,9 @@
 <div id="content">
     <div class="contentbg">
         <div class="post">
-            <a href="/BdHousingPortal/own/flat/create.htm?buildingid=${building.buildingId}" style="float:right;">Add new Flat</a>
+            <a href="/BdHousingPortal/own/flat/create.htm?buildingid=${building.buildingId}" style="float:right;">Add
+                new Flat</a>
+
             <h2 class="title">${title}</h2>
         </div>
         <div class="post">
@@ -120,27 +122,28 @@
         </div>
 
 
-
-
         <div class="post">
             <h2 class="title">Flat type List</h2>
         </div>
         <c:if test="${building.flatTypeCount == 0}">
-           <div class="post">
-             <div class="entry">
-             <c:out value="No Flat Type added"/>
-             </div>
-          </div>
+            <div class="post">
+                <div class="entry">
+                    <c:out value="No Flat Type added"/>
+                </div>
+            </div>
         </c:if>
         <c:if test="${building.flatList != null}">
-        <c:forEach items="${building.flatList}" var="flat">
-          <div class="post">
-             <div class="entry">
-                  <a href="/BdHousingPortal/own/flat/view.htm?flatid=${flat.flatId}">${flat.numberOfBeds} Beds, Type-${flat.typeNumber}</a>
-                  <div style="float:right;"><a href="/BdHousingPortal/own/flat/delete.htm?flatid=${flat.flatId}">delete</a></div>
-             </div>
-          </div>
-        </c:forEach>
+            <c:forEach items="${building.flatList}" var="flat">
+                <div class="post">
+                    <div class="entry">
+                        <a href="/BdHousingPortal/own/flat/view.htm?flatid=${flat.flatId}">${flat.numberOfBeds} Beds,
+                            Type-${flat.typeNumber}</a>
+
+                        <div style="float:right;"><a href="/BdHousingPortal/own/flat/delete.htm?flatid=${flat.flatId}">delete</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </c:if>
 
 

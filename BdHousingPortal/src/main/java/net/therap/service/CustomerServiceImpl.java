@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 3:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDao customerDao;
     private StandardCriteriaDao standardCriteriaDao;
@@ -54,9 +54,8 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     public List<Customer> getCustomerListByCriteria(Criteria criteria) {
-
-        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(),criteria.getNumberOfBeds(),criteria.getPriceOrRent());
-        List<Customer> customerList = customerDao.getCustomerListByStdCriteriaAndArea(standardCriteria,criteria.getArea());
+        StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(), criteria.getNumberOfBeds(), criteria.getPriceOrRent());
+        List<Customer> customerList = customerDao.getCustomerListByStdCriteriaAndArea(standardCriteria, criteria.getArea());
         return customerList;
     }
 }

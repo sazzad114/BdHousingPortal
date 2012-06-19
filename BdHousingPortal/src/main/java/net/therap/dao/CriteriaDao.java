@@ -14,9 +14,13 @@ import java.util.List;
  */
 public interface CriteriaDao {
     public void saveCriteria(Criteria criteria);
+
     public Criteria getCriteriaById(long id);
+
     public void deleteCriteria(Customer customer, Criteria criteria);
-    public List<Criteria> getCriteriaListByCustomer(Customer customer,int startingResultSet,int pageSize);
+
+    public List<Criteria> getCriteriaListByCustomer(Customer customer, int startingResultSet, int pageSize);
+
     public long getCriteriaCountByCustomer(Customer customer);
 }
 

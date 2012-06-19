@@ -7,23 +7,16 @@ package net.therap.exception;
  * Time: 11:04 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ApplicationException extends RuntimeException{
+public class ApplicationException extends RuntimeException {
 
-
-     private String warningMessage;
+    private String warningMessage;
 
     public String getWarningMessage() {
         return warningMessage;
     }
 
-
-
-
-
-    public ApplicationException(String warningMessage){
-
+    public ApplicationException(String warningMessage) {
         this.warningMessage = warningMessage;
-
     }
 
 }

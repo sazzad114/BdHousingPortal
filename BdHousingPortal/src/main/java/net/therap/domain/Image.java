@@ -28,6 +28,7 @@ public class Image {
     public void setImageData(Blob imageData) {
         this.imageData = imageData;
     }
+
     @Id
     @SequenceGenerator(name = "H_IMAGE_SEQ", sequenceName = "H_IMAGE_SEQ")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_IMAGE_SEQ")
@@ -39,6 +40,7 @@ public class Image {
     public void setImageId(long imageId) {
         this.imageId = imageId;
     }
+
     @OneToOne
     @JoinColumn(name = "FLAT_ID")
     public Flat getFlat() {

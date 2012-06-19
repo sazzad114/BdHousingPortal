@@ -5,8 +5,8 @@ import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.sql.Blob;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +21,20 @@ import java.util.List;
 @Entity
 @Table(name = "H_FLAT")
 public class Flat {
+
     private long flatId;
-    @Min(value = 1,message = "minimum 1 flat")
+    @Min(value = 1, message = "minimum 1 flat")
     private int numberOfFlats;
-    @Min(value = 50,message = "minimum 50 square feet flat")
+    @Min(value = 50, message = "minimum 50 square feet flat")
     private int totalArea;
-    @Min(value = 1,message = "minimum 1 room flat")
+    @Min(value = 1, message = "minimum 1 room flat")
     private int numberOfRooms;
-    @Min(value = 1,message = "minimum 1 bed flat")
+    @Min(value = 1, message = "minimum 1 bed flat")
     private int numberOfBeds;
     private boolean forRent;
-    @Min(value = 1,message = "value should be greater than 1")
+    @Min(value = 1, message = "value should be greater than 1")
     private int priceOrRent;
-    @Size(min = 10,max = 100)
+    @Size(min = 10, max = 100)
     private String description;
     private long version;
     private StandardCriteria standardCriteria;
@@ -43,7 +44,7 @@ public class Flat {
     private MultipartFile imageFile;
     private Image flatImage;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "flat")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "flat")
     public Image getFlatImage() {
         return flatImage;
     }
@@ -51,12 +52,6 @@ public class Flat {
     public void setFlatImage(Image flatImage) {
         this.flatImage = flatImage;
     }
-
-    /*private Image flatImage;*/
-
-
-
-
 
     @Transient
     public MultipartFile getImageFile() {
@@ -67,11 +62,6 @@ public class Flat {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-
-/*    @Basic(fetch = FetchType.LAZY,optional = true)*/
-
-
-
 
     @Id
     @SequenceGenerator(name = "H_FLAT_SEQ", sequenceName = "H_FLAT_SEQ")
@@ -91,6 +81,7 @@ public class Flat {
     public List<Integer> getFlatInFloors() {
         return flatInFloors;
     }
+
     public void setFlatInFloors(List<Integer> flatInFloors) {
         this.flatInFloors = flatInFloors;
     }
@@ -198,7 +189,5 @@ public class Flat {
     public void setStandardCriteria(StandardCriteria standardCriteria) {
         this.standardCriteria = standardCriteria;
     }
-
-
 
 }

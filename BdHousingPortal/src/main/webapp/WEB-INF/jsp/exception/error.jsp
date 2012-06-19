@@ -10,16 +10,17 @@
 <head></head>
 <body>
 <div id="content">
-			<div class="contentbg">
-				<div class="post">
-					<h2 class="title">Error</h2>
-					<div class="entry">
-						   Application error occoured, yahooo.... :D
-                    </div>
-				</div>
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
+    <div class="contentbg">
+        <div class="post">
+            <h2 class="title">Error</h2>
+
+            <div class="entry">
+                Application error occoured, yahooo.... :D
+            </div>
+        </div>
+        <div style="clear: both;">&nbsp;</div>
+    </div>
+</div>
 </body>
 
 </html>

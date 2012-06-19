@@ -12,19 +12,17 @@ import java.util.List;
  * Time: 2:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
     public User getUserByEmail(String email) {
 
         Object[] objects = new Object[1];
         objects[0] = email;
-        List<User> userList = getHibernateTemplate().find(" from User as user where user.email = ? ",objects);
+        List<User> userList = getHibernateTemplate().find(" from User as user where user.email = ? ", objects);
 
-        if(userList.size() == 0){
-
+        if (userList.size() == 0) {
             return null;
-        }
-        else {
+        } else {
             return userList.get(0);
         }
     }

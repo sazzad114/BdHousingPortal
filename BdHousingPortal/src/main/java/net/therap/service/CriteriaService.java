@@ -2,7 +2,6 @@ package net.therap.service;
 
 import net.therap.domain.Criteria;
 import net.therap.domain.Customer;
-import net.therap.domain.Flat;
 
 import java.util.List;
 
@@ -15,9 +14,11 @@ import java.util.List;
  */
 public interface CriteriaService {
 
-     public void saveCriteriaForCustomer(Criteria criteria,Customer customer);
+    public void saveCriteriaForCustomer(Criteria criteria, Customer customer);
 
-     public boolean deleteCriteriaById(Customer customer, long id);
-     public List<Criteria> getCriteriaListByCustomer(Customer customer,int currentPage);
-     public long getPageCountByCustomer(Customer customer);
+    public boolean deleteCriteriaById(Customer customer, long id);
+
+    public List<Criteria> getCriteriaListByCustomer(Customer customer, int currentPage);
+
+    public long getPageCountByCustomer(Customer customer);
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * Time: 2:17 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BuildingServiceImpl implements BuildingService{
+public class BuildingServiceImpl implements BuildingService {
 
     private BuildingDao buildingDao;
     private AreaDao areaDao;
@@ -44,8 +44,9 @@ public class BuildingServiceImpl implements BuildingService{
         areaDao.saveArea(new Area(building.getAddress().getArea()));
         buildingDao.saveBuilding(building);
     }
-    public Building getBuildingById(FlatOwner flatowner,long id){
-       return buildingDao.getBuildingById(flatowner,id);
+
+    public Building getBuildingById(FlatOwner flatowner, long id) {
+        return buildingDao.getBuildingById(flatowner, id);
     }
 
     public Building getBuildingById(long id) {
@@ -53,8 +54,6 @@ public class BuildingServiceImpl implements BuildingService{
     }
 
     public boolean deleteBuildingById(FlatOwner flatOwner, long id) {
-
-          return buildingDao.deleteBuildingById(flatOwner,id);
-
+        return buildingDao.deleteBuildingById(flatOwner, id);
     }
 }

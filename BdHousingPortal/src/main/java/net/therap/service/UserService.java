@@ -9,6 +9,7 @@ package net.therap.service;
  */
 public interface UserService {
 
-    public Object getUserByEmailAndPass(String email,String password);
+    public Object getUserByEmailAndPass(String email, String password);
+
     public boolean isEmailExists(String email);
 }

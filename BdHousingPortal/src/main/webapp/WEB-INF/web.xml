@@ -82,6 +82,7 @@
             <taglib-location>/WEB-INF/fn.tld</taglib-location>
         </taglib>
     </jsp-config>
+
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>

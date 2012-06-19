@@ -1,10 +1,7 @@
 package net.therap.service;
 
 import net.therap.dao.FlatOwnerDao;
-import net.therap.dao.UserDao;
 import net.therap.domain.FlatOwner;
-import net.therap.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by IntelliJ IDEA.

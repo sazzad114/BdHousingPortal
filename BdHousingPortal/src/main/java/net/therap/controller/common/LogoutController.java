@@ -16,12 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LogoutController {
 
-    @RequestMapping(value = "/logout.htm",method = RequestMethod.GET)
-    public String logoutAction(HttpServletRequest request){
-
+    @RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
+    public String logoutAction(HttpServletRequest request) {
         request.getSession().invalidate();
-
         return "redirect:/app/login.htm";
-
     }
 }

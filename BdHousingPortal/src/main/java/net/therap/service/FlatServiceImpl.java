@@ -4,14 +4,10 @@ import net.therap.dao.BuildingDao;
 import net.therap.dao.FlatDao;
 import net.therap.dao.StandardCriteriaDao;
 import net.therap.domain.*;
-import net.therap.exception.ApplicationException;
 import org.hibernate.Hibernate;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -35,8 +31,6 @@ public class FlatServiceImpl implements FlatService {
     public void setStandardCriteriaDao(StandardCriteriaDao standardCriteriaDao) {
         this.standardCriteriaDao = standardCriteriaDao;
     }
-
-
 
     public BuildingDao getBuildingDao() {
         return buildingDao;
@@ -64,7 +58,6 @@ public class FlatServiceImpl implements FlatService {
 
     public void saveFlat(Flat flat) throws IOException {
 
-
         Image image = new Image();
         int flatTypeCount = flat.getBuilding().getFlatTypeCount();
         flat.getBuilding().setFlatTypeCount(flatTypeCount + 1);
@@ -86,46 +79,36 @@ public class FlatServiceImpl implements FlatService {
 
     }
 
-    public byte[] getImageData(long id) throws Exception{
+    public byte[] getImageData(long id) throws Exception {
 
-            Blob imageData = flatDao.getImageData(id);
-
-            if(imageData == null)
-            {
-                 throw new Exception();
-            }
-
-            byte[] bytes = new byte[(int) imageData.length()];
-
-            imageData.getBinaryStream().read(bytes);
-            imageData.getBinaryStream().close();
-            return bytes;
-
-
+        Blob imageData = flatDao.getImageData(id);
+        if (imageData == null) {
+            throw new Exception();
+        }
+        byte[] bytes = new byte[(int) imageData.length()];
+        imageData.getBinaryStream().read(bytes);
+        imageData.getBinaryStream().close();
+        return bytes;
     }
 
     public List<Flat> getFlatListByCriteria(Criteria criteria) {
-
         StandardCriteria standardCriteria = standardCriteriaDao.getStandardCriteriaByFlatAttributes(criteria.isForRent(), criteria.getNumberOfBeds(), criteria.getPriceOrRent());
         return flatDao.getFlatListByCriteriaAndArea(standardCriteria, criteria.getArea());
     }
 
-       public List<Flat> getFlatListByCustomer(Customer customer) {
+    public List<Flat> getFlatListByCustomer(Customer customer) {
         List<Flat> flatList;
         flatList = flatDao.getFlatListByCustomer(customer);
         return flatList;
     }
 
     public boolean deleteFlatById(FlatOwner flatOwner, long id) {
-       Flat flat = flatDao.getFlatById(id);
-
-       if(flat.getBuilding().getFlatOwner().getFlatOwnerId() != flatOwner.getFlatOwnerId()){
-          return false;
-       }
-       else {
-          flatDao.deleteFlatById(flatOwner,flat);
-          return true;
-       }
+        Flat flat = flatDao.getFlatById(id);
+        if (flat.getBuilding().getFlatOwner().getFlatOwnerId() != flatOwner.getFlatOwnerId()) {
+            return false;
+        } else {
+            flatDao.deleteFlatById(flatOwner, flat);
+            return true;
+        }
     }
-
 }

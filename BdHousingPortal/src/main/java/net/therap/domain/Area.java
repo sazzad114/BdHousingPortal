@@ -1,7 +1,5 @@
 package net.therap.domain;
 
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
 
 /**
@@ -17,16 +15,18 @@ public class Area {
 
     long areaId;
     String areaName;
-    public Area(String areaName){
-       this.areaName = areaName;
+
+    public Area(String areaName) {
+        this.areaName = areaName;
     }
-    public Area(){
+
+    public Area() {
         super();
     }
 
     @Id
-    @SequenceGenerator(name = "H_AREA_SEQ",sequenceName = "H_AREA_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_AREA_SEQ")
+    @SequenceGenerator(name = "H_AREA_SEQ", sequenceName = "H_AREA_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_AREA_SEQ")
     @Column(name = "AREA_ID")
     public long getAreaId() {
         return areaId;
@@ -35,6 +35,7 @@ public class Area {
     public void setAreaId(long areaId) {
         this.areaId = areaId;
     }
+
     @Column(name = "AREA_NAME")
     public String getAreaName() {
         return areaName;
@@ -43,7 +44,6 @@ public class Area {
     public void setAreaName(String areaName) {
         this.areaName = areaName;
     }
-
 
 
 }

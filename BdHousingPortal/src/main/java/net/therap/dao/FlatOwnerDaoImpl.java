@@ -16,33 +16,31 @@ import java.util.List;
  * Time: 12:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDao{
+public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDao {
 
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerDaoImpl.class);
 
 
-
-   public void saveFlatUser(FlatOwner flatOwner) {
+    public void saveFlatUser(FlatOwner flatOwner) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         session.saveOrUpdate(flatOwner);
         session.flush();
     }
 
-   public FlatOwner getFlatOwnerByUser(User user) {
+    public FlatOwner getFlatOwnerByUser(User user) {
         Object[] objects = new Object[1];
         objects[0] = user;
-        List<FlatOwner> flatOwnerList = getHibernateTemplate().find(" from FlatOwner as flatOwner where flatOwner.user = ? ",objects);
+        List<FlatOwner> flatOwnerList = getHibernateTemplate().find(" from FlatOwner as flatOwner where flatOwner.user = ? ", objects);
 
-        if(flatOwnerList.size() == 0){
+        if (flatOwnerList.size() == 0) {
 
             return null;
-        }
-        else {
+        } else {
             return flatOwnerList.get(0);
         }
-   }
+    }
 
     public FlatOwner getFlatOwnerById(long id) {
-        return getHibernateTemplate().get(FlatOwner.class,id);
+        return getHibernateTemplate().get(FlatOwner.class, id);
     }
 }

@@ -258,6 +258,10 @@ img.aligncenter {
 .dropotron li:hover, .dropotron li.active {
 	background: #4DA43A;
 }
+span.error{
+    color:#D8000C;
+    font-size:12px;
+}
 
 /* Page */
 

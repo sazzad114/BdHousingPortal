@@ -2,12 +2,8 @@ package net.therap.service;
 
 
 import net.therap.dao.StandardCriteriaDao;
-import net.therap.domain.Criteria;
-import net.therap.domain.Customer;
 import net.therap.domain.Flat;
 import net.therap.domain.StandardCriteria;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +12,9 @@ import java.util.List;
  * Time: 4:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StandardCriteriaServiceImpl implements StandardCriteriaService{
+public class StandardCriteriaServiceImpl implements StandardCriteriaService {
+
+    private StandardCriteriaDao standardCriteriaDao;
 
     public StandardCriteriaDao getStandardCriteriaDao() {
         return standardCriteriaDao;
@@ -26,10 +24,8 @@ public class StandardCriteriaServiceImpl implements StandardCriteriaService{
         this.standardCriteriaDao = standardCriteriaDao;
     }
 
-    private StandardCriteriaDao standardCriteriaDao;
-
     public StandardCriteria getStandardCriteriaByFlat(Flat flat) {
-       return standardCriteriaDao.getStandardCriteriaByFlatAttributes(flat.isForRent(), flat.getNumberOfBeds(), flat.getPriceOrRent());
+        return standardCriteriaDao.getStandardCriteriaByFlatAttributes(flat.isForRent(), flat.getNumberOfBeds(), flat.getPriceOrRent());
     }
 
 }

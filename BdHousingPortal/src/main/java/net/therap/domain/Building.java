@@ -18,30 +18,28 @@ import java.util.List;
 
 
 @Entity
-@Table(name ="H_BUILDING")
+@Table(name = "H_BUILDING")
 public class Building {
 
-   private long buildingId;
-   private int numberOfFloors;
-   @Size(min = 3,max = 50,message = "within 3 to 50 characters")
-   private String buildingName;
-   @Valid
-   private Address address;
-   private FlatOwner flatOwner;
-   private int flatTypeCount;
-   private long version;
-
-
-
+    private long buildingId;
+    private int numberOfFloors;
+    @Size(min = 3, max = 50, message = "within 3 to 50 characters")
+    private String buildingName;
+    @Valid
+    private Address address;
+    private FlatOwner flatOwner;
+    private int flatTypeCount;
+    private long version;
     private List<Flat> flatList = new ArrayList<Flat>();
 
     @Id
-    @SequenceGenerator(name = "H_BUILDING_SEQ",sequenceName = "H_BUILDING_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_BUILDING_SEQ")
+    @SequenceGenerator(name = "H_BUILDING_SEQ", sequenceName = "H_BUILDING_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_BUILDING_SEQ")
     @Column(name = "BUILDING_ID")
     public long getBuildingId() {
         return buildingId;
     }
+
     public void setBuildingId(long buildingId) {
         this.buildingId = buildingId;
     }
@@ -55,7 +53,7 @@ public class Building {
         this.flatTypeCount = flatTypeCount;
     }
 
-    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE,CascadeType.ALL})
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.ALL})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     public List<Flat> getFlatList() {
         return flatList;
@@ -64,6 +62,7 @@ public class Building {
     public void setFlatList(List<Flat> flatList) {
         this.flatList = flatList;
     }
+
     @Column(name = "NUMBER_OF_FLOORS")
     public int getNumberOfFloors() {
         return numberOfFloors;

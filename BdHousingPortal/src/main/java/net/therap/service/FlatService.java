@@ -17,9 +17,14 @@ import java.util.List;
  */
 public interface FlatService {
     public void saveFlat(Flat flat) throws IOException;
+
     public Flat getFlatById(long id);
+
     public byte[] getImageData(long id) throws Exception;
+
     public List<Flat> getFlatListByCriteria(Criteria criteria);
+
     public List<Flat> getFlatListByCustomer(Customer customer);
-    public boolean deleteFlatById(FlatOwner flatOwner,long id);
+
+    public boolean deleteFlatById(FlatOwner flatOwner, long id);
 }

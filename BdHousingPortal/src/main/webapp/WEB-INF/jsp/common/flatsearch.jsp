@@ -23,19 +23,48 @@
     </style>
 </head>
 <body>
+<style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
 <script type="text/javascript">
+
+    document.body.onload = function() {
+        if (document.getElementById("forRent").checked == true) {
+            document.getElementById("sell").value = "";
+            document.getElementById("sell").disabled = true;
+            document.getElementById("rent").disabled = false;
+        }
+        if (document.getElementById("forSell").checked == true) {
+            document.getElementById("rent").value = "";
+            document.getElementById("sell").disabled = false;
+            document.getElementById("rent").disabled = true;
+        }
+
+    }
 
     function disAbleRent() {
 
-        document.getElementById("sell").disabled = true;
-        document.getElementById("rent").disabled = false;
+        document.getElementById("rent").value = "";
+        document.getElementById("rent").disabled = true;
+        document.getElementById("sell").disabled = false;
+
     }
 
     function disAbleSell() {
 
+        document.getElementById("sell").value = "";
+        document.getElementById("sell").disabled = true;
+        document.getElementById("rent").disabled = false;
+    }
+
+    function adjust() {
         document.getElementById("sell").disabled = false;
         document.getElementById("rent").disabled = true;
     }
+
 
 </script>
 <div id="content">
@@ -55,8 +84,15 @@
                             <td>
 
                                 <select name="area">
+
                                     <c:forEach items="${arealist}" var="area">
-                                        <option value="${area.areaName}">${area.areaName}</option>
+                                        <c:if test="${criteria.area eq area.areaName}">
+                                            <option selected="selected"
+                                                    value="${area.areaName}">${area.areaName}</option>
+                                        </c:if>
+                                        <c:if test="${criteria.area ne area.areaName}">
+                                            <option value="${area.areaName}">${area.areaName}</option>
+                                        </c:if>
                                     </c:forEach>
                                 </select>
 
@@ -81,26 +117,18 @@
                             </td>
                             <td>
 
-
-                                <input id="forRent" onchange="disAbleSell()" type="radio" checked="checked"
-                                       name="forRent" value="true"/>For Rent
-                            </td>
-                            <td>
-                                <input id="forSell" onchange="disAbleRent()" type="radio" name="forRent" value="false"/>For
-                                Sell
-
+                                <input id="forRent" onchange="disAbleSell()" type="radio"
+                                       <c:if test="${criteria.forRent == true}">checked</c:if> name="forRent"
+                                       value="true"/>For Rent
 
                             </td>
-                        </tr>
 
-                        <tr>
+
                             <td>
-                                <fmt:message key="search.price"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
+                                <input id="forSell" onchange="disAbleRent()" type="radio"
+                                       <c:if test="${criteria.forRent == false}">checked</c:if> name="forRent"
+                                       value="false"/>For Sell
+
                             </td>
                         </tr>
 
@@ -110,8 +138,19 @@
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
+                                <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <fmt:message key="search.price"/>
+                                <span>&nbsp;&nbsp;&nbsp;</span>
+                            </td>
+                            <td>
                                 <form:input id="sell" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
                             </td>
                         </tr>
 
@@ -123,7 +162,7 @@
             </div>
         </div>
         <c:if test="${flatlist ne  null and fn:length(flatlist) == 0}">
-            <div  class="post">
+            <div class="post">
                 <div class="entry">
                     <span style="text-align:center;">No results found for your query.</span>
                 </div>

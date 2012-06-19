@@ -13,6 +13,8 @@ import net.therap.domain.User;
 public interface FlatOwnerDao {
 
     public void saveFlatUser(FlatOwner flatOwner);
+
     public FlatOwner getFlatOwnerByUser(User user);
+
     public FlatOwner getFlatOwnerById(long id);
 }

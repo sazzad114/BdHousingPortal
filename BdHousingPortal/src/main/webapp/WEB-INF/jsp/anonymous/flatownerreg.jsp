@@ -14,12 +14,18 @@
 <head>
     <title>Simple jsp page</title>
     <style type="text/css">
-        span.error{
-           color:#D8000C;
+        span.error {
+            color: #D8000C;
         }
     </style>
 </head>
 <body>
+<style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
 <div id="content">
     <div class="contentbg">
         <div class="post">
@@ -36,7 +42,7 @@
                             </td>
                             <td>
                                 <form:input path="flatOwnerName"/><br/>
-                                <span class="error"><form:errors path="flatOwnerName"/></span>
+                                <span class="error"><span class="error"><form:errors path="flatOwnerName"/></span>
                             </td>
                         </tr>
 
@@ -47,7 +53,7 @@
                             </td>
                             <td>
                                 <form:input path="dateOfBirth"/><br/>
-                                <form:errors path="dateOfBirth"/>
+                                <span class="error"><form:errors path="dateOfBirth"/></span>
                             </td>
                         </tr>
 
@@ -58,7 +64,7 @@
                             </td>
                             <td>
                                 <form:input path="user.email"/><br/>
-                                <form:errors path="user.email" />
+                                <span class="error"><form:errors path="user.email"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -68,7 +74,7 @@
                             </td>
                             <td>
                                 <form:input path="contactNo"/><br/>
-                                <form:errors path="contactNo"/>
+                                <span class="error"><form:errors path="contactNo"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +84,7 @@
                             </td>
                             <td>
                                 <form:password path="user.password"/><br/>
-                                <form:errors path="user.password"/>
+                                <span class="error"><form:errors path="user.password"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -88,7 +94,7 @@
                             </td>
                             <td>
                                 <form:password path="user.confirmPassword"/><br/>
-                                <form:errors path="user.confirmPassword"/>
+                                <span class="error"><form:errors path="user.confirmPassword"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -98,7 +104,7 @@
                             </td>
                             <td>
                                 <form:input path="address.houseNo"/><br/>
-                                <form:errors path="address.houseNo"/>
+                                <span class="error"><form:errors path="address.houseNo"/> </span>
                             </td>
                         </tr>
                         <tr>
@@ -108,7 +114,7 @@
                             </td>
                             <td>
                                 <form:input path="address.roadNo"/><br/>
-                                <form:errors path="address.roadNo"/>
+                                <span class="error"><form:errors path="address.roadNo"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -118,7 +124,7 @@
                             </td>
                             <td>
                                 <form:input path="address.area"/><br/>
-                                 <form:errors path="address.area"/>
+                                <span class="error"><form:errors path="address.area"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -128,7 +134,7 @@
                             </td>
                             <td>
                                 <form:input path="address.thana"/><br/>
-                                   <form:errors path="address.thana"/>
+                                <span class="error"><form:errors path="address.thana"/></span>
                             </td>
                         </tr>
                         <tr>
@@ -140,7 +146,7 @@
                                 <form:select path="address.district" itemLabel="-select district-">
                                     <form:option value="dhaka">Dhaka</form:option>
                                 </form:select><br/>
-                                 <form:errors path="address.district"/>
+                                <span class="error"><form:errors path="address.district"/> </span>
                             </td>
                         </tr>
                         <tr>
@@ -150,7 +156,7 @@
                             </td>
                             <td>
                                 <form:input path="occupation"/><br/>
-                                 <form:errors path="occupation"/>
+                                <span class="error"><form:errors path="occupation"/> </span>
                             </td>
                         </tr>
                         <tr>
@@ -161,7 +167,7 @@
                             </td>
                             <td align="justify">
                                 <form:textarea path="occupationDetails" cols="40" rows="5"/><br/>
-                                <form:errors path="occupationDetails"/>
+                                <span class="error"><form:errors path="occupationDetails"/> </span>
                             </td>
                         </tr>
 
@@ -172,7 +178,7 @@
                             </td>
                             <td>
                                 <form:textarea path="description" cols="40" rows="5"/><br/>
-                                 <form:errors path="description"/>
+                                <span class="error"><form:errors path="description"/> </span>
                             </td>
                         </tr>
                     </table>

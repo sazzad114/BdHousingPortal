@@ -14,10 +14,10 @@
         <hibernate.version>3.3.2.GA</hibernate.version>
         <!-- This must be defined in ~/.m2/settings.xml -->
 
-        <template.name>${env.USER}</template.name>
+        <!--<template.name>${env.USER}</template.name>-->
     </properties>
     <dependencies>
-        <!-- JEE -->
+
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
@@ -43,7 +43,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -56,11 +55,6 @@
             <version>5</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.3</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -111,7 +105,7 @@
             <version>3.4.0.GA</version>
         </dependency>
 
-      <!--   <dependency>
+        <!--   <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>3.1.0.GA</version>
@@ -124,8 +118,6 @@
             <artifactId>commons-logging</artifactId>
             <version>1.1.0.jboss</version>
         </dependency>
-
-
 
 
         <!-- Logging  -->
@@ -212,11 +204,11 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
             <version>${spring.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -235,7 +227,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
 
 
         <dependency>
@@ -267,8 +258,70 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.10</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-spring</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-testng</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-easymock</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-mock</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.unitils</groupId>
+            <artifactId>unitils-inject</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
     <build>
         <finalName>BdHousingPortal</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <configuration>
+                    <url>http://localhost:8080/manager/html</url>
+                    <server>tomcatServer</server>
+                    <path>/BdHousingPortal</path>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

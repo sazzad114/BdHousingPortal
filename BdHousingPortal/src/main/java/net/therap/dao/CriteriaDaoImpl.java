@@ -6,7 +6,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
  * Time: 4:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CriteriaDaoImpl extends HibernateDaoSupport implements CriteriaDao{
+public class CriteriaDaoImpl extends HibernateDaoSupport implements CriteriaDao {
 
     public void saveCriteria(Criteria criteria) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -25,26 +24,22 @@ public class CriteriaDaoImpl extends HibernateDaoSupport implements CriteriaDao{
     }
 
     public Criteria getCriteriaById(long id) {
-        return getHibernateTemplate().get(Criteria.class,id);
+        return getHibernateTemplate().get(Criteria.class, id);
     }
 
     public void deleteCriteria(Customer customer, Criteria criteria) {
-       Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-
-       Query query = session.createQuery("delete Criteria as criteria where criteria.customer = :customer and criteria = :criteria");
-       query.setParameter("customer",customer);
-       query.setParameter("criteria",criteria);
-       query.executeUpdate();
-       session.flush();
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        Query query = session.createQuery("delete Criteria as criteria where criteria.customer = :customer and criteria = :criteria");
+        query.setParameter("customer", customer);
+        query.setParameter("criteria", criteria);
+        query.executeUpdate();
+        session.flush();
     }
 
-    public List<Criteria> getCriteriaListByCustomer(Customer customer, int startingResultSet,int pageSize) {
-
-
-
+    public List<Criteria> getCriteriaListByCustomer(Customer customer, int startingResultSet, int pageSize) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        Query query =  session.createQuery("select criteria from Criteria as criteria where criteria.customer = :customer");
-        query.setParameter("customer",customer);
+        Query query = session.createQuery("select criteria from Criteria as criteria where criteria.customer = :customer");
+        query.setParameter("customer", customer);
         query.setFirstResult(startingResultSet);
         query.setMaxResults(pageSize);
         return query.list();
@@ -52,9 +47,8 @@ public class CriteriaDaoImpl extends HibernateDaoSupport implements CriteriaDao{
 
     public long getCriteriaCountByCustomer(Customer customer) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        Query query =  session.createQuery("select count(*) from Criteria as criteria where criteria.customer = :customer");
-        query.setParameter("customer",customer);
-
-        return ((Long)query.iterate().next()).longValue();
+        Query query = session.createQuery("select count(*) from Criteria as criteria where criteria.customer = :customer");
+        query.setParameter("customer", customer);
+        return ((Long) query.iterate().next()).longValue();
     }
 }

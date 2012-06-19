@@ -1,8 +1,6 @@
 package net.therap.dao;
 
-import net.therap.controller.anonymous.FlatOwnerRegController;
 import net.therap.domain.*;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,14 +28,14 @@ public class FlatDaoImpl extends HibernateDaoSupport implements FlatDao {
     }
 
     public Flat getFlatById(long id) {
-        return getHibernateTemplate().get(Flat.class,id);
+        return getHibernateTemplate().get(Flat.class, id);
     }
 
     public void deleteFlatById(FlatOwner flatOwner, Flat flat) {
 
-        log.debug("#####"+flat.getFlatId()+"###"+flatOwner.getFlatOwnerId());
+        log.debug("#####" + flat.getFlatId() + "###" + flatOwner.getFlatOwnerId());
         Building building = flat.getBuilding();
-        building.setFlatTypeCount(building.getFlatTypeCount()-1);
+        building.setFlatTypeCount(building.getFlatTypeCount() - 1);
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         session.delete(flat);
         session.update(building);
@@ -45,21 +43,20 @@ public class FlatDaoImpl extends HibernateDaoSupport implements FlatDao {
     }
 
     public Blob getImageData(long id) {
-       List<Blob> blobList = getHibernateTemplate().find("select image.imageData from Image as image where image.flat.flatId = ?", new Object[]{id});
-       if(blobList.size() != 0){
-           return blobList.get(0);
-       }
-       else {
-           return null;
-       }
+        List<Blob> blobList = getHibernateTemplate().find("select image.imageData from Image as image where image.flat.flatId = ?", new Object[]{id});
+        if (blobList.size() != 0) {
+            return blobList.get(0);
+        } else {
+            return null;
+        }
     }
 
-     public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria,String area) {
-      return  getHibernateTemplate().find("select flat from Flat as flat where flat.standardCriteria = ? and  flat.building.address.area = ?",new Object[]{standardCriteria,area});
+    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria, String area) {
+        return getHibernateTemplate().find("select flat from Flat as flat where flat.standardCriteria = ? and  flat.building.address.area = ?", new Object[]{standardCriteria, area});
     }
 
     public List<Flat> getFlatListByCustomer(Customer customer) {
-       String subQuery = "select stdc,criteria.area from StandardCriteria as stdc,Criteria as criteria where criteria.standardCriteria = stdc and criteria.customer = ?";
-       return getHibernateTemplate().find("select distinct flat from Flat as flat where (flat.standardCriteria,flat.building.address.area) in (" +subQuery+")", new Object[]{customer});
+        String subQuery = "select stdc,criteria.area from StandardCriteria as stdc,Criteria as criteria where criteria.standardCriteria = stdc and criteria.customer = ?";
+        return getHibernateTemplate().find("select distinct flat from Flat as flat where (flat.standardCriteria,flat.building.address.area) in (" + subQuery + ")", new Object[]{customer});
     }
 }

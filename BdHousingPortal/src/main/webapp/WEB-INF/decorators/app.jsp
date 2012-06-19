@@ -74,10 +74,9 @@ Released : 20120520
                                 </li>
                                 <br/>
                                 <c:if test="${param['errorcode'] == 1}">
-                                    <c:out value="invalid email or password "/>
+                                    <span class="error">invalid email or password</span>
                                 </c:if>
                                 <li>
-
                                     <input type="submit" value="Log in"/>
                                 </li>
 

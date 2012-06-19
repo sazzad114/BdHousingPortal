@@ -16,27 +16,33 @@
 
     <title>Simple jsp page</title>
     <style type="text/css">
-        span.error{
-           color:#D8000C;
+        span.error {
+            color: #D8000C;
         }
     </style>
 </head>
 <body>
- <script type="text/javascript">
+<style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
+<script type="text/javascript">
 
-        function disAbleRent(){
+    function disAbleRent() {
 
-            document.getElementById("sell").disabled = true;
-            document.getElementById("rent").disabled = false;
-        }
+        document.getElementById("sell").disabled = true;
+        document.getElementById("rent").disabled = false;
+    }
 
-        function disAbleSell(){
+    function disAbleSell() {
 
-            document.getElementById("sell").disabled = false;
-            document.getElementById("rent").disabled = true;
-        }
+        document.getElementById("sell").disabled = false;
+        document.getElementById("rent").disabled = true;
+    }
 
-    </script>
+</script>
 <div id="content">
     <div class="contentbg">
         <div class="post">
@@ -44,7 +50,7 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form  action="" modelAttribute="criteria" method="post">
+                <form:form action="" modelAttribute="criteria" method="post">
                     <table>
                         <tr>
                             <td>
@@ -81,11 +87,12 @@
                             <td>
 
 
-                               <input id="forRent" onchange="disAbleSell()" type="radio" checked="checked" name="forRent" value="true"/>For Rent
+                                <input id="forRent" onchange="disAbleSell()" type="radio" checked="checked"
+                                       name="forRent" value="true"/>For Rent
                             </td>
                             <td>
-                               <input id="forSell" onchange="disAbleRent()" type="radio" name="forRent" value="false"/>For Sell
-
+                                <input id="forSell" onchange="disAbleRent()" type="radio" name="forRent" value="false"/>For
+                                Sell
 
 
                             </td>
@@ -98,7 +105,7 @@
                             </td>
                             <td>
                                 <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
                             </td>
                         </tr>
 
@@ -109,12 +116,11 @@
                             </td>
                             <td>
                                 <form:input id="sell" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
                             </td>
                         </tr>
 
                     </table>
-
 
 
                     <input type="submit" value="<fmt:message key='criteria.create'/>"/>

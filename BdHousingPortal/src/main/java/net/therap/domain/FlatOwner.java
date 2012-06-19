@@ -26,34 +26,22 @@ import java.util.List;
 public class FlatOwner {
 
     private long flatOwnerId;
-
-    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*",message = "allow only alpha character and no consecutive spaces")
-    @Size(min = 5,max = 50,message = "within 5 to 50 characters")
+    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*", message = "allow only alpha character and no consecutive spaces")
+    @Size(min = 5, max = 50, message = "within 5 to 50 characters")
     private String flatOwnerName;
-
-    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*",message = "allow only alpha character and no consecutive spaces")
-    @Size(min = 5,max = 50,message = "within 5 to 50 characters")
+    @Pattern(regexp = "([a-zA-Z][a-zA-Z]*\\s)*[a-zA-Z]*", message = "allow only alpha character and no consecutive spaces")
+    @Size(min = 5, max = 50, message = "within 5 to 50 characters")
     private String occupation;
-
-    @Size(min = 20,max = 300,message = "within 20 to 100 characters")
+    @Size(min = 20, max = 300, message = "within 20 to 100 characters")
     private String occupationDetails;
-
-    @Pattern(regexp = "[0-9-+]*",message = "only numbers are allowed")
-    @Size(min = 10,max = 15,message = "within 10 to 15 characters")
+    @Pattern(regexp = "[0-9-+]*", message = "only numbers are allowed")
+    @Size(min = 10, max = 15, message = "within 10 to 15 characters")
     private String contactNo;
-
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
-
-    @Size(min = 20,max = 300,message = "within 20 to 100 characters")
+    @Size(min = 20, max = 300, message = "within 20 to 100 characters")
     private String description;
-
     private long version;
-
-
-
-
-
     @Valid
     private User user;
     @Valid
@@ -61,7 +49,7 @@ public class FlatOwner {
     List<Building> buildingList = new ArrayList<Building>();
 
     @OrderBy("buildingId desc")
-    @OneToMany(mappedBy = "flatOwner",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "flatOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Building> getBuildingList() {
         return buildingList;
     }
@@ -70,16 +58,14 @@ public class FlatOwner {
         this.buildingList = buildingList;
     }
 
-
-
-    public FlatOwner(){
+    public FlatOwner() {
         this.user = new User();
         this.address = new Address();
     }
 
     @Id
-    @SequenceGenerator(name = "H_FLAT_OWNER_SEQ",sequenceName = "H_FLAT_OWNER_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_FLAT_OWNER_SEQ")
+    @SequenceGenerator(name = "H_FLAT_OWNER_SEQ", sequenceName = "H_FLAT_OWNER_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_FLAT_OWNER_SEQ")
     @Column(name = "FLAT_OWNER_ID")
     public long getFlatOwnerId() {
         return flatOwnerId;
@@ -88,6 +74,7 @@ public class FlatOwner {
     public void setFlatOwnerId(long flatOwnerId) {
         this.flatOwnerId = flatOwnerId;
     }
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
@@ -97,6 +84,7 @@ public class FlatOwner {
     public void setUser(User user) {
         this.user = user;
     }
+
     @Version
     @Column(name = "VERSION")
     public long getVersion() {
@@ -106,6 +94,7 @@ public class FlatOwner {
     public void setVersion(long version) {
         this.version = version;
     }
+
     @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
@@ -133,6 +122,7 @@ public class FlatOwner {
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
+
     @Column(name = "OCCUPATION_DETAILS")
     public String getOccupationDetails() {
         return occupationDetails;
@@ -141,6 +131,7 @@ public class FlatOwner {
     public void setOccupationDetails(String occupationDetails) {
         this.occupationDetails = occupationDetails;
     }
+
     @Column(name = "OCCUPATION")
     public String getOccupation() {
         return occupation;
@@ -149,6 +140,7 @@ public class FlatOwner {
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
     @Column(name = "FLAT_OWNER_NAME")
     public String getFlatOwnerName() {
         return flatOwnerName;

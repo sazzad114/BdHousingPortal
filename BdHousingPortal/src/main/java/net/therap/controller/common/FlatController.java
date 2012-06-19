@@ -66,7 +66,6 @@ public class FlatController {
         }
 
         FlatOwner flatowner = (FlatOwner) request.getSession().getAttribute("flatowner");
-
         Building building = buildingService.getBuildingById(flatowner, Long.valueOf(request.getParameter("buildingid")));
 
         if (building == null) {
@@ -79,7 +78,6 @@ public class FlatController {
         model.put("title", "Create Flat :");
 
         List<Integer> floorList = new ArrayList<Integer>();
-
         for (int i = 1; i <= building.getNumberOfFloors(); i++) {
             floorList.add(i);
         }
@@ -90,9 +88,7 @@ public class FlatController {
     @RequestMapping(value = "/create.htm", method = RequestMethod.POST)
     public String createFlatPostAction(@Valid Flat flat, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-
             return "common/createflat";
-
         } else {
 
             try {
@@ -101,7 +97,6 @@ public class FlatController {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
             return "redirect:/own/home.htm";
-
         }
 
     }
@@ -113,6 +108,7 @@ public class FlatController {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
 
+//        long flatId = ServletRequestUtils.getLongParameter(request,"flatId",-1);
         Flat flat = flatService.getFlatById(Long.valueOf(request.getParameter("flatid")));
         if (flat == null) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
@@ -126,7 +122,6 @@ public class FlatController {
     @RequestMapping(value = "/delete.htm", method = RequestMethod.GET)
     public String deleteFlatGetAction(Map<String, Object> model, HttpServletRequest request) {
 
-
         if (request.getParameter("flatid") == null || !request.getParameter("flatid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
@@ -138,9 +133,7 @@ public class FlatController {
         if (isDeleted == false) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
-
         return "redirect:/own/building/buildinglist.htm";
-
     }
 
 

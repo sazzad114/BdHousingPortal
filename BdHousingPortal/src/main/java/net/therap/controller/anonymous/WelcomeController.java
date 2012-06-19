@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping({"/welcome.htm"})
-public class WelcomeController{
+public class WelcomeController {
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -31,8 +31,7 @@ public class WelcomeController{
     private FlatOwnerService flatOwnerService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String welcomeAction(){
-
+    public String welcomeAction() {
         return "anonymous/welcome";
     }
 

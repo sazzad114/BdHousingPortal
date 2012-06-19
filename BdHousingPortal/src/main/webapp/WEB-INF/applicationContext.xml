@@ -52,7 +52,6 @@
 
     <bean class="net.therap.dao.BuildingDaoImpl" id="buildingDao">
         <property name="sessionFactory" ref="sessionFactory"/>
-
     </bean>
 
 

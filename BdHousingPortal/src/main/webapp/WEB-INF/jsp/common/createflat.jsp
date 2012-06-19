@@ -16,27 +16,57 @@
 
     <title>Simple jsp page</title>
     <style type="text/css">
-        span.error{
-           color:#D8000C;
+        span.error {
+            color: #D8000C;
         }
     </style>
 </head>
 <body>
- <script type="text/javascript">
+<style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
+<script type="text/javascript">
 
-        function disAbleRent(){
+    document.body.onload = function() {
 
+        if (document.getElementById("forRent").checked == true) {
+            document.getElementById("sell").value = "";
             document.getElementById("sell").disabled = true;
             document.getElementById("rent").disabled = false;
         }
-
-        function disAbleSell(){
-
+        if (document.getElementById("forSell").checked == true) {
+            document.getElementById("rent").value = "";
             document.getElementById("sell").disabled = false;
             document.getElementById("rent").disabled = true;
         }
 
-    </script>
+    }
+
+    function disAbleRent() {
+
+        document.getElementById("rent").value = "";
+        document.getElementById("rent").disabled = true;
+        document.getElementById("sell").disabled = false;
+
+    }
+
+    function disAbleSell() {
+
+        document.getElementById("sell").value = "";
+        document.getElementById("sell").disabled = true;
+        document.getElementById("rent").disabled = false;
+    }
+
+    function adjust() {
+        document.getElementById("sell").disabled = false;
+        document.getElementById("rent").disabled = true;
+    }
+
+
+</script>
 <div id="content">
     <div class="contentbg">
         <div class="post">
@@ -44,8 +74,8 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form  action="" commandName="flat" method="POST" enctype="multipart/form-data">
-                    <table >
+                <form:form action="" commandName="flat" method="POST" enctype="multipart/form-data">
+                    <table>
                         <tr>
                             <td>
                                 <fmt:message key="flat.numberOfFlats"/>
@@ -64,7 +94,7 @@
                             </td>
                             <td>
 
-                                <form:input path="totalArea" /><br/>
+                                <form:input path="totalArea"/><br/>
                                 <span class="error"><form:errors path="totalArea"/></span>
                             </td>
                         </tr>
@@ -77,7 +107,7 @@
                             </td>
                             <td>
                                 <form:input path="numberOfRooms"/><br/>
-                                <form:errors path="numberOfRooms"/>
+                                <span class="error"><form:errors path="numberOfRooms"/></span>
                             </td>
                         </tr>
 
@@ -88,31 +118,27 @@
                             </td>
                             <td>
                                 <form:input path="numberOfBeds"/><br/>
-                                <form:errors path="numberOfBeds"/>
+                                <span class="error"><form:errors path="numberOfBeds"/></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <fmt:message key="flat.forRent"/>
+                                <fmt:message key="search.forRent"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
 
-                               <input id="forRent" onchange="disAbleSell()" type="radio" checked="checked" name="forRent" value="true"/>For Rent
-                               <input id="forSell" onchange="disAbleRent()" type="radio" name="forRent" value="false"/>For Sell
+                                <input id="forRent" onchange="disAbleSell()" type="radio"
+                                       <c:if test="${flat.forRent == true}">checked</c:if> name="forRent"
+                                       value="true"/>For Rent
 
                             </td>
-                        </tr>
+                            <td>
+                                <input id="forSell" onchange="disAbleRent()" type="radio"
+                                       <c:if test="${flat.forRent == false}">checked</c:if> name="forRent"
+                                       value="false"/>For Sell
 
-                        <tr>
-                            <td>
-                                <fmt:message key="flat.price"/>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                            </td>
-                            <td>
-                                <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
                             </td>
                         </tr>
 
@@ -122,25 +148,36 @@
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
-                                <form:input id="sell" path="priceOrRent"/><br/>
-                                <form:errors path="priceOrRent"/>
+                                <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <fmt:message key="flat.description" />
+                                <fmt:message key="flat.price"/>
+                                <span>&nbsp;&nbsp;&nbsp;</span>
+                            </td>
+                            <td>
+                                <form:input id="sell" path="priceOrRent"/><br/>
+                                <span class="error"><form:errors path="priceOrRent"/></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <fmt:message key="flat.description"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
                                 <form:textarea path="description" cols="40" rows="5"/><br/>
-                                <form:errors path="description"/>
+                                <span class="error"><form:errors path="description"/></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <fmt:message key="flat.description" />
+                                <fmt:message key="flat.description"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
@@ -150,13 +187,13 @@
                             </td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <td>
-                                <fmt:message key="flat.file" />
+                                <fmt:message key="flat.file"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
-                                <input  type="file" name="imageFile"/>
+                                <input type="file" name="imageFile"/>
                             </td>
                         </tr>
 

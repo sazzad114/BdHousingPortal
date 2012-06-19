@@ -13,14 +13,14 @@ import java.util.List;
  * Time: 11:20 AM
  * To change this template use File | Settings | File Templates.
  */
-public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao{
+public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
     public void saveArea(Area area) {
-      Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-      session.saveOrUpdate(area);
-      session.flush();
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        session.saveOrUpdate(area);
+        session.flush();
     }
 
     public List<Area> getAreaList() {
-       return getHibernateTemplate().find("from Area as area");
+        return getHibernateTemplate().find("from Area as area");
     }
 }

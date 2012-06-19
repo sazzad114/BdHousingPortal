@@ -88,20 +88,19 @@ public class CriteriaController {
         int currentPage;
         long pageCount;
 
-        Customer customer =  (Customer) request.getSession().getAttribute("customer");
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
 
-        if(request.getParameter("curr") == null || !request.getParameter("curr").matches("[0-9]+")){
-           currentPage = 1;
-        }
-        else {
+        if (request.getParameter("curr") == null || !request.getParameter("curr").matches("[0-9]+")) {
+            currentPage = 1;
+        } else {
             currentPage = Integer.valueOf(request.getParameter("curr"));
         }
 
         pageCount = criteriaService.getPageCountByCustomer(customer);
-        List<Criteria> criteriaList = criteriaService.getCriteriaListByCustomer(customer,currentPage);
+        List<Criteria> criteriaList = criteriaService.getCriteriaListByCustomer(customer, currentPage);
 
-        model.put("criterialist",criteriaList);
-        model.put("pagecount",pageCount);
+        model.put("criterialist", criteriaList);
+        model.put("pagecount", pageCount);
         model.put("title", "Criteria list");
         return "customer/viewcriteria";
     }

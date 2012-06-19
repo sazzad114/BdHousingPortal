@@ -19,33 +19,31 @@ import java.io.Serializable;
 @Component
 @Entity
 @Table(name = "H_USER")
-public class User implements Serializable{
+public class User implements Serializable {
+
     public static final int FLATOWNERTYPE = 2;
     public static final int CUSTOMERTYPE = 1;
     public static final int DEVELOPERTYPE = 3;
-
-
-
     private long userId;
 
     @Email(message = "email should follow the format email@domain.com")
-    @Size(min = 10,max = 50,message = "within 10 to 50 characters")
+    @Size(min = 10, max = 50, message = "within 10 to 50 characters")
     private String email;
 
-    @Pattern(regexp = "[^\\s]*",message = "space is not allowed")
-    @Size(min = 8,max = 30,message = "within 8 to 30 characters")
+    @Pattern(regexp = "[^\\s]*", message = "space is not allowed")
+    @Size(min = 8, max = 30, message = "within 8 to 30 characters")
     private String password;
 
-    @Pattern(regexp = "[^\\s]*",message = "space is not allowed")
-    @Size(min = 8,max = 30,message = "within 8 to 30 characters")
+    @Pattern(regexp = "[^\\s]*", message = "space is not allowed")
+    @Size(min = 8, max = 30, message = "within 8 to 30 characters")
 
     private String confirmPassword;
     private int userType;
     private long version;
 
     @Id
-    @SequenceGenerator(name = "H_USER_SEQ",sequenceName = "H_USER_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "H_USER_SEQ")
+    @SequenceGenerator(name = "H_USER_SEQ", sequenceName = "H_USER_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_USER_SEQ")
     @Column(name = "USER_ID")
 
     public long getUserId() {
@@ -64,6 +62,7 @@ public class User implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
     @Column(name = "PASSWORD")
     public String getPassword() {
         return password;
@@ -72,6 +71,7 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
     @Column(name = "USER_TYPE")
     public int getUserType() {
         return userType;
@@ -80,6 +80,7 @@ public class User implements Serializable{
     public void setUserType(int userType) {
         this.userType = userType;
     }
+
     @Version
     @Column(name = "VERSION")
     public long getVersion() {
@@ -89,6 +90,7 @@ public class User implements Serializable{
     public void setVersion(long version) {
         this.version = version;
     }
+
     @Transient
     public String getConfirmPassword() {
         return confirmPassword;

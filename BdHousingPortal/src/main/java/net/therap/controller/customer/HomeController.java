@@ -28,10 +28,6 @@ import java.util.Map;
 @RequestMapping({"/home.htm"})
 public class HomeController {
 
-
-
-
-
     @Autowired
     private FlatService flatService;
 
@@ -42,9 +38,6 @@ public class HomeController {
     public void setFlatService(FlatService flatService) {
         this.flatService = flatService;
     }
-
-
-
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -59,7 +52,6 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(Map<String,Object> model, HttpServletRequest request){
-
         List<Flat> flatList = flatService.getFlatListByCustomer(((Customer)request.getSession().getAttribute("customer")));
         model.put("flatlist",flatList);
         model.put("title","Your expected flats");

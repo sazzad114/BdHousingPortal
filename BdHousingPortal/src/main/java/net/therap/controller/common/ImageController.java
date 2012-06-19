@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -34,15 +33,15 @@ public class ImageController {
         this.flatService = flatService;
     }
 
-    @RequestMapping(value = "/flatimage.htm",method = RequestMethod.GET)
-    void getFlatImageAction(HttpServletRequest request,HttpServletResponse response){
+    @RequestMapping(value = "/flatimage.htm", method = RequestMethod.GET)
+    void getFlatImageAction(HttpServletRequest request, HttpServletResponse response) {
 
-        if(request.getParameter("flatid") == null || !request.getParameter("flatid").matches("[0-9]+")){
-             throw new ApplicationException(" You are trying to access Illegal resource...");
+        if (request.getParameter("flatid") == null || !request.getParameter("flatid").matches("[0-9]+")) {
+            throw new ApplicationException(" You are trying to access Illegal resource...");
         }
 
-       try {
-        byte[] imageBytes = flatService.getImageData(Long.valueOf(request.getParameter("flatid")));
+        try {
+            byte[] imageBytes = flatService.getImageData(Long.valueOf(request.getParameter("flatid")));
 
             response.setContentType("image/jpg");
             OutputStream outputStream = response.getOutputStream();

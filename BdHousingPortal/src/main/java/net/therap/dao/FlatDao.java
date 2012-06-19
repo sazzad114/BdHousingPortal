@@ -18,9 +18,14 @@ import java.util.List;
 public interface FlatDao {
 
     public void saveFlat(Flat flat);
+
     public Flat getFlatById(long id);
+
     public Blob getImageData(long id);
-    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria,String area);
+
+    public List<Flat> getFlatListByCriteriaAndArea(StandardCriteria standardCriteria, String area);
+
     public List<Flat> getFlatListByCustomer(Customer customer);
-    public void deleteFlatById(FlatOwner flatOwner,Flat flat);
+
+    public void deleteFlatById(FlatOwner flatOwner, Flat flat);
 }

@@ -18,13 +18,14 @@
 </head>
 <body>
 <style type="text/css">
-        span.error {
-            color: #D8000C;
-        }
-        td.head{
-          width:150px;
-        }
-    </style>
+    span.error {
+        color: #D8000C;
+    }
+
+    td.head {
+        width: 150px;
+    }
+</style>
 <div id="content">
 <div class="contentbg">
 <div class="post">
@@ -34,205 +35,227 @@
 <div class="post">
 <div class="entry">
 
-<img  width="585" height="200"  src="../image/flatimage.htm?flatid=${flat.flatId}" alt="../image/flatimage.htm?flatid=${flat.flatId}"/>
-<hr style="border-color: #7F7F81;"/><br/>
+<img width="585" height="200" src="../image/flatimage.htm?flatid=${flat.flatId}"
+     alt="../image/flatimage.htm?flatid=${flat.flatId}"/>
+<hr style="border-color: #7F7F81;"/>
+<br/>
 
 
 <table>
 
 
-    <tr>
-        <td class="head">
-            <fmt:message key="building.name"/>
+<tr>
+    <td class="head">
+        <fmt:message key="building.name"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.buildingName}
+        ${flat.building.buildingName}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.ownername"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.ownername"/>
 
-        </td>
-        <td>
-            <a href="../viewownerprofile.htm?flatownerid=${flat.building.flatOwner.flatOwnerId}">
-                ${flat.building.flatOwner.flatOwnerName}
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="building.numberoffloors"/>
+    </td>
+    <td>
+        <a href="../viewownerprofile.htm?flatownerid=${flat.building.flatOwner.flatOwnerId}">
+            ${flat.building.flatOwner.flatOwnerName}
+        </a>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="building.numberoffloors"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.numberOfFloors}
+        ${flat.building.numberOfFloors}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="user.houseNo"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="user.houseNo"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.address.houseNo}
+        ${flat.building.address.houseNo}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="user.roadNo"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="user.roadNo"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.address.roadNo}
+        ${flat.building.address.roadNo}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="user.area"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="user.area"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.address.area}
+        ${flat.building.address.area}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="user.thana"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="user.thana"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.address.thana}
+        ${flat.building.address.thana}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="user.district"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="user.district"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.building.address.district}
+        ${flat.building.address.district}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.numberOfFlats"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.numberOfFlats"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.numberOfFlats}
+        ${flat.numberOfFlats}
 
-        </td>
-    </tr>
+    </td>
+</tr>
 
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.totalArea"/>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.totalArea"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
 
-            ${flat.totalArea}
+        ${flat.totalArea}
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.numberOfRooms"/>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.numberOfRooms"/>
 
-        </td>
-        <td>
-            ${flat.numberOfRooms}
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.numberOfBeds"/>
+    </td>
+    <td>
+        ${flat.numberOfRooms}
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.numberOfBeds"/>
 
-        </td>
-        <td>
+    </td>
+    <td>
 
-            ${flat.numberOfBeds}
+        ${flat.numberOfBeds}
 
-        </td>
-    </tr>
+    </td>
+</tr>
 
-    <tr>
-        <td class="head">
-            <c:if test="${flat.forRent == true}">
-                <fmt:message key="flat.rent"/>
+<tr>
+    <td>
 
-            </c:if>
-            <c:if test="${flat.forRent == false}">
-                <fmt:message key="flat.price"/>
+        <fmt:message key="flat.type"/>
 
-            </c:if>
+    </td>
+    <td class="head">
+        <c:if test="${flat.forRent == true}">
+            <fmt:message key="flat.forrent"/>
 
-        </td>
-        <td>
+        </c:if>
+        <c:if test="${flat.forRent == false}">
+            <fmt:message key="flat.forsell"/>
 
-            ${flat.priceOrRent}
+        </c:if>
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.description"/>
+    </td>
 
-        </td>
-        <td>
+</tr>
+<tr>
 
-            ${flat.description}
+<tr>
+    <td class="head">
+        <c:if test="${flat.forRent == true}">
+            <fmt:message key="flat.rent"/>
 
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-            <fmt:message key="flat.flatinfloors"/>
+        </c:if>
+        <c:if test="${flat.forRent == false}">
+            <fmt:message key="flat.price"/>
 
-        </td>
-        <td>
+        </c:if>
 
-            <c:forEach items="${flat.flatInFloors}" var="floornumber">
+    </td>
+    <td>
 
-                ${floornumber}
-                <c:choose>
-                    <c:when test="${floornumber % 10 == 1}">
-                        st
-                    </c:when>
-                    <c:when test="${floornumber % 10 == 2}">
-                        nd
-                    </c:when>
-                    <c:when test="${floornumber % 10 == 3}">
-                        rd
-                    </c:when>
-                    <c:otherwise>
-                        th
-                    </c:otherwise>
-                </c:choose>
-                &nbsp;Floor&nbsp;&nbsp;
-            </c:forEach>
+        ${flat.priceOrRent}
 
-        </td>
-    </tr>
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.description"/>
 
+    </td>
+    <td>
+
+        ${flat.description}
+
+    </td>
+</tr>
+<tr>
+    <td class="head">
+        <fmt:message key="flat.flatinfloors"/>
+
+    </td>
+    <td>
+
+        <c:forEach items="${flat.flatInFloors}" var="floornumber">
+
+            ${floornumber}
+            <c:choose>
+                <c:when test="${floornumber % 10 == 1}">
+                    st
+                </c:when>
+                <c:when test="${floornumber % 10 == 2}">
+                    nd
+                </c:when>
+                <c:when test="${floornumber % 10 == 3}">
+                    rd
+                </c:when>
+                <c:otherwise>
+                    th
+                </c:otherwise>
+            </c:choose>
+            &nbsp;Floor&nbsp;&nbsp;
+        </c:forEach>
+
+    </td>
+</tr>
 
 
 </table>

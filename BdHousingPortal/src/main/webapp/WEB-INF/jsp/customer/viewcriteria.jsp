@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: ashraf
@@ -17,41 +16,42 @@
             <h2 class="title">${title}</h2>
         </div>
         <c:forEach items="${criterialist}" var="criteria">
-        <div class="post">
-            <div class="entry">
+            <div class="post">
+                <div class="entry">
 
-                 ${criteria.area}<br/>
-                 ${criteria.numberOfBeds}&nbsp;beds<br/>
+                        ${criteria.area}<br/>
+                        ${criteria.numberOfBeds}&nbsp;beds<br/>
 
-                 <c:if test="${criteria.forRent == true}">
+                    <c:if test="${criteria.forRent == true}">
 
-                   Rent :&nbsp;${criteria.priceOrRent}&nbsp;Tk per month<br/>
-                 </c:if>
-                 <c:if test="${criteria.forRent == false}">
-                   Price :&nbsp;${criteria.priceOrRent}&nbsp;Tk per square feet<br/>
-                 </c:if>
-                 <a href="/BdHousingPortal/cus/criteria/delete.htm?criteriaid=${criteria.criteriaId}" style="float:right;">Delete criteria</a>
+                        Rent :&nbsp;${criteria.priceOrRent}&nbsp;Tk per month<br/>
+                    </c:if>
+                    <c:if test="${criteria.forRent == false}">
+                        Price :&nbsp;${criteria.priceOrRent}&nbsp;Tk per square feet<br/>
+                    </c:if>
+                    <a href="/BdHousingPortal/cus/criteria/delete.htm?criteriaid=${criteria.criteriaId}"
+                       style="float:right;">Delete criteria</a>
+                </div>
             </div>
-        </div>
 
         </c:forEach>
         <div style="float:right;">
-         <c:forEach begin="1" end="${pagecount}" var="counter">
+            <c:forEach begin="1" end="${pagecount}" var="counter">
 
-             <c:if test="${param['curr'] eq counter}">
-                 <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}" style="color:#dc143c;">
-                   ${counter}
-                 </a>
+                <c:if test="${param['curr'] eq counter}">
+                    <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}" style="color:#dc143c;">
+                            ${counter}
+                    </a>
 
-             </c:if>
-             <c:if test="${param['curr'] ne counter}">
-                 <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}">
-                   ${counter}
-                 </a>
-             </c:if>
-             &nbsp;
+                </c:if>
+                <c:if test="${param['curr'] ne counter}">
+                    <a href="/BdHousingPortal/cus/criteria/view.htm?curr=${counter}">
+                            ${counter}
+                    </a>
+                </c:if>
+                &nbsp;
 
-        </c:forEach>
+            </c:forEach>
         </div>
         <div style="clear: both;">&nbsp;</div>
     </div>
