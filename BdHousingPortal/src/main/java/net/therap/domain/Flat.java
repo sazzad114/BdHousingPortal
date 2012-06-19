@@ -5,6 +5,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,19 +31,10 @@ public class Flat {
     private StandardCriteria standardCriteria;
     private Building building;
     private int typeNumber;
+    private List<Integer> flatInFloors;
 
 
-    ArrayList<Integer> flatInFloors;
 
-    @CollectionOfElements
-    @JoinTable(name = "FLAT_FLOOR", joinColumns = {@JoinColumn(name = "FLAT_ID")})
-    @Column(name = "FLOOR")
-    public ArrayList<Integer> getFlatInFloors() {
-        return flatInFloors;
-    }
-    public void setFlatInFloors(ArrayList<Integer> flatInFloors) {
-        this.flatInFloors = flatInFloors;
-    }
 
 
     @Id
@@ -54,6 +47,19 @@ public class Flat {
 
     public void setFlatId(long flatId) {
         this.flatId = flatId;
+    }
+
+
+
+    @CollectionOfElements
+    @JoinTable(name = "FLAT_FLOOR", joinColumns = @JoinColumn(name = "FLAT_ID"))
+    @Column(name = "FLOOR")
+    public List<Integer> getFlatInFloors() {
+        return flatInFloors;
+    }
+
+    public void setFlatInFloors(List<Integer> flatInFloors) {
+        this.flatInFloors = flatInFloors;
     }
 
     @ManyToOne
