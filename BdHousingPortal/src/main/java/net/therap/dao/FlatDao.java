@@ -27,5 +27,5 @@ public interface FlatDao {
 
     public List<Flat> getFlatListByCustomer(Customer customer);
 
-    public void deleteFlatById(FlatOwner flatOwner, Flat flat);
+    public void deleteFlat(FlatOwner flatOwner, Flat flat);
 }

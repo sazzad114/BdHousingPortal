@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- careful about generated id, if you have some test regarding -->
+<dataset>
+
+  <H_USER USER_ID="1" EMAIL="sazzad@yahoo.com" PASSWORD="12345" USER_TYPE="1" VERSION="1" />
+  <H_CUSTOMER_DETAILS CUSTOMER_ID="1" AREA="mirpura" DISTRICT="dhaka" HOUSE_NO="22" ROAD_NO="22" THANA="mirpur" CONTACT_NO="0167523658" CUSTOMER_NAME="sazzad" DESCRIPTION="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" FAMILY_MEMBERS="5" OCCUPATION="engineer" OCCUPATION_DETAILS="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" VERSION="1" DATE_OF_BIRTH="1987-11-14" USER_ID="1"/>
+  <H_STANDARD_CRITERIA STANDARD_CRITERIA_ID="1" IS_FOR_RENT="T" MAX_NUMBER_OF_BEDS="999999" MAX_PRICE_OR_RENT="9999999" MIN_NUMBER_OF_BEDS="4" MIN_PRICE_OR_RENT="15000" VERSION="1"/>
+</dataset>

@@ -89,7 +89,8 @@ public class FlatController {
     public String createFlatPostAction(@Valid Flat flat, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "common/createflat";
-        } else {
+        }
+        else {
 
             try {
                 flatService.saveFlat(flat);

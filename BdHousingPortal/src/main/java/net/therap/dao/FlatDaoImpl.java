@@ -31,7 +31,7 @@ public class FlatDaoImpl extends HibernateDaoSupport implements FlatDao {
         return getHibernateTemplate().get(Flat.class, id);
     }
 
-    public void deleteFlatById(FlatOwner flatOwner, Flat flat) {
+    public void deleteFlat(FlatOwner flatOwner, Flat flat) {
 
         log.debug("#####" + flat.getFlatId() + "###" + flatOwner.getFlatOwnerId());
         Building building = flat.getBuilding();

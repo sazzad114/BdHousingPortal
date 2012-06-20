@@ -47,7 +47,8 @@ public class UserServiceImpl implements UserService {
         User user = userDao.getUserByEmail(email);
         if (user == null || !user.getPassword().equals(password)) {
             return null;
-        } else {
+        }
+        else {
             switch (user.getUserType()) {
                 case User.CUSTOMERTYPE: {
                     return customerDao.getCustomerByUser(user);

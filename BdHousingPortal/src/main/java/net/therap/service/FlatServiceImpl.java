@@ -107,7 +107,7 @@ public class FlatServiceImpl implements FlatService {
         if (flat.getBuilding().getFlatOwner().getFlatOwnerId() != flatOwner.getFlatOwnerId()) {
             return false;
         } else {
-            flatDao.deleteFlatById(flatOwner, flat);
+            flatDao.deleteFlat(flatOwner, flat);
             return true;
         }
     }

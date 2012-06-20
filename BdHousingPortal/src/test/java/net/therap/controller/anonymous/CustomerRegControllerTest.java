@@ -26,7 +26,6 @@ public class CustomerRegControllerTest extends TestCase {
     Customer customer;
     CustomerService customerService;
     Errors bindingResult;
-
     UserService userService;
 
     @Before

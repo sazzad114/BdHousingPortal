@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean id="dataSource" class="org.unitils.database.UnitilsDataSourceFactoryBean"/>
+
+    <bean class="net.therap.dao.CriteriaDaoImpl" id="criteriaDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.dao.AreaDaoImpl" id="areaDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.dao.StandardCriteriaDaoImpl" id="standardCriteriaDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.StandardCriteriaServiceImpl" id="standardCriteriaService">
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
+    </bean>
+
+    <bean class="net.therap.service.CustomerServiceImpl" id="customerService">
+        <property name="customerDao" ref="customerDao"/>
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
+    </bean>
+    <bean class="net.therap.service.CriteriaServiceImpl" id="criteriaService">
+        <property name="criteriaDao" ref="criteriaDao"/>
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.CustomerDaoImpl" id="customerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.dao.FlatDaoImpl" id="flatDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.FlatServiceImpl" id="flatService">
+        <property name="flatDao" ref="flatDao"/>
+        <property name="standardCriteriaService" ref="standardCriteriaService"/>
+        <property name="buildingDao" ref="buildingDao"/>
+        <property name="standardCriteriaDao" ref="standardCriteriaDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.BuildingDaoImpl" id="buildingDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <bean class="net.therap.service.BuildingServiceImpl" id="buildingService">
+        <property name="buildingDao" ref="buildingDao"/>
+        <property name="areaDao" ref="areaDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.FlatOwnerDaoImpl" id="flatOwnerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.FlatOwnerServiceImpl" id="flatOwnerService">
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+    </bean>
+
+    <bean class="net.therap.dao.UserDaoImpl" id="userDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="net.therap.service.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"/>
+        <property name="flatOwnerDao" ref="flatOwnerDao"/>
+        <property name="customerDao" ref="customerDao"/>
+    </bean>
+
+
+    <bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="net.therap.domain"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <context:component-scan base-package="net.therap.domain"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:advisor pointcut="execution(* net.therap.service.*.*(..))" advice-ref="txAdvice"/>
+    </aop:config>
+
+
+</beans>
