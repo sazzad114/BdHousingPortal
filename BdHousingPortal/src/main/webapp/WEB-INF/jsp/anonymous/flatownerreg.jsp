@@ -42,8 +42,8 @@
                             </td>
                             <td>
                                 <form:input path="flatOwnerName"/><br/>
-                                <span class="error"><span class="error"><form:errors path="flatOwnerName"/></span>
-                            </td>
+                                <span class="error"/><span class="error"><form:errors path="flatOwnerName"/></span>
+                             </td>
                         </tr>
 
                         <tr>

@@ -8,16 +8,10 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+    <context:component-scan base-package="net.therap.controller.flatowner"/>
+    <context:component-scan base-package="net.therap.controller.common"/>
 
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-
-    </bean>
-
-
-     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-
+    <mvc:annotation-driven/>
 
     <mvc:interceptors>
         <mvc:interceptor>
@@ -26,27 +20,27 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basename" value="messages"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" id="mapping"/>
 
-    <context:component-scan base-package="net.therap.controller.flatowner"/>
-    <context:component-scan base-package="net.therap.controller.common"/>
 
-    <mvc:annotation-driven/>
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" id="mapping" >
-
-    </bean>
-
-       <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" id="exceptionResolver">
-           <property name="exceptionMappings">
-			<props>
-				<prop key="net.therap.exception.ApplicationException">exception/applicationexception</prop>
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" id="exceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="net.therap.exception.ApplicationException">exception/applicationexception</prop>
                 <prop key="java.lang.Exception">exception/error</prop>
-			</props>
-		</property>
+            </props>
+        </property>
     </bean>
 
 
