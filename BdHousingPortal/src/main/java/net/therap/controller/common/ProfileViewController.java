@@ -70,7 +70,6 @@ public class ProfileViewController {
         }
 
         FlatOwner flatOwner = flatOwnerService.getFlatOwnerById(Long.valueOf(request.getParameter("flatownerid")));
-
         if (flatOwner == null) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }

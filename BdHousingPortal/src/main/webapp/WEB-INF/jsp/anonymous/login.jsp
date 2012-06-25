@@ -21,6 +21,12 @@ Released : 20120520
     <link href="/BdHousingPortal/resources/css/style.css" rel="stylesheet" type="text/css" media="screen"/>
     <script type="text/javascript" src="/BdHousingPortal/resources/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/BdHousingPortal/resources/js/jquery.dropotron-1.0.js"></script>
+    <style type="text/css">
+    span.error {
+        color: #D8000C;
+        font-size: 12px;
+    }
+</style>
 </head>
 <body>
 <div id="wrapper">
@@ -81,7 +87,7 @@ Released : 20120520
                                 <br/>
 
                                 <c:if test="${param['errorcode'] == 1}">
-                                    <c:out value="invalid email or password "/>
+                                    <span class="error"><c:out value="invalid email or password "/></span>
                                 </c:if>
                                 <li>
                                     <input type="submit" value="Log in"/>

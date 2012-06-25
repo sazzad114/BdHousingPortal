@@ -91,7 +91,6 @@ public class CriteriaController {
 
         int currentPage;
         long pageCount;
-
         Customer customer = (Customer) request.getSession().getAttribute("customer");
 
         if (request.getParameter("curr") == null || !request.getParameter("curr").matches("[0-9]+")) {

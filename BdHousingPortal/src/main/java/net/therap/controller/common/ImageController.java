@@ -41,8 +41,8 @@ public class ImageController {
         }
 
         try {
-            byte[] imageBytes = flatService.getImageData(Long.valueOf(request.getParameter("flatid")));
 
+            byte[] imageBytes = flatService.getImageData(Long.valueOf(request.getParameter("flatid")));
             response.setContentType("image/jpg");
             OutputStream outputStream = response.getOutputStream();
             outputStream.write(imageBytes);

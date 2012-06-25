@@ -77,9 +77,7 @@ public class CustomerProfileController{
             model.put("customer", customer);
             model.put("title", "Customer Profile edit Form");
             return "customer/customeredit";
-
         } else {
-            //log.debug("####" + "InMethodPost"+customer.getCustomerId());
             customerService.updateCustomer(customer);
             request.getSession().setAttribute("customer", customer);
             return "redirect:/cus/customerprofile/view.htm";

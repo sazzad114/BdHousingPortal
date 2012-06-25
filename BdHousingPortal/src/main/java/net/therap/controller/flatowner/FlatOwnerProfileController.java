@@ -58,7 +58,6 @@ public class FlatOwnerProfileController {
 
     @ModelAttribute("flatowner")
     public FlatOwner getCustomer(HttpServletRequest request) {
-        /*return (FlatOwner) request.getSession().getAttribute("flatowner");*/
         return flatOwnerService.getFlatOwnerById(((FlatOwner) request.getSession().getAttribute("flatowner")).getFlatOwnerId());
     }
 

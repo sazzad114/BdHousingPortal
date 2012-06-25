@@ -135,7 +135,7 @@
                             </td>
                             <td>
                                 <form:input id="rent" disabled="true" path="priceOrRent"/><br/>
-                                <span class="error"><form:errors path="priceOrRent"/></span>
+                                <span class="error"><c:if test="${criteria.forRent == true}"><form:errors path="priceOrRent"/></c:if></span>
                             </td>
                         </tr>
 
@@ -146,7 +146,7 @@
                             </td>
                             <td>
                                 <form:input id="sell" path="priceOrRent"/><br/>
-                                 <span class="error"><form:errors path="priceOrRent"/></span>
+                                 <span class="error"><c:if test="${criteria.forRent == false}"><form:errors path="priceOrRent"/></c:if></span>
                             </td>
                         </tr>
 
