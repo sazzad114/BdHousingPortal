@@ -27,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/flatownerprofile")
-@SessionAttributes("flatowner")
+@SessionAttributes("flatownerForm")
 public class FlatOwnerProfileController {
 
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerProfileController.class);
@@ -46,7 +46,7 @@ public class FlatOwnerProfileController {
 
     @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
     public String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
-        model.put("customer", request.getSession().getAttribute("flatowner"));
+        model.put("flatowner", request.getSession().getAttribute("flatowner"));
         return "flatowner/flatownerdetailsview";
     }
 
@@ -56,27 +56,25 @@ public class FlatOwnerProfileController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
     }
 
-    @ModelAttribute("flatowner")
-    public FlatOwner getCustomer(HttpServletRequest request) {
-        return flatOwnerService.getFlatOwnerById(((FlatOwner) request.getSession().getAttribute("flatowner")).getFlatOwnerId());
-    }
-
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
     public String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
+        FlatOwner flatOwner = flatOwnerService.getFlatOwnerById(((FlatOwner) request.getSession().getAttribute("flatowner")).getFlatOwnerId());
+        model.put("flatownerForm",flatOwner);
         model.put("title", "Flat owner Profile edit Form");
         return "flatowner/flatowneredit";
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.POST)
-    public String profileEditPostAction(@Valid @ModelAttribute("flatowner") FlatOwner flatOwner, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    public String profileEditPostAction(@Valid @ModelAttribute("flatownerForm") FlatOwner flatOwner, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
 
         if (bindingResult.hasErrors()) {
-            model.put("flatowner", flatOwner);
+            model.put("flatownerForm", flatOwner);
             model.put("title", "Customer Profile edit Form");
             return "flatowner/flatowneredit";
         } else {
             log.debug("####" + "InMethodPost" + flatOwner.getFlatOwnerId());
             flatOwnerService.updateFlatOwner(flatOwner);
+            request.getSession().removeAttribute("flatownerForm");
             request.getSession().setAttribute("flatowner", flatOwner);
             return "redirect:/own/flatownerprofile/view.htm";
 

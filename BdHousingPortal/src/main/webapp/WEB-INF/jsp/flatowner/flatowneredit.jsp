@@ -33,7 +33,7 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form action="" commandName="flatowner" method="post">
+                <form:form action="" commandName="flatownerForm" method="post">
                     <table>
                         <tr>
                             <td>

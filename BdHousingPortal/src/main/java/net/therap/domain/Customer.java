@@ -1,9 +1,7 @@
 package net.therap.domain;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OptimisticLockType;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -21,8 +19,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@org.hibernate.annotations.Entity(optimisticLock = OptimisticLockType.ALL)
-@SessionAttributes
+/*@org.hibernate.annotations.Entity(optimisticLock = OptimisticLockType.ALL)*/
 @Table(name = "H_CUSTOMER_DETAILS")
 public class Customer {
 

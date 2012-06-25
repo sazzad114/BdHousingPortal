@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Currency;
 import java.util.Date;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@SessionAttributes("customer")
+@SessionAttributes("customerForm")
 @RequestMapping(value = "/customerprofile")
 public class CustomerProfileController{
 
@@ -59,27 +60,29 @@ public class CustomerProfileController{
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
     public String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
-
-        Customer customer =  customerService.getCustomerById(((Customer)request.getSession().getAttribute("customer")).getCustomerId());
-        model.put("customer",customer);
+        Customer customer = customerService.getCustomerById(((Customer) request.getSession().getAttribute("customer")).getCustomerId());
+        model.put("customerForm",customer);
         model.put("title", "Customer Profile edit Form");
-        //log.debug("####" + "InMethodGet" + ((Customer) request.getSession().getAttribute("customer")).getCustomerId());
         return "customer/customeredit";
-
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.POST)
-    public String profileEditPostAction(@Valid Customer customer, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    public String profileEditPostAction(@Valid @ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
 
-        log.debug(customer.getCustomerName()+"@@@@@"+customer.getVersion());
+        log.debug(customerForm.getCustomerName()+"@@@@@"+customerForm.getVersion());
 
         if (bindingResult.hasErrors()) {
-            model.put("customer", customer);
+            model.put("customerForm", customerForm);
             model.put("title", "Customer Profile edit Form");
             return "customer/customeredit";
+
         } else {
-            customerService.updateCustomer(customer);
-            request.getSession().setAttribute("customer", customer);
+            //log.debug("####" + "InMethodPost"+customer.getCustomerId());
+            customerService.updateCustomer(customerForm);
+            log.debug(request.getSession().getAttribute("customerForm")+"@@@@@");
+            request.getSession().removeAttribute("customerForm");
+            log.debug(request.getSession().getAttribute("customerForm")+"@@@@@");
+            request.getSession().setAttribute("customer", customerForm);
             return "redirect:/cus/customerprofile/view.htm";
         }
 

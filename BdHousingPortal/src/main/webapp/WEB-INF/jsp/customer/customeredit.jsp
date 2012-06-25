@@ -33,11 +33,10 @@
         </div>
         <div class="post">
             <div class="entry">
-                <form:form action="" commandName="customer" method="post">
+                <form:form action="" commandName="customerForm" method="post">
                     <table>
                         <tr>
                             <td>
-                                    ${customer.version}
                                 <fmt:message key="user.name"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>

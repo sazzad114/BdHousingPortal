@@ -22,6 +22,7 @@ import java.util.List;
  */
 @Component
 @Entity
+/*@org.hibernate.annotations.Entity(optimisticLock = OptimisticLockType.ALL)*/
 @Table(name = "H_FLAT_OWNER")
 public class FlatOwner {
 
