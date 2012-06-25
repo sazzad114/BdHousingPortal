@@ -15,6 +15,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CustomerDao {
+
     public void saveCustomer(Customer customer);
 
     public Customer getCustomerByUser(User user);

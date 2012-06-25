@@ -30,7 +30,7 @@ import java.util.Map;
 public class BuildingController {
 
     @Autowired
-    BuildingService buildingService;
+    private BuildingService buildingService;
 
     public BuildingService getBuildingService() {
         return buildingService;
@@ -41,14 +41,14 @@ public class BuildingController {
     }
 
     @RequestMapping(value = "/create.htm", method = RequestMethod.GET)
-    String createBuildingGetAction(Map<String, Object> model) {
+    public String createBuildingGetAction(Map<String, Object> model) {
         model.put("building", new Building());
         model.put("title", "Building details :");
         return "flatowner/createbuilding";
     }
 
     @RequestMapping(value = "/create.htm", method = RequestMethod.POST)
-    String createBuildingPostAction(@Valid Building building, BindingResult bindingResult, HttpServletRequest request) {
+    public String createBuildingPostAction(@Valid Building building, BindingResult bindingResult, HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             return "flatowner/createbuilding";
@@ -61,7 +61,7 @@ public class BuildingController {
     }
 
     @RequestMapping(value = "/delete.htm", method = RequestMethod.GET)
-    String deleteBuildingAction(HttpServletRequest request) {
+    public String deleteBuildingAction(HttpServletRequest request) {
 
         if (request.getParameter("buildingid") == null || !request.getParameter("buildingid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
@@ -79,7 +79,7 @@ public class BuildingController {
     }
 
     @RequestMapping(value = "/buildinglist.htm", method = RequestMethod.GET)
-    String showBuildingListAction(Map<String, Object> model, HttpServletRequest request) {
+    public String showBuildingListAction(Map<String, Object> model, HttpServletRequest request) {
         List<Building> buildingList = buildingService.getBuildingList((FlatOwner) request.getSession().getAttribute("flatowner"));
         model.put("buildingList", buildingList);
         model.put("title", "Building List :");
@@ -87,7 +87,7 @@ public class BuildingController {
     }
 
     @RequestMapping(value = "/buildingdetails.htm", method = RequestMethod.GET)
-    String showBuildingDetailsAction(@RequestParam long buildingId, Map<String, Object> model) {
+    public String showBuildingDetailsAction(@RequestParam long buildingId, Map<String, Object> model) {
         Building building = buildingService.getBuildingById(buildingId);
         model.put("building", building);
         model.put("title", "Building Details :");

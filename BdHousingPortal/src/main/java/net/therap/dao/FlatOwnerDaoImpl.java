@@ -21,6 +21,12 @@ public class FlatOwnerDaoImpl extends HibernateDaoSupport implements FlatOwnerDa
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerDaoImpl.class);
 
 
+    public void updateFlatOwner(FlatOwner flatOwner) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        session.update(flatOwner);
+        session.flush();
+    }
+
     public void saveFlatUser(FlatOwner flatOwner) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         session.saveOrUpdate(flatOwner);

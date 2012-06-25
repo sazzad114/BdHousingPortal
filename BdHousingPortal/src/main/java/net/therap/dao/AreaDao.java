@@ -12,6 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface AreaDao {
+
     public void saveArea(Area area);
 
     public List<Area> getAreaList();

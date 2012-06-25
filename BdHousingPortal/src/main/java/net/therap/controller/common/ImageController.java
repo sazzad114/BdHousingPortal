@@ -23,7 +23,7 @@ import java.io.OutputStream;
 public class ImageController {
 
     @Autowired
-    FlatService flatService;
+    private FlatService flatService;
 
     public FlatService getFlatService() {
         return flatService;
@@ -34,7 +34,7 @@ public class ImageController {
     }
 
     @RequestMapping(value = "/flatimage.htm", method = RequestMethod.GET)
-    void getFlatImageAction(HttpServletRequest request, HttpServletResponse response) {
+    public void getFlatImageAction(HttpServletRequest request, HttpServletResponse response) {
 
         if (request.getParameter("flatid") == null || !request.getParameter("flatid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");

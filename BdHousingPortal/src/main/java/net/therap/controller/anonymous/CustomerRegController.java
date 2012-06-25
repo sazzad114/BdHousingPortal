@@ -38,10 +38,10 @@ public class CustomerRegController {
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public UserService getUserService() {
         return userService;
@@ -60,7 +60,7 @@ public class CustomerRegController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    String customerRegAction(Map<String, Object> model) {
+    public String customerRegAction(Map<String, Object> model) {
         model.put("customer", new Customer());
         model.put("title", "Customer Registration Form");
         return "anonymous/customerreg";
@@ -71,7 +71,6 @@ public class CustomerRegController {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
     }
-
 
     @RequestMapping(method = RequestMethod.POST)
     public String saveFlatOwnerAction(@Valid Customer customer, BindingResult bindingResult) {
@@ -86,13 +85,12 @@ public class CustomerRegController {
 
         if (bindingResult.hasErrors()) {
             return "anonymous/customerreg";
-        }
-        else {
+        } else {
             customer.getUser().setUserType(User.CUSTOMERTYPE);
             customerService.saveCustomer(customer);
             return "redirect:/app/login.htm";
         }
-    }
 
+    }
 
 }

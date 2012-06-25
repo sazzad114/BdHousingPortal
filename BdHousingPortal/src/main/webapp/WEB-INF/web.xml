@@ -81,6 +81,10 @@
             <taglib-uri>http://java.sun.com/jsp/jstl/fn</taglib-uri>
             <taglib-location>/WEB-INF/fn.tld</taglib-location>
         </taglib>
+        <taglib>
+            <taglib-uri>/SiteMash</taglib-uri>
+            <taglib-location>/WEB-INF/sitemesh-decorator.tld</taglib-location>
+        </taglib>
     </jsp-config>
 
     <filter>

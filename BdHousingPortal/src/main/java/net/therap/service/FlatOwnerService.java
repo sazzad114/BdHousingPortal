@@ -15,4 +15,6 @@ public interface FlatOwnerService {
 
     public FlatOwner getFlatOwnerById(long id);
 
+    public void updateFlatOwner(FlatOwner flatOwner);
+
 }

@@ -13,6 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CriteriaDao {
+
     public void saveCriteria(Criteria criteria);
 
     public Criteria getCriteriaById(long id);

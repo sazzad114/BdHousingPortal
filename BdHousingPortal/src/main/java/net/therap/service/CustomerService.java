@@ -14,6 +14,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CustomerService {
+
     public void saveCustomer(Customer customer);
 
     public void updateCustomer(Customer customer);

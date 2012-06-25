@@ -38,10 +38,10 @@ public class FlatOwnerRegController {
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
 
     @Autowired
-    FlatOwnerService flatOwnerService;
+    private FlatOwnerService flatOwnerService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public UserService getUserService() {
         return userService;
@@ -60,7 +60,7 @@ public class FlatOwnerRegController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    String flatOwnerRegAction(Map<String, Object> model) {
+    public String flatOwnerRegAction(Map<String, Object> model) {
         model.put("title", "Flat Owner Registration Form");
         model.put("flatOwner", new FlatOwner());
         return "anonymous/flatownerreg";
@@ -90,7 +90,7 @@ public class FlatOwnerRegController {
             flatOwnerService.saveFlatOwner(flatOwner);
             return "redirect:/app/login.htm";
         }
-    }
 
+    }
 
 }

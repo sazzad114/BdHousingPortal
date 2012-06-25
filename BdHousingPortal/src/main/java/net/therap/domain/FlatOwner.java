@@ -46,7 +46,7 @@ public class FlatOwner {
     private User user;
     @Valid
     private Address address;
-    List<Building> buildingList = new ArrayList<Building>();
+    private List<Building> buildingList = new ArrayList<Building>();
 
     @OrderBy("buildingId desc")
     @OneToMany(mappedBy = "flatOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

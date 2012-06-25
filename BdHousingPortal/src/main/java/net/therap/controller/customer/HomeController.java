@@ -31,6 +31,9 @@ public class HomeController {
     @Autowired
     private FlatService flatService;
 
+    @Autowired
+    private FlatOwnerService flatOwnerService;
+
     public FlatService getFlatService() {
         return flatService;
     }
@@ -46,9 +49,6 @@ public class HomeController {
     public void setFlatOwnerService(FlatOwnerService flatOwnerService) {
         this.flatOwnerService = flatOwnerService;
     }
-
-    @Autowired
-    private FlatOwnerService flatOwnerService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String welcomeAction(Map<String,Object> model, HttpServletRequest request){

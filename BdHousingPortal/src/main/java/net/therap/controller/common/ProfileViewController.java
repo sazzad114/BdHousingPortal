@@ -24,10 +24,10 @@ import java.util.Map;
 public class ProfileViewController {
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
-    FlatOwnerService flatOwnerService;
+    private FlatOwnerService flatOwnerService;
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -46,7 +46,7 @@ public class ProfileViewController {
     }
 
     @RequestMapping(value = "/viewcusprofile.htm", method = RequestMethod.GET)
-    String viewCustomerProfile(Map<String, Object> model, HttpServletRequest request) {
+    public String viewCustomerProfile(Map<String, Object> model, HttpServletRequest request) {
 
         if (request.getParameter("customerid") == null || !request.getParameter("customerid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
@@ -56,13 +56,14 @@ public class ProfileViewController {
         if (customer == null) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
+
         model.put("customer", customer);
         model.put("title", "Customer Profile :");
         return "common/viewcustomer";
     }
 
     @RequestMapping(value = "/viewownerprofile.htm", method = RequestMethod.GET)
-    String viewFlatOwnerProfile(Map<String, Object> model, HttpServletRequest request) {
+    public String viewFlatOwnerProfile(Map<String, Object> model, HttpServletRequest request) {
 
         if (request.getParameter("flatownerid") == null || !request.getParameter("flatownerid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
@@ -77,6 +78,7 @@ public class ProfileViewController {
         model.put("flatowner", flatOwner);
         model.put("title", "Flat Owner Profile :");
         return "common/viewflatowner";
+
     }
 
 }

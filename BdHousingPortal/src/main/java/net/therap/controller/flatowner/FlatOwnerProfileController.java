@@ -29,10 +29,11 @@ import java.util.Map;
 @RequestMapping(value = "/flatownerprofile")
 @SessionAttributes("flatowner")
 public class FlatOwnerProfileController {
+
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerProfileController.class);
 
     @Autowired
-    FlatOwnerService flatOwnerService;
+    private FlatOwnerService flatOwnerService;
 
     public FlatOwnerService getFlatOwnerService() {
         return flatOwnerService;
@@ -44,7 +45,7 @@ public class FlatOwnerProfileController {
 
 
     @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
-    String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
+    public String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
         model.put("customer", request.getSession().getAttribute("flatowner"));
         return "flatowner/flatownerdetailsview";
     }
@@ -56,18 +57,19 @@ public class FlatOwnerProfileController {
     }
 
     @ModelAttribute("flatowner")
-    FlatOwner getCustomer(HttpServletRequest request) {
-        return (FlatOwner) request.getSession().getAttribute("flatowner");
+    public FlatOwner getCustomer(HttpServletRequest request) {
+        /*return (FlatOwner) request.getSession().getAttribute("flatowner");*/
+        return flatOwnerService.getFlatOwnerById(((FlatOwner) request.getSession().getAttribute("flatowner")).getFlatOwnerId());
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
-    String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
+    public String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
         model.put("title", "Flat owner Profile edit Form");
         return "flatowner/flatowneredit";
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.POST)
-    String profileEditPostAction(@Valid @ModelAttribute("flatowner") FlatOwner flatOwner, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    public String profileEditPostAction(@Valid @ModelAttribute("flatowner") FlatOwner flatOwner, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
 
         if (bindingResult.hasErrors()) {
             model.put("flatowner", flatOwner);
@@ -75,10 +77,11 @@ public class FlatOwnerProfileController {
             return "flatowner/flatowneredit";
         } else {
             log.debug("####" + "InMethodPost" + flatOwner.getFlatOwnerId());
-            flatOwnerService.saveFlatOwner(flatOwner);
+            flatOwnerService.updateFlatOwner(flatOwner);
             request.getSession().setAttribute("flatowner", flatOwner);
-            return "flatowner/flatownerdetailsview";
+            return "redirect:/own/flatownerprofile/view.htm";
 
         }
+
     }
 }

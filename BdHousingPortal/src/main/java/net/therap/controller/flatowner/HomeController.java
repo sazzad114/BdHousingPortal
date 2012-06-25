@@ -26,7 +26,7 @@ import java.util.Map;
 public class HomeController {
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     public CustomerService getCustomerService() {
         return customerService;
@@ -43,6 +43,5 @@ public class HomeController {
         model.put("customerlist", customerList);
         return "flatowner/home";
     }
-
 
 }

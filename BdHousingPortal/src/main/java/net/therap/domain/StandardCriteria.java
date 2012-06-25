@@ -24,8 +24,8 @@ public class StandardCriteria {
     private int minPriceOrRent;
     private int maxPriceOrRent;
     private long version;
-    List<Flat> flatList = new ArrayList<Flat>();
-    List<Criteria> criteriaList = new ArrayList<Criteria>();
+    private List<Flat> flatList = new ArrayList<Flat>();
+    private List<Criteria> criteriaList = new ArrayList<Criteria>();
 
     @Id
     @SequenceGenerator(name = "H_STANDARD_CRITERIA_SEQ", sequenceName = "H_STANDARD_CRITERIA_SEQ")

@@ -24,5 +24,4 @@ public class WelcomeController {
         return "anonymous/welcome";
     }
 
-
 }

@@ -14,6 +14,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
+
     public void saveArea(Area area) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         session.saveOrUpdate(area);

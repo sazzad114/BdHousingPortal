@@ -27,7 +27,7 @@ public class LoginController {
     private static final Logger log = LoggerFactory.getLogger(FlatOwnerRegController.class);
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public UserService getUserService() {
         return userService;

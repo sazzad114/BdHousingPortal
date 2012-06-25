@@ -17,4 +17,6 @@ public interface FlatOwnerDao {
     public FlatOwner getFlatOwnerByUser(User user);
 
     public FlatOwner getFlatOwnerById(long id);
+
+    public void updateFlatOwner(FlatOwner flatOwner);
 }

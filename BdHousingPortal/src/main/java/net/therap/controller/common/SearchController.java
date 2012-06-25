@@ -43,6 +43,13 @@ public class SearchController {
     @Autowired
     private FlatService flatService;
 
+    @Autowired
+    private AreaDao areaDao;
+
+    public AreaDao getAreaDao() {
+        return areaDao;
+    }
+
     public CustomerService getCustomerService() {
         return customerService;
     }
@@ -59,36 +66,35 @@ public class SearchController {
         this.flatService = flatService;
     }
 
-    @Autowired
-    AreaDao areaDao;
-    public AreaDao getAreaDao() {
-        return areaDao;
-    }
-
     public void setAreaDao(AreaDao areaDao) {
         this.areaDao = areaDao;
     }
 
     @RequestMapping(value = "/flatsearch.htm",method = RequestMethod.GET)
-    String searchFlatGetAction(Map<String,Object> model){
+    public String searchFlatGetAction(Map<String,Object> model){
+
         Criteria criteria = new Criteria();
         List<Area> areaList = areaDao.getAreaList();
         List<Integer> numberOfBeds = new ArrayList<Integer>();
+
         for(int i=1;i<=10;i++)
         {
             numberOfBeds.add(i);
         }
+
         model.put("criteria",criteria);
         model.put("arealist",areaList);
         model.put("numberofbeds",numberOfBeds);
         model.put("title","Search Flat");
         return "common/flatsearch";
+
     }
 
     @RequestMapping(value = "/flatsearch.htm",method = RequestMethod.POST)
-    String searchFlatPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
+    public String searchFlatPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
 
         model.put("title","Search Flat");
+
         if(bindingResult.hasErrors()){
             return "common/flatsearch";
         }
@@ -101,23 +107,27 @@ public class SearchController {
 
 
     @RequestMapping(value = "/customersearch.htm",method = RequestMethod.GET)
-    String searchCustomerGetAction(Map<String,Object> model){
+    public String searchCustomerGetAction(Map<String,Object> model){
+
         Criteria criteria = new Criteria();
         List<Area> areaList = areaDao.getAreaList();
         List<Integer> numberOfBeds = new ArrayList<Integer>();
+
         for(int i=1;i<=10;i++)
         {
             numberOfBeds.add(i);
         }
+
         model.put("criteria",criteria);
         model.put("arealist",areaList);
         model.put("numberofbeds",numberOfBeds);
         model.put("title","Search Customer");
         return "common/customersearch";
+
     }
 
     @RequestMapping(value = "/customersearch.htm",method = RequestMethod.POST)
-    String searchCustomerPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
+    public String searchCustomerPostAction(@Valid Criteria criteria,BindingResult bindingResult, Map<String,Object> model){
 
         model.put("title","Search Customer");
         if(bindingResult.hasErrors()){
@@ -128,5 +138,7 @@ public class SearchController {
             model.put("customerlist",customerList);
             return "common/customersearch";
         }
+
     }
+
 }

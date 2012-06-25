@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Table(name = "H_AREA")
 public class Area {
 
-    long areaId;
-    String areaName;
+    private long areaId;
+    private String areaName;
 
     public Area(String areaName) {
         this.areaName = areaName;

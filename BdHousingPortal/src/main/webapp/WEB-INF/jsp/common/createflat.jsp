@@ -177,7 +177,7 @@
 
                         <tr>
                             <td>
-                                <fmt:message key="flat.description"/>
+                                <fmt:message key="flat.floors"/>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>

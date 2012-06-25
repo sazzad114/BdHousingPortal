@@ -35,6 +35,7 @@ import java.util.Map;
 public class FlatController {
 
     private static final Logger log = LoggerFactory.getLogger(FlatController.class);
+
     @Autowired
     private BuildingService buildingService;
 
@@ -60,7 +61,6 @@ public class FlatController {
     @RequestMapping(value = "/create.htm", method = RequestMethod.GET)
     public String createFlatGetAction(Map<String, Object> model, HttpServletRequest request) {
 
-
         if (request.getParameter("buildingid") == null || !request.getParameter("buildingid").matches("[0-9]+")) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
@@ -83,21 +83,23 @@ public class FlatController {
         }
         model.put("floorlist", floorList);
         return "common/createflat";
+
     }
 
     @RequestMapping(value = "/create.htm", method = RequestMethod.POST)
     public String createFlatPostAction(@Valid Flat flat, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return "common/createflat";
-        }
-        else {
+        } else {
 
             try {
                 flatService.saveFlat(flat);
             } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                throw new RuntimeException(); //To change body of catch statement use File | Settings | File Templates.
             }
             return "redirect:/own/home.htm";
+
         }
 
     }
@@ -109,11 +111,11 @@ public class FlatController {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
 
-//        long flatId = ServletRequestUtils.getLongParameter(request,"flatId",-1);
         Flat flat = flatService.getFlatById(Long.valueOf(request.getParameter("flatid")));
         if (flat == null) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
+
         model.put("flat", flat);
         model.put("title", "Flat Details");
         return "common/viewflat";
@@ -130,12 +132,11 @@ public class FlatController {
         FlatOwner flatOwner = (FlatOwner) request.getSession().getAttribute("flatowner");
         boolean isDeleted = flatService.deleteFlatById(flatOwner, Long.valueOf(request.getParameter("flatid")));
 
-
         if (isDeleted == false) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
         return "redirect:/own/building/buildinglist.htm";
-    }
 
+    }
 
 }

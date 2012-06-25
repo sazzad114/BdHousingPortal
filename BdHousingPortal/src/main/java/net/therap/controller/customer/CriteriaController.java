@@ -32,7 +32,10 @@ import java.util.Map;
 public class CriteriaController {
 
     @Autowired
-    AreaDao areaDao;
+    private AreaDao areaDao;
+
+    @Autowired
+    private CriteriaService criteriaService;
 
     public AreaDao getAreaDao() {
         return areaDao;
@@ -41,9 +44,6 @@ public class CriteriaController {
     public void setAreaDao(AreaDao areaDao) {
         this.areaDao = areaDao;
     }
-
-    @Autowired
-    CriteriaService criteriaService;
 
     public CriteriaService getCriteriaService() {
         return criteriaService;
@@ -54,7 +54,8 @@ public class CriteriaController {
     }
 
     @RequestMapping(value = "/create.htm", method = RequestMethod.GET)
-    String createCriteriaGetAction(Map<String, Object> model) {
+    public String createCriteriaGetAction(Map<String, Object> model) {
+
         Criteria criteria = new Criteria();
         List<Area> areaList = areaDao.getAreaList();
         List<Integer> numberOfBeds = new ArrayList<Integer>();
@@ -65,10 +66,12 @@ public class CriteriaController {
         model.put("arealist", areaList);
         model.put("numberofbeds", numberOfBeds);
         return "customer/createcriteria";
+
     }
 
     @RequestMapping(value = "/create.htm", method = RequestMethod.POST)
-    String createCriteriaPostAction(@Valid Criteria criteria, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    public String createCriteriaPostAction(@Valid Criteria criteria, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+
         if (bindingResult.hasErrors()) {
             List<Integer> numberOfBeds = new ArrayList<Integer>();
             for (int i = 1; i <= 10; i++) {
@@ -80,10 +83,11 @@ public class CriteriaController {
             criteriaService.saveCriteriaForCustomer(criteria, (Customer) request.getSession().getAttribute("customer"));
             return "redirect:/cus/criteria/view.htm";
         }
+
     }
 
     @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
-    String viewCriteriaAction(Map<String, Object> model, HttpServletRequest request) {
+    public String viewCriteriaAction(Map<String, Object> model, HttpServletRequest request) {
 
         int currentPage;
         long pageCount;
@@ -103,10 +107,11 @@ public class CriteriaController {
         model.put("pagecount", pageCount);
         model.put("title", "Criteria list");
         return "customer/viewcriteria";
+
     }
 
     @RequestMapping(value = "/delete.htm", method = RequestMethod.GET)
-    String deleteCriteriaAction(HttpServletRequest request) {
+    public String deleteCriteriaAction(HttpServletRequest request) {
 
         if (request.getParameter("criteriaid") == null) {
             throw new ApplicationException(" You are trying to access Illegal resource...");
@@ -118,6 +123,7 @@ public class CriteriaController {
             throw new ApplicationException(" You are trying to access Illegal resource...");
         }
         return "redirect:/cus/criteria/view.htm";
+
     }
 
 

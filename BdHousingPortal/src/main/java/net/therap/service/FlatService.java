@@ -16,6 +16,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface FlatService {
+
     public void saveFlat(Flat flat) throws IOException;
 
     public Flat getFlatById(long id);

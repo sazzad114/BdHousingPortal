@@ -35,7 +35,7 @@ public class CustomerProfileController{
     private static final Logger log = LoggerFactory.getLogger(CustomerProfileController.class);
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     public CustomerService getCustomerService() {
         return customerService;
@@ -46,7 +46,7 @@ public class CustomerProfileController{
     }
 
     @RequestMapping(value = "/view.htm", method = RequestMethod.GET)
-    String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
+    public String profileViewAction(Map<String, Object> model, HttpServletRequest request) {
         model.put("customer", request.getSession().getAttribute("customer"));
         return "customer/customerdetailsview";
     }
@@ -55,23 +55,21 @@ public class CustomerProfileController{
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
-
-
     }
 
-
     @RequestMapping(value = "/edit.htm", method = RequestMethod.GET)
-    String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
+    public String profileEditGetAction(Map<String, Object> model, HttpServletRequest request) {
 
         Customer customer =  customerService.getCustomerById(((Customer)request.getSession().getAttribute("customer")).getCustomerId());
         model.put("customer",customer);
         model.put("title", "Customer Profile edit Form");
         //log.debug("####" + "InMethodGet" + ((Customer) request.getSession().getAttribute("customer")).getCustomerId());
         return "customer/customeredit";
+
     }
 
     @RequestMapping(value = "/edit.htm", method = RequestMethod.POST)
-    String profileEditPostAction(@Valid Customer customer, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
+    public String profileEditPostAction(@Valid Customer customer, BindingResult bindingResult, HttpServletRequest request, Map<String, Object> model) {
 
         log.debug(customer.getCustomerName()+"@@@@@"+customer.getVersion());
 

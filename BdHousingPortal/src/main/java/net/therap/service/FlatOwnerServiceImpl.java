@@ -29,4 +29,8 @@ public class FlatOwnerServiceImpl implements FlatOwnerService {
     public FlatOwner getFlatOwnerById(long id) {
         return flatOwnerDao.getFlatOwnerById(id);
     }
+
+    public void updateFlatOwner(FlatOwner flatOwner) {
+        flatOwnerDao.updateFlatOwner(flatOwner);
+    }
 }

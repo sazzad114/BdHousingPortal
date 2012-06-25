@@ -15,5 +15,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface StandardCriteriaService {
+
     public StandardCriteria getStandardCriteriaByFlat(Flat flat);
 }

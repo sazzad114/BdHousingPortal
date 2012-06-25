@@ -17,6 +17,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao {
+
     public void saveCustomer(Customer customer) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         session.saveOrUpdate(customer);
