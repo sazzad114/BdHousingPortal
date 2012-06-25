@@ -16,7 +16,7 @@ Released : 20120520
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Commercial by Free CSS Templates</title>
+    <title>BdHousingPortal</title>
     <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css"/>
     <link href="/BdHousingPortal/resources/css/style.css" rel="stylesheet" type="text/css" media="screen"/>
     <script type="text/javascript" src="/BdHousingPortal/resources/js/jquery-1.7.1.min.js"></script>
