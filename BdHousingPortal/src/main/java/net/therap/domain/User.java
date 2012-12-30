@@ -36,7 +36,6 @@ public class User implements Serializable {
 
     @Pattern(regexp = "[^\\s]*", message = "space is not allowed")
     @Size(min = 8, max = 30, message = "within 8 to 30 characters")
-
     private String confirmPassword;
     private int userType;
     private long version;
@@ -45,7 +44,6 @@ public class User implements Serializable {
     @SequenceGenerator(name = "H_USER_SEQ", sequenceName = "H_USER_SEQ")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "H_USER_SEQ")
     @Column(name = "USER_ID")
-
     public long getUserId() {
         return userId;
     }

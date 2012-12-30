@@ -7,10 +7,18 @@
 
     <!-- datasource and sessionFactory beans -->
 
-    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:comp/env/jdbc/myoracle"/>
         <property name="resourceRef" value="true"/>
+    </bean>-->
+
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@db102:1521:THERAP"/>
+        <property name="username" value="trainee"/>
+        <property name="password" value="pass321"/>
     </bean>
+
 
     <bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">
         <property name="dataSource" ref="dataSource"/>
@@ -28,10 +36,12 @@
                 <value>net.therap.domain.Image</value>
             </list>
         </property>
+
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
             </props>
         </property>
     </bean>
