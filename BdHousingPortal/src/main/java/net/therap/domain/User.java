@@ -1,6 +1,6 @@
 package net.therap.domain;
 
-import org.hibernate.validator.constraints.Email;
+//import org.hibernate.validator.constraints.Email;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -26,7 +26,7 @@ public class User implements Serializable {
     public static final int DEVELOPERTYPE = 3;
     private long userId;
 
-    @Email(message = "email should follow the format email@domain.com")
+//    @Email(message = "email should follow the format email@domain.com")
     @Size(min = 10, max = 50, message = "within 10 to 50 characters")
     private String email;
 

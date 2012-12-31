@@ -1,14 +1,11 @@
+
 package net.therap.domain;
 
 
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.*;
 
 /**
  * Created by IntelliJ IDEA.
